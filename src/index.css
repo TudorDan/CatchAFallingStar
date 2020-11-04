@@ -41,3 +41,18 @@ nav {
   font-size: 2rem;
   margin: 0 2rem;
 }
+
+.carousel-item > img {
+  height: 100vh;
+}
+
+.carousel-caption > h2 {
+  color: #007bff;
+  font-weight: bolder;
+  font-size: 5rem;
+}
+.carousel-caption > p {
+  color: red;
+  font-weight: bolder;
+  font-size: 1.3rem;
+}
