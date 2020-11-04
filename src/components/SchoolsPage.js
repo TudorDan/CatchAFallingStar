@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 
 const SchoolsPage = () => {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
+  const linkToSchool = `/schools-details/`;
 
   const getSchools = async () => {
     try {
@@ -26,21 +28,21 @@ const SchoolsPage = () => {
   if (loading) {
     return <h1>Loading...</h1>;
   }
-
+  
   return (
-    <h1>
+    <>
       <h3>Schools</h3>
       <ul>
         {schools.map((school) => {
           const { id, name } = school;
           return (
             <li key={id}>
-              <h4>{name}</h4>
+              <a href={linkToSchool+school.id}>{name}</a>
             </li>
           );
         })}
       </ul>
-    </h1>
+    </>
   );
 };
 

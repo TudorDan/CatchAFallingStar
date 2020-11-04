@@ -4,6 +4,7 @@ import HomePage from "./HomePage";
 import SchoolsPage from "./SchoolsPage";
 import NotFoundPage from "./NotFoundPage";
 import { Route, Switch } from "react-router-dom";
+import SchoolPage from "./SchoolPage";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       </header>
       <main>
         <Switch>
-          <Route path="/" exact component={HomePage} />
+          <Route exact path="/" component={HomePage} />
           <Route path="/schools" component={SchoolsPage} />
+          <Route exact path="/schools-details/:id" component={SchoolPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </main>
