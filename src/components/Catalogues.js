@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Api from "./utils/Api";
+import Loading from "./utils/Loading";
 
 const Catalogues = () => {
   const [catalogues, setCatalogues] = useState([]);
@@ -25,7 +26,7 @@ const Catalogues = () => {
   }, [schoolID]);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading key={0} />;
   }
 
   return (

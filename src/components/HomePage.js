@@ -23,7 +23,7 @@ const HomePage = () => {
         <div class="carousel-item active">
           <img src={slide1} class="d-block w-100" alt="..." />
           <div class="carousel-caption d-none d-md-block">
-            <h2>Online Schools System</h2>
+            <h2 className="">Online Schools System</h2>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </div>
         </div>

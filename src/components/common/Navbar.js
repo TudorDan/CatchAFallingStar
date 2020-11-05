@@ -15,8 +15,8 @@ function Navbar() {
         </h1>
       </div>
       <nav className="navbar font-weight-bolder">
-        <NavLink to="/schools" activeStyle={activeLink}>
-          Schools List
+        <NavLink to="/schools" activeStyle={activeLink} className="text-light">
+          Schools
         </NavLink>
       </nav>
     </div>

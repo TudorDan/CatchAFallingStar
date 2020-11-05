@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Api from "./utils/Api";
+import Loading from "./utils/Loading";
 
 const SchoolsPage = () => {
   const [schools, setSchools] = useState([]);
@@ -26,23 +27,34 @@ const SchoolsPage = () => {
 
   // return different statement if api not working
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading key={0} />;
   }
 
   return (
-    <>
+    <div className="container school-list text-center">
       <h3>Schools</h3>
-      <ul>
+      <ul className="list-group school-cards">
         {schools.map((school) => {
-          const { id, name } = school;
+          const { id, name, photo } = school;
           return (
             <li key={id}>
-              <a href={linkToSchool + school.id}>{name}</a>
+              <div class="card mb-3 mt-3">
+                {/* <img src={photo} class="card-img-top" alt="..." /> */}
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a href={linkToSchool + school.id}>{name}</a>
+                  </h5>
+                  <p class="card-text">Principal: {school.principal.name}</p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 hours ago</small>
+                  </p>
+                </div>
+              </div>
             </li>
           );
         })}
       </ul>
-    </>
+    </div>
   );
 };
 

@@ -4,6 +4,7 @@ import Students from "./Students";
 import Courses from "./Courses";
 import Catalogues from "./Catalogues";
 import Api from "./utils/Api";
+import Loading from "./utils/Loading";
 
 const SchoolPage = () => {
   const [school, setSchool] = useState([]);
@@ -30,7 +31,7 @@ const SchoolPage = () => {
   }, [schoolID]);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading key={0} />;
   }
 
   return (
@@ -82,8 +83,8 @@ const SchoolPage = () => {
         </div>
       </div>
 
-      <article id="content-right">
-        <h1 className="text-center">{school.name}</h1>
+      <article id="content-right" className="text-center">
+        <h1>{school.name}</h1>
         <section>
           {value === 1 ? (
             <Mentors key={schoolID} />
@@ -96,8 +97,8 @@ const SchoolPage = () => {
           ) : (
             value === 0 && (
               <>
-                <h2 className="mt-5 text-center">School Info</h2>
-                <h3>Principal: {school.principal.name}</h3>
+                <h2 className="mt-5">School Info</h2>
+                <h3 className="mt-5">Principal: {school.principal.name}</h3>
               </>
             )
           )}

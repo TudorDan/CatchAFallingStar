@@ -12,7 +12,7 @@ function App() {
       <header className="fixed-top">
         <Navbar />
       </header>
-      <main className="mt-5">
+      <main>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/schools" component={SchoolsPage} />
