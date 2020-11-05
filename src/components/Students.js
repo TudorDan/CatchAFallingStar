@@ -34,11 +34,30 @@ const Students = () => {
       <h2 className="mt-5 text-center">Students</h2>
       <ul>
         {students.map((student) => {
-          const { id, name, birthDate } = student;
+          const { id, name, birthDate, photo } = student;
           return (
-            <ul key={id} className="mt-5">
-              <li>Name: {name} </li>
-              <li>BirthDate: {birthDate} </li>
+            <ul key={id} className="mt-5 mr-5">
+              <li>
+                <div class="card mb-3 mt-3">
+                  <div className="row">
+                    <div class="card-body col-8 text-center">
+                      <h5 class="card-title mentors text-center">
+                        Name: {name}
+                      </h5>
+                      <p class="card-text">
+                        <small class="text-muted mentors">
+                          BirthDate: {birthDate.substr(0, 10)}
+                        </small>
+                      </p>
+                    </div>
+                    <img
+                      src={photo}
+                      class="card-img-bottom col-4 h-25"
+                      alt="student"
+                    />
+                  </div>
+                </div>
+              </li>
             </ul>
           );
         })}

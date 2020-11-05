@@ -35,13 +35,21 @@ const Courses = () => {
       <ul>
         {courses.map((course) => {
           const { id, name, subject, description, courseMaterials } = course;
+          const subjectTopics = ["History", "IT", "Astronomy"];
           return (
             <ul key={id} className="mt-5">
-              <li>Name: {name} </li>
-              <li>Subject: {subject} </li>
-              <li>Description: {description} </li>
               <li>
-                Course Materials:{" "}
+                <small className="text-break">Name:</small> {name}{" "}
+              </li>
+              <li>
+                <small className="text-break">Subject:</small>{" "}
+                {subjectTopics[subject]}{" "}
+              </li>
+              <li>
+                <small className="text-break">Description:</small> {description}{" "}
+              </li>
+              <li>
+                <small className="text-break">Course Materials:</small>{" "}
                 {courseMaterials.map((doc) => {
                   const { id, documentation } = doc;
                   return (

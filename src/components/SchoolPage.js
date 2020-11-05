@@ -109,6 +109,7 @@ const SchoolPage = () => {
               <>
                 <h2 className="mt-5">School Info</h2>
                 <h3 className="mt-5">Principal: {school.principal.name}</h3>
+                <img src={school.principal.photo} alt="principal" />
               </>
             )
           )}

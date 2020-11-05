@@ -42,7 +42,7 @@ header h1 {
 }
 
 nav {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   margin-left: 2rem;
   margin-top: -0.5rem;
 }
@@ -66,6 +66,7 @@ nav {
   margin-top: 4rem;
   max-width: 15rem;
   height: 100vh;
+  position: fixed;
 }
 
 #sidebar-wrapper {
@@ -111,6 +112,7 @@ nav {
 
 #content-right {
   margin-top: 5rem;
+  margin-left: 15rem;
   width: 100vw;
 }
 
@@ -132,7 +134,8 @@ ul li {
   list-style: none;
 }
 
-ul li {
+ul li,
+li .mentors {
   font-size: 1.5rem;
   font-weight: bolder;
   text-align: left;
@@ -175,7 +178,8 @@ div.card.mb-3 {
   margin: 0 auto;
 }
 
-.card-img-top {
+.card-img-top,
+#content-right > section img {
   height: 50vh;
   object-fit: cover;
 }

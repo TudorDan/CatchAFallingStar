@@ -37,7 +37,9 @@ const Catalogues = () => {
           const { id, className } = catalogue;
           return (
             <ul key={id} className="mt-5">
-              <li>Name: {className} </li>
+              <li>
+                <small className="text-break">Name:</small> {className}{" "}
+              </li>
             </ul>
           );
         })}
