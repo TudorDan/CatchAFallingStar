@@ -28,7 +28,7 @@ const SchoolsPage = () => {
   if (loading) {
     return <h1>Loading...</h1>;
   }
-  
+
   return (
     <>
       <h3>Schools</h3>
@@ -37,7 +37,7 @@ const SchoolsPage = () => {
           const { id, name } = school;
           return (
             <li key={id}>
-              <a href={linkToSchool+school.id}>{name}</a>
+              <a href={linkToSchool + school.id}>{name}</a>
             </li>
           );
         })}
