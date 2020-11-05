@@ -12,11 +12,6 @@ code {
     monospace;
 }
 
-main {
-  background: url(../src/images/backgr1.jpg) repeat;
-  height: 100vh;
-}
-
 header.fixed-top {
   height: 3rem;
   background: rgba(0, 0, 0, 0.5);
@@ -47,7 +42,7 @@ header h1 {
 }
 
 nav {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin-left: 2rem;
   margin-top: -0.5rem;
 }
@@ -79,7 +74,7 @@ nav {
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
   transition: margin 0.25s ease-out;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -119,6 +114,11 @@ nav {
   width: 100vw;
 }
 
+#content-right h1 {
+  color: #007bff;
+  font-style: italic;
+}
+
 div#root > main {
   display: flex;
 }
@@ -127,8 +127,15 @@ div.school-list {
   margin-top: 5rem;
 }
 
-ul.school-cards {
+ul.school-cards,
+ul li {
   list-style: none;
+}
+
+ul li {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-align: left;
 }
 
 div.card.mb-3 {
@@ -147,4 +154,28 @@ div.card.mb-3 {
   position: fixed; /* or absolute */
   top: 50%;
   left: 50%;
+}
+
+.card-title > a {
+  font-size: 2rem;
+  font-weight: bolder;
+  font-style: italic;
+}
+
+#school-title,
+#content-right h2 {
+  color: red;
+}
+
+.active-btn {
+  font-weight: bolder;
+}
+
+.bg-dark.text-warning {
+  margin: 0 auto;
+}
+
+.card-img-top {
+  height: 50vh;
+  object-fit: cover;
 }

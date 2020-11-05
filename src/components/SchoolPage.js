@@ -40,7 +40,9 @@ const SchoolPage = () => {
         <div className="bg-light border-right" id="sidebar-wrapper">
           <div className="list-group list-group-flush">
             <button
-              className="list-group-item list-group-item-action bg-light"
+              className={`list-group-item list-group-item-action bg-light ${
+                value === 0 && "active-btn"
+              }`}
               onClick={() => {
                 setValue(0);
               }}
@@ -48,7 +50,9 @@ const SchoolPage = () => {
               School Details
             </button>
             <button
-              className="list-group-item list-group-item-action bg-light"
+              className={`list-group-item list-group-item-action bg-light ${
+                value === 1 && "active-btn"
+              }`}
               onClick={() => {
                 setValue(1);
               }}
@@ -56,7 +60,9 @@ const SchoolPage = () => {
               Mentors
             </button>
             <button
-              className="list-group-item list-group-item-action bg-light"
+              className={`list-group-item list-group-item-action bg-light ${
+                value === 2 && "active-btn"
+              }`}
               onClick={() => {
                 setValue(2);
               }}
@@ -64,7 +70,9 @@ const SchoolPage = () => {
               Students
             </button>
             <button
-              className="list-group-item list-group-item-action bg-light"
+              className={`list-group-item list-group-item-action bg-light ${
+                value === 3 && "active-btn"
+              }`}
               onClick={() => {
                 setValue(3);
               }}
@@ -72,7 +80,9 @@ const SchoolPage = () => {
               Courses
             </button>
             <button
-              className="list-group-item list-group-item-action bg-light"
+              className={`list-group-item list-group-item-action bg-light ${
+                value === 4 && "active-btn"
+              }`}
               onClick={() => {
                 setValue(4);
               }}
@@ -84,7 +94,7 @@ const SchoolPage = () => {
       </div>
 
       <article id="content-right" className="text-center">
-        <h1>{school.name}</h1>
+        <h1 className="font-weight-bolder">{school.name}</h1>
         <section>
           {value === 1 ? (
             <Mentors key={schoolID} />

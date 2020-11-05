@@ -32,14 +32,16 @@ const SchoolsPage = () => {
 
   return (
     <div className="container school-list text-center">
-      <h3>Schools</h3>
+      <h3 className="display-3 font-weight-bolder" id="school-title">
+        Schools
+      </h3>
       <ul className="list-group school-cards">
         {schools.map((school) => {
           const { id, name, photo } = school;
           return (
             <li key={id}>
               <div class="card mb-3 mt-3">
-                {/* <img src={photo} class="card-img-top" alt="..." /> */}
+                <img src={photo} class="card-img-top" alt="school" />
                 <div class="card-body">
                   <h5 class="card-title">
                     <a href={linkToSchool + school.id}>{name}</a>
