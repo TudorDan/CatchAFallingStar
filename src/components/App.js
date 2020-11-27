@@ -3,6 +3,7 @@ import Navbar from "./common/Navbar";
 import HomePage from "./HomePage";
 import SchoolsPage from "./SchoolsPage";
 import NotFoundPage from "./NotFoundPage";
+import CoursePage from "./CoursePage";
 import { Route, Switch } from "react-router-dom";
 import SchoolPage from "./SchoolPage";
 
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route path="/schools" component={SchoolsPage} />
           <Route exact path="/schools-details/:id" component={SchoolPage} />
+          <Route exact path="/schools-details/:id/course/:id" component={CoursePage}/>
           <Route component={NotFoundPage} />
         </Switch>
       </main>

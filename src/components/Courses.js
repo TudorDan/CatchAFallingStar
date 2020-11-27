@@ -6,6 +6,7 @@ const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
+  const linkToCourse = `/schools-details/${schoolID}/course/`; 
 
   useEffect(() => {
     const getCourses = async () => {
@@ -31,35 +32,26 @@ const Courses = () => {
 
   return (
     <>
-      <h2 className="mt-5 text-center">Courses</h2>
-      <ul>
+    <h2 className="mt-5 text-center">Courses</h2>
+    <ul className="list-group school-cards">
         {courses.map((course) => {
-          const { id, name, subject, description, courseMaterials } = course;
+          const { id, name, subject } = course;
           const subjectTopics = ["History", "IT", "Astronomy"];
           return (
-            <ul key={id} className="mt-5">
-              <li>
-                <small className="text-break">Name:</small> {name}{" "}
-              </li>
-              <li>
-                <small className="text-break">Subject:</small>{" "}
-                {subjectTopics[subject]}{" "}
-              </li>
-              <li>
-                <small className="text-break">Description:</small> {description}{" "}
-              </li>
-              <li>
-                <small className="text-break">Course Materials:</small>{" "}
-                {courseMaterials.map((doc) => {
-                  const { id, documentation } = doc;
-                  return (
-                    <ul key={id}>
-                      <li>Document: {documentation}</li>
-                    </ul>
-                  );
-                })}
-              </li>
-            </ul>
+            <li key={id}>
+              <div class="card mb-3 mt-3">
+                {/* <img src={photo} class="card-img-top" alt="school" /> */}
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a href={linkToCourse + id}>{name}</a>
+                  </h5>
+                  <p class="card-text">Subject: {subjectTopics[subject]}</p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 hours ago</small>
+                  </p>
+                </div>
+              </div>
+            </li>
           );
         })}
       </ul>
