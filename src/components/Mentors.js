@@ -11,7 +11,6 @@ const Mentors = () => {
     const getMentors = async () => {
       try {
         const response = await Api.get(`/schools/${schoolID}/mentors`);
-        console.log(response);
         const schoolFromAPI = response.data;
         setMentors(schoolFromAPI);
 
@@ -38,19 +37,21 @@ const Mentors = () => {
 
           return (
             <li key={id}>
-              <div class="card mb-3 mt-3">
+              <div className="card mb-3 mt-3">
                 <div className="row">
-                  <div class="card-body col-8 text-center">
-                    <h5 class="card-title mentors text-center">Name: {name}</h5>
-                    <p class="card-text">
-                      <small class="text-muted mentors">
+                  <div className="card-body col-8 text-center">
+                    <h5 className="card-title mentors text-center">
+                      Name: {name}
+                    </h5>
+                    <p className="card-text">
+                      <small className="text-muted mentors">
                         BirthDate: {birthDate.substr(0, 10)}
                       </small>
                     </p>
                   </div>
                   <img
                     src={photo}
-                    class="card-img-bottom col-4 h-25"
+                    className="card-img-bottom col-4 h-25"
                     alt="mentor"
                   />
                 </div>

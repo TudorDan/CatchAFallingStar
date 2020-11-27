@@ -40,15 +40,19 @@ const SchoolsPage = () => {
 
           return (
             <li key={id}>
-              <div class="card mb-3 mt-3">
-                <img src={photo} class="card-img-top" alt="school" />
-                <div class="card-body">
-                  <h5 class="card-title">
+              <div className="card mb-3 mt-3">
+                <img src={photo} className="card-img-top" alt="school" />
+                <div className="card-body">
+                  <h5 className="card-title">
                     <a href={linkToSchool + school.id}>{name}</a>
                   </h5>
-                  <p class="card-text">Principal: {school.principal.name}</p>
-                  <p class="card-text">
-                    <small class="text-muted">Last updated 3 hours ago</small>
+                  <p className="card-text">
+                    Principal: {school.principal.name}
+                  </p>
+                  <p className="card-text">
+                    <small className="text-muted">
+                      Last updated 3 hours ago
+                    </small>
                   </p>
                 </div>
               </div>

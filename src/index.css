@@ -183,3 +183,8 @@ div.card.mb-3 {
   height: 50vh;
   object-fit: cover;
 }
+
+#secondary-title {
+  color: #007bff;
+  font-weight: bolder;
+}

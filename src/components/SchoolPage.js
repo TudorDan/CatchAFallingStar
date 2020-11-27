@@ -16,7 +16,6 @@ const SchoolPage = () => {
     const getSchool = async () => {
       try {
         const response = await Api.get(`/schools/${schoolID}`);
-        console.log(response);
         const schoolFromAPI = response.data;
         setSchool(schoolFromAPI);
 
@@ -101,7 +100,7 @@ const SchoolPage = () => {
           ) : value === 2 ? (
             <Students key={schoolID} />
           ) : value === 3 ? (
-            <Courses key={schoolID} />
+            <Courses key={schoolID} {...school} />
           ) : value === 4 ? (
             <Catalogues key={schoolID} />
           ) : (

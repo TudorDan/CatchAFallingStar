@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 
-const Courses = () => {
+const Courses = (school) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToCourse = `/schools/${schoolID}/courses/`;
+  const subjectTopics = ["History", "IT", "Astronomy"];
 
   useEffect(() => {
     const getCourses = async () => {
       try {
         const response = await Api.get(`/schools/${schoolID}/courses`);
-        console.log(response);
         const schoolFromAPI = response.data;
         setCourses(schoolFromAPI);
 
@@ -36,14 +37,22 @@ const Courses = () => {
       <ul className="mt-5 mr-5">
         {courses.map((course) => {
           const { id, name, subject, description } = course;
-          const subjectTopics = ["History", "IT", "Astronomy"];
 
           return (
             <li key={id}>
-              <div class="card mb-3 mt-3 p-2 ">
+              <div className="card mb-3 mt-3 p-2 ">
                 <div className="d-inline">
                   <small className="text-break">Name:</small>&nbsp;&nbsp;
-                  <a href={linkToCourse + id}>{name}</a>
+                  <Link
+                    to={{
+                      pathname: linkToCourse + id,
+                      schoolData: {
+                        schoolTitle: school.name,
+                      },
+                    }}
+                  >
+                    {name}
+                  </Link>
                 </div>
                 <div className="d-inline">
                   <small className="text-break">Subject:</small>
@@ -54,17 +63,6 @@ const Courses = () => {
                   &nbsp;&nbsp;{description}
                 </div>
               </div>
-
-              {/*
-                <small className="text-break">Course Materials:</small>{" "}
-                {courseMaterials.map((doc) => {
-                  const { id, documentation } = doc;
-                  return (
-                    <ul key={id}>
-                      <li>Document: {documentation}</li>
-                    </ul>
-                  );
-                })}*/}
             </li>
           );
         })}

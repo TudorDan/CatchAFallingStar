@@ -11,7 +11,6 @@ const Catalogues = () => {
     const getCatalogues = async () => {
       try {
         const response = await Api.get(`/schools/${schoolID}/catalogues`);
-        console.log(response);
         const schoolFromAPI = response.data;
         setCatalogues(schoolFromAPI);
 
