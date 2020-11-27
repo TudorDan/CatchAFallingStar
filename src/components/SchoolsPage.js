@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 
 const SchoolsPage = () => {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
-  const linkToSchool = `/schools-details/`;
+  const linkToSchool = `/schools/`;
 
   const getSchools = async () => {
     try {
@@ -38,6 +37,7 @@ const SchoolsPage = () => {
       <ul className="list-group school-cards">
         {schools.map((school) => {
           const { id, name, photo } = school;
+
           return (
             <li key={id}>
               <div class="card mb-3 mt-3">
