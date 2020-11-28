@@ -11,8 +11,8 @@ const Students = () => {
     const getStudents = async () => {
       try {
         const response = await Api.get(`/schools/${schoolID}/students`);
-        const schoolFromAPI = response.data;
-        setStudents(schoolFromAPI);
+        const studentsFromAPI = response.data;
+        setStudents(studentsFromAPI);
 
         setLoading(false);
       } catch (error) {

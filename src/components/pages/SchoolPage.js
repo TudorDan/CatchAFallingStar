@@ -96,9 +96,9 @@ const SchoolPage = () => {
         <h1 className="font-weight-bolder">{school.name}</h1>
         <section>
           {value === 1 ? (
-            <Mentors key={schoolID} />
+            <Mentors key={schoolID} {...school} />
           ) : value === 2 ? (
-            <Students key={schoolID} />
+            <Students key={schoolID} {...school} />
           ) : value === 3 ? (
             <Courses key={schoolID} {...school} />
           ) : value === 4 ? (

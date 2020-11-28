@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 
-const Mentors = () => {
+const Mentors = (school) => {
   const [mentors, setMentors] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
+  const linkToAddMentor = `/schools/${schoolID}/mentors`;
 
   useEffect(() => {
     const getMentors = async () => {
       try {
         const response = await Api.get(`/schools/${schoolID}/mentors`);
-        const schoolFromAPI = response.data;
-        setMentors(schoolFromAPI);
+        const mentorsFromAPI = response.data;
+        setMentors(mentorsFromAPI);
 
         setLoading(false);
       } catch (error) {
@@ -31,6 +33,18 @@ const Mentors = () => {
   return (
     <>
       <h2 className="mt-5 text-center">Mentors</h2>
+      <Link
+        to={{
+          pathname: linkToAddMentor,
+          schoolData: {
+            schoolTitle: school.name,
+            accessRights: 0,
+          },
+        }}
+        className="btn btn-success mt-3"
+      >
+        Add Mentor
+      </Link>
       <ul className="mt-5 mr-5">
         {mentors.map((mentor) => {
           const { id, name, birthDate, photo } = mentor;

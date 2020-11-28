@@ -1,12 +1,13 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 import Navbar from "./common/Navbar";
 import HomePage from "./pages/HomePage";
 import SchoolsPage from "./pages/SchoolsPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import { Route, Switch } from "react-router-dom";
 import SchoolPage from "./pages/SchoolPage";
 import CoursePage from "./pages/CoursePage";
 import CataloguePage from "./pages/CataloguePage";
+import AddPersonPage from "./pages/AddPersonPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             path="/schools/:schoolId/catalogues/:catalogueId"
             component={CataloguePage}
           />
+          <Route exact path="/schools/:id/mentors" component={AddPersonPage} />
           <Route path="/*" component={NotFoundPage} />
         </Switch>
       </main>

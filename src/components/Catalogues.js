@@ -13,8 +13,8 @@ const Catalogues = (school) => {
     const getCatalogues = async () => {
       try {
         const response = await Api.get(`/schools/${schoolID}/catalogues`);
-        const schoolFromAPI = response.data;
-        setCatalogues(schoolFromAPI);
+        const cataloguesFromAPI = response.data;
+        setCatalogues(cataloguesFromAPI);
 
         setLoading(false);
       } catch (error) {
