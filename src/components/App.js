@@ -6,6 +6,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { Route, Switch } from "react-router-dom";
 import SchoolPage from "./pages/SchoolPage";
 import CoursePage from "./pages/CoursePage";
+import CataloguePage from "./pages/CataloguePage";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <Route
             exact
             path="/schools/:schoolId/catalogues/:catalogueId"
-            component={CoursePage}
+            component={CataloguePage}
           />
           <Route path="/*" component={NotFoundPage} />
         </Switch>

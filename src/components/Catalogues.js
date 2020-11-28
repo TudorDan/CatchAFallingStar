@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 
-const Catalogues = () => {
+const Catalogues = (school) => {
   const [catalogues, setCatalogues] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
+  const linkToCatalogue = `/schools/${schoolID}/catalogues/`;
 
   useEffect(() => {
     const getCatalogues = async () => {
@@ -31,15 +33,28 @@ const Catalogues = () => {
   return (
     <>
       <h2 className="mt-5 text-center">Catalogues</h2>
-      <ul>
+      <ul className="mt-5 mr-5">
         {catalogues.map((catalogue) => {
           const { id, className } = catalogue;
+
           return (
-            <ul key={id} className="mt-5">
-              <li>
-                <small className="text-break">Name:</small> {className}{" "}
-              </li>
-            </ul>
+            <li key={id}>
+              <div className="card mb-3 mt-3 p-2">
+                <div className="d-inline">
+                  <small className="text-break">Name:</small>&nbsp;&nbsp;
+                  <Link
+                    to={{
+                      pathname: linkToCatalogue + id,
+                      schoolData: {
+                        schoolTitle: school.name,
+                      },
+                    }}
+                  >
+                    {className}
+                  </Link>
+                </div>
+              </div>
+            </li>
           );
         })}
       </ul>
