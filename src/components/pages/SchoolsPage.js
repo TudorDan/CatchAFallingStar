@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Api from "./utils/Api";
-import Loading from "./utils/Loading";
+import Api from "../utils/Api";
+import Loading from "../utils/Loading";
 
 const SchoolsPage = () => {
   const [schools, setSchools] = useState([]);

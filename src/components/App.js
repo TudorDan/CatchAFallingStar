@@ -1,11 +1,11 @@
 import React from "react";
 import Navbar from "./common/Navbar";
-import HomePage from "./HomePage";
-import SchoolsPage from "./SchoolsPage";
-import NotFoundPage from "./NotFoundPage";
+import HomePage from "./pages/HomePage";
+import SchoolsPage from "./pages/SchoolsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import { Route, Switch } from "react-router-dom";
-import SchoolPage from "./SchoolPage";
-import CoursePage from "./CoursePage";
+import SchoolPage from "./pages/SchoolPage";
+import CoursePage from "./pages/CoursePage";
 
 function App() {
   return (
@@ -21,6 +21,11 @@ function App() {
           <Route
             exact
             path="/schools/:schoolId/courses/:courseId"
+            component={CoursePage}
+          />
+          <Route
+            exact
+            path="/schools/:schoolId/catalogues/:catalogueId"
             component={CoursePage}
           />
           <Route path="/*" component={NotFoundPage} />

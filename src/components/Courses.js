@@ -40,7 +40,7 @@ const Courses = (school) => {
 
           return (
             <li key={id}>
-              <div className="card mb-3 mt-3 p-2 ">
+              <div className="card mb-3 mt-3 p-2">
                 <div className="d-inline">
                   <small className="text-break">Name:</small>&nbsp;&nbsp;
                   <Link

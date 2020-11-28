@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Api from "./utils/Api";
-import Loading from "./utils/Loading";
+import Api from "../utils/Api";
+import Loading from "../utils/Loading";
 
 const CoursePage = (props) => {
   const [course, setCourse] = useState([]);
@@ -17,7 +17,6 @@ const CoursePage = (props) => {
         const response = await Api.get(
           `/schools/${schoolId}/courses/${courseId}`
         );
-        console.log(response);
         const courseFromApi = response.data;
         setCourse(courseFromApi);
 

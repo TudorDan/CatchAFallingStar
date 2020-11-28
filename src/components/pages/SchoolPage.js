@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Mentors from "./Mentors";
-import Students from "./Students";
-import Courses from "./Courses";
-import Catalogues from "./Catalogues";
-import Api from "./utils/Api";
-import Loading from "./utils/Loading";
+import Mentors from "../Mentors";
+import Students from "../Students";
+import Courses from "../Courses";
+import Catalogues from "../Catalogues";
+import Api from "../utils/Api";
+import Loading from "../utils/Loading";
 
 const SchoolPage = () => {
   const [school, setSchool] = useState([]);
@@ -102,7 +102,7 @@ const SchoolPage = () => {
           ) : value === 3 ? (
             <Courses key={schoolID} {...school} />
           ) : value === 4 ? (
-            <Catalogues key={schoolID} />
+            <Catalogues key={schoolID} {...school} />
           ) : (
             value === 0 && (
               <>
