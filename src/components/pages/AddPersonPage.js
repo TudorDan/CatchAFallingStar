@@ -1,22 +1,76 @@
 import React, { useState } from "react";
+import { useParams, withRouter } from "react-router-dom";
+import Api from "../utils/Api";
+import Loading from "../utils/Loading";
 
 const AddPersonPage = (props) => {
+  const schoolID = useParams();
   const schoolName = props.location.schoolData.schoolTitle;
   const personType = props.location.schoolData.accessRights;
   //const accessRights = ["FORMENTORS", "FORSTUDENTS", "FORPRINCIPALS"];
-  const [name, setName] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [birthDate, setBirthDate] = useState("");
+
+  /* const [name, setName] = useState("");
+  const [photo, setPhoto] = useState(null);
+  const [birthDate, setBirthDate] = useState(new Date()); */
+  const [person, setPerson] = useState({
+    name: "",
+    photo: "",
+    birthDate: new Date(),
+    accessRights: personType,
+  });
+
+  const [loading, setLoading] = useState(false);
+  const linkForPost =
+    personType === 0
+      ? `/schools/${schoolID}/mentors`
+      : personType === 1
+      ? `/schools/${schoolID}/students`
+      : `/schools/${schoolID}/principal`;
+
+  const postPerson = async (personData) => {
+    setLoading(true);
+    try {
+      const response = await Api.post(linkForPost, { personData });
+      const personFromApi = response.data;
+      console.log(personFromApi);
+
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(true);
+    }
+  };
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setPerson({ ...person, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name && photo && birthDate) {
-      const person = { name, photo, birthDate, personType };
+    if (person.name && person.photo && person.birthDate) {
+      //const person = { name, photo, birthDate, personType };
       console.log(person);
+
+      const personData = new FormData();
+      personData.append("name", person.name);
+      personData.append("photo", person.photo);
+      personData.append("birthDate", person.birthDate);
+      personData.append("accessRights", person.personType);
+
+      console.log(personData);
+
+      postPerson(personData);
+      this.props.history.push("/schools");
     } else {
       console.log("empty values");
     }
   };
+
+  if (loading) {
+    return <Loading key={0} />;
+  }
 
   return (
     <div className="container school-list text-center">
@@ -33,57 +87,62 @@ const AddPersonPage = (props) => {
       </h3>
 
       <div className="card mb-3 mt-5">
-        <form className="mt-2" onSubmit={handleSubmit}>
+        <form className="mt-2">
           <div className="form-group row">
-            <label htmlFor="personName" className="col-sm-2 col-form-label">
+            <label htmlFor="name" className="col-sm-2 col-form-label">
               Name:
             </label>
             <input
               type="text"
               className="col-sm-9 form-control mt-1"
-              id="personName"
+              id="name"
               placeholder="Person name"
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              name="name"
+              value={person.name}
+              onChange={handleChange}
             ></input>
           </div>
 
           <div className="form-group row">
-            <label htmlFor="personPhoto" className="col-sm-2 col-form-label">
+            <label htmlFor="photo" className="col-sm-2 col-form-label">
               Photo:
             </label>
             <input
-              type="text"
+              type="file"
               className="col-sm-9 form-control mt-1"
-              id="personPhoto"
-              placeholder="Person photo"
+              id="photo"
               required
-              value={photo}
-              onChange={(e) => setPhoto(e.target.value)}
+              name="photo"
+              value={person.photo}
+              onChange={handleChange}
             ></input>
           </div>
 
           <div className="frorm-group row mb-3">
-            <label
-              htmlFor="personBirthDate"
-              className="col-sm-2 col-form-label"
-            >
+            <label htmlFor="birthDate" className="col-sm-2 col-form-label">
               BirthDate:
             </label>
             <input
-              type="text"
+              type="date"
+              min="1901-01-01"
+              max="2014-01-01"
               className="col-sm-9 form-control mt-1"
-              id="personBirthDate"
+              id="birthDate"
               required
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
+              name="birthDate"
+              value={person.birthDate}
+              onChange={handleChange}
             ></input>
           </div>
 
           <div className="form-group row">
             <div className="col-sm-12">
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="btn btn-primary"
+              >
                 Add person
               </button>
             </div>
@@ -94,4 +153,4 @@ const AddPersonPage = (props) => {
   );
 };
 
-export default AddPersonPage;
+export default withRouter(AddPersonPage);

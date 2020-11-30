@@ -10,7 +10,8 @@ function Navbar() {
       <div className="mr-auto">
         <h1>
           <NavLink to="/" exact activeStyle={activeLink} className="text-light">
-            <GiBookmark className="logo" /> E-Learning App
+            <GiBookmark className="logo" /> <span id="logo-name">e</span>
+            Learning
           </NavLink>
         </h1>
       </div>

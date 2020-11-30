@@ -36,7 +36,7 @@ const SchoolPage = () => {
   return (
     <>
       <div id="wrapper-sidebar">
-        <div className="bg-light border-right" id="sidebar-wrapper">
+        <div className="border-right" id="sidebar-wrapper">
           <div className="list-group list-group-flush">
             <button
               className={`list-group-item list-group-item-action bg-light ${
