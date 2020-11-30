@@ -32,7 +32,9 @@ const Catalogues = (school) => {
 
   return (
     <>
-      <h2 className="mt-5 text-center">Catalogues</h2>
+      <h2 className="mt-5 text-center">
+        <span id="secondary-title">Catalogues</span>
+      </h2>
       <ul className="mt-5 mr-5">
         {catalogues.map((catalogue) => {
           const { id, className } = catalogue;

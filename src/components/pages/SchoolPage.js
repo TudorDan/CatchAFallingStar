@@ -94,6 +94,7 @@ const SchoolPage = () => {
 
       <article id="content-right" className="text-center">
         <h1 className="font-weight-bolder">{school.name}</h1>
+        <div class="underline mb-3"></div>
         <section>
           {value === 1 ? (
             <Mentors key={schoolID} {...school} />
@@ -106,7 +107,9 @@ const SchoolPage = () => {
           ) : (
             value === 0 && (
               <>
-                <h2 className="mt-5">School Info</h2>
+                <h2 className="mt-5">
+                  <span id="secondary-title">School Info</span>
+                </h2>
                 <h3 className="mt-5">Principal: {school.principal.name}</h3>
                 <img src={school.principal.photo} alt="principal" />
               </>

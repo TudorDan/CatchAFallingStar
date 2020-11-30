@@ -32,7 +32,9 @@ const Mentors = (school) => {
 
   return (
     <>
-      <h2 className="mt-5 text-center">Mentors</h2>
+      <h2 className="mt-5 text-center">
+        <span id="secondary-title">Mentors</span>
+      </h2>
       <Link
         to={{
           pathname: linkToAddMentor,
@@ -41,7 +43,7 @@ const Mentors = (school) => {
             accessRights: 0,
           },
         }}
-        className="btn btn-success mt-3"
+        className="btn mt-5 custom-btn"
       >
         Add Mentor
       </Link>

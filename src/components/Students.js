@@ -30,7 +30,9 @@ const Students = () => {
 
   return (
     <>
-      <h2 className="mt-5 text-center">Students</h2>
+      <h2 className="mt-5 text-center">
+        <span id="secondary-title">Students</span>
+      </h2>
       <ul className="mt-5 mr-5">
         {students.map((student) => {
           const { id, name, birthDate, photo } = student;

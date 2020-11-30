@@ -37,21 +37,25 @@ const CoursePage = (props) => {
 
   return (
     <div className="container school-list text-left">
-      <h1 className="font-weight-bolder" id="school-title">
+      <h1 className="font-weight-bolder text-center" id="school-title">
         {schoolName}
       </h1>
+      <div class="underline mb-3"></div>
+      <div className="text-center mt-4">
+        <Link to={linkToSchool} className="btn custom-btn">
+          Back to school menu
+        </Link>
+        &nbsp;&nbsp;
+        <Link to={linkToSchool} className="btn custom-btn">
+          Add Document
+        </Link>
+      </div>
       <h3 className="mt-5">
         <small className="text-break">Course Name:&nbsp;&nbsp;</small>
         <span id="secondary-title">{course.name}</span>
       </h3>
-      <Link to={linkToSchool} className="btn btn-secondary mt-5">
-        Back to school menu
-      </Link>
-      &nbsp;&nbsp;
-      <Link to={linkToSchool} className="btn btn-info mt-5">
-        Add Document
-      </Link>
-      <h3 className="mt-5">
+
+      <h3 className="mt-4">
         <GiDiamonds className="bullets" />
         &nbsp;
         <small className="text-break">Subject:&nbsp;&nbsp;</small>
@@ -72,7 +76,7 @@ const CoursePage = (props) => {
               <div className="card mb-3" key={id}>
                 <div className="card-body">
                   <h3 className="card-title">{documentation}</h3>
-                  <a href="/" className="btn btn-primary">
+                  <a href="/" className="btn custom-btn2">
                     {link}
                   </a>
                 </div>

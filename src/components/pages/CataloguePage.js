@@ -39,22 +39,18 @@ const CataloguePage = (props) => {
 
   return (
     <div className="container school-list text-left">
-      <h1 className="font-weight-bolder" id="school-title">
+      <h1 className="font-weight-bolder text-center" id="school-title">
         {schoolName}
       </h1>
-      <h3 className="mt-5">
-        <small className="text-break">School Class Name:&nbsp;&nbsp;</small>
-        <span id="secondary-title">{catalogue.className}</span>
-      </h3>
-
-      <div className="mt-5">
-        <Link to={linkToSchool} className="btn btn-secondary">
+      <div class="underline mb-3"></div>
+      <div className="mt-5 text-center">
+        <Link to={linkToSchool} className="btn custom-btn">
           Back to school menu
         </Link>
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn btn-info ${value === 0 && "active-btn"}`}
+          className={`btn custom-btn ${value === 0 && "active-btn"}`}
           onClick={() => {
             setValue(0);
           }}
@@ -64,7 +60,7 @@ const CataloguePage = (props) => {
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn btn-info ${value === 1 && "active-btn"}`}
+          className={`btn custom-btn ${value === 1 && "active-btn"}`}
           onClick={() => {
             setValue(1);
           }}
@@ -74,7 +70,7 @@ const CataloguePage = (props) => {
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn btn-info ${value === 2 && "active-btn"}`}
+          className={`btn custom-btn ${value === 2 && "active-btn"}`}
           onClick={() => {
             setValue(2);
           }}
@@ -82,6 +78,10 @@ const CataloguePage = (props) => {
           Students
         </button>
       </div>
+      <h3 className="mt-5">
+        <small className="text-break">School Class Name:&nbsp;&nbsp;</small>
+        <span id="secondary-title">{catalogue.className}</span>
+      </h3>
 
       <article className="container">
         <section>

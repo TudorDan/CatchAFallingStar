@@ -2,6 +2,7 @@ import React from "react";
 import slide1 from "../../images/slide1.jpg";
 import slide2 from "../../images/slide2.jpg";
 import slide3 from "../../images/slide3.jpg";
+import slide4 from "../../images/slide4.jpg";
 
 const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ const HomePage = () => {
         ></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
       </ol>
       <div className="carousel-inner">
         <div className="carousel-item active">
@@ -36,6 +38,15 @@ const HomePage = () => {
         </div>
         <div className="carousel-item">
           <img src={slide3} className="d-block w-100" alt="..." />
+          <div className="carousel-caption d-none d-md-block">
+            <h2>Online Schools System</h2>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
+          </div>
+        </div>
+        <div className="carousel-item">
+          <img src={slide4} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
             <p>

@@ -33,7 +33,9 @@ const Courses = (school) => {
 
   return (
     <>
-      <h2 className="mt-5 text-center">Courses</h2>
+      <h2 className="mt-5 text-center">
+        <span id="secondary-title">Courses</span>
+      </h2>
       <ul className="mt-5 mr-5">
         {courses.map((course) => {
           const { id, name, subject, description } = course;

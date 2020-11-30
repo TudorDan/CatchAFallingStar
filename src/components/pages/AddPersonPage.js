@@ -4,7 +4,7 @@ import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
 const AddPersonPage = (props) => {
-  const schoolID = useParams();
+  const schoolID = useParams().id;
   const schoolName = props.location.schoolData.schoolTitle;
   const personType = props.location.schoolData.accessRights;
   //const accessRights = ["FORMENTORS", "FORSTUDENTS", "FORPRINCIPALS"];
@@ -51,18 +51,17 @@ const AddPersonPage = (props) => {
     e.preventDefault();
     if (person.name && person.photo && person.birthDate) {
       //const person = { name, photo, birthDate, personType };
-      console.log(person);
 
-      const personData = new FormData();
+      let personData = new FormData();
       personData.append("name", person.name);
       personData.append("photo", person.photo);
       personData.append("birthDate", person.birthDate);
       personData.append("accessRights", person.personType);
+      console.log(person);
 
-      console.log(personData);
-
-      postPerson(personData);
-      this.props.history.push("/schools");
+      postPerson(person);
+      console.log(props);
+      props.history.push(`/schools/${schoolID}`);
     } else {
       console.log("empty values");
     }
@@ -77,6 +76,7 @@ const AddPersonPage = (props) => {
       <h1 className="font-weight-bolder" id="school-title">
         {schoolName}
       </h1>
+      <div class="underline mb-3"></div>
       <h3 className="mt-4">
         Add{" "}
         {personType === 0
@@ -141,7 +141,7 @@ const AddPersonPage = (props) => {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="btn btn-primary"
+                className="btn custom-btn"
               >
                 Add person
               </button>

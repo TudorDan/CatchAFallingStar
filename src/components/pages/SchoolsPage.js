@@ -34,6 +34,7 @@ const SchoolsPage = () => {
       <h3 className="display-3 font-weight-bolder" id="school-title">
         Schools
       </h3>
+      <div class="underline mb-3"></div>
       <ul className="list-group school-cards">
         {schools.map((school) => {
           const { id, name, photo } = school;
