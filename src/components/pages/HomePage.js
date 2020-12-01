@@ -26,32 +26,28 @@ const HomePage = () => {
           <img src={slide1} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <p>Finis coronat opus.</p>
           </div>
         </div>
         <div className="carousel-item">
           <img src={slide2} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>Barba non facit philosophum.</p>
           </div>
         </div>
         <div className="carousel-item">
           <img src={slide3} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
+            <p>Vivere memento.</p>
           </div>
         </div>
         <div className="carousel-item">
           <img src={slide4} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
+            <p>Nemo dat quod non habet.</p>
           </div>
         </div>
       </div>

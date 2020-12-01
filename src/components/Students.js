@@ -6,6 +6,7 @@ const Students = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
+  const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
     const getStudents = async () => {
@@ -52,7 +53,7 @@ const Students = () => {
                     </p>
                   </div>
                   <img
-                    src={photo}
+                    src={apiImgPath + photo}
                     className="card-img-bottom col-4 h-25"
                     alt="student"
                   />

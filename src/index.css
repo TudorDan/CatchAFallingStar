@@ -58,14 +58,14 @@ nav {
 }
 
 .carousel-caption > h2 {
-  color: #f8f9fa;
+  color: red;
   font-weight: bolder;
   font-size: 6rem;
 }
 .carousel-caption > p {
-  color: red;
+  color: #f8f9fa;
   font-weight: bolder;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 #wrapper-sidebar {
@@ -272,4 +272,8 @@ a.custom-btn2:hover {
   background: #3f000f;
   border: 1px solid #3f000f;
   text-decoration: none;
+}
+
+.no-border {
+  border: none !important;
 }

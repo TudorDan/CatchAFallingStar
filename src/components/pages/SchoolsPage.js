@@ -6,6 +6,7 @@ const SchoolsPage = () => {
   const [schools, setSchools] = useState([]);
   const [loading, setLoading] = useState(true);
   const linkToSchool = `/schools/`;
+  const apiImgPath = "http://localhost:54719/images/";
 
   const getSchools = async () => {
     try {
@@ -42,7 +43,11 @@ const SchoolsPage = () => {
           return (
             <li key={id}>
               <div className="card mb-3 mt-3">
-                <img src={photo} className="card-img-top" alt="school" />
+                <img
+                  src={apiImgPath + photo}
+                  className="card-img-top"
+                  alt="school"
+                />
                 <div className="card-body">
                   <h5 className="card-title">
                     <a href={linkToSchool + school.id}>{name}</a>

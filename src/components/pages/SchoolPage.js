@@ -11,6 +11,7 @@ const SchoolPage = () => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const [value, setValue] = useState(0);
+  const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
     const getSchool = async () => {
@@ -94,7 +95,7 @@ const SchoolPage = () => {
 
       <article id="content-right" className="text-center">
         <h1 className="font-weight-bolder">{school.name}</h1>
-        <div class="underline mb-3"></div>
+        <div className="underline mb-3"></div>
         <section>
           {value === 1 ? (
             <Mentors key={schoolID} {...school} />
@@ -111,7 +112,10 @@ const SchoolPage = () => {
                   <span id="secondary-title">School Info</span>
                 </h2>
                 <h3 className="mt-5">Principal: {school.principal.name}</h3>
-                <img src={school.principal.photo} alt="principal" />
+                <img
+                  src={apiImgPath + school.principal.photo}
+                  alt="principal"
+                />
               </>
             )
           )}

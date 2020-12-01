@@ -8,6 +8,7 @@ const Mentors = (school) => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToAddMentor = `/schools/${schoolID}/mentors`;
+  const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
     const getMentors = async () => {
@@ -66,7 +67,7 @@ const Mentors = (school) => {
                     </p>
                   </div>
                   <img
-                    src={photo}
+                    src={apiImgPath + photo}
                     className="card-img-bottom col-4 h-25"
                     alt="mentor"
                   />
