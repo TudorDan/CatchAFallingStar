@@ -40,7 +40,7 @@ const CoursePage = (props) => {
       <h1 className="font-weight-bolder text-center" id="school-title">
         {schoolName}
       </h1>
-      <div class="underline mb-3"></div>
+      <div className="underline mb-3"></div>
       <div className="text-center mt-4">
         <Link to={linkToSchool} className="btn custom-btn">
           Back to school menu

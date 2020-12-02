@@ -55,7 +55,6 @@ const Courses = (school) => {
       <ul className="mt-5 mr-5">
         {courses.map((course) => {
           const { id, name, subject, description } = course;
-          console.log(subject);
 
           return (
             <li key={id}>

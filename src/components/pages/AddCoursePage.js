@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
@@ -6,10 +6,28 @@ import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
 const AddCoursePage = (props) => {
+  const [subjects, setSubjects] = useState([]);
+  const [loading, setLoading] = useState(false);
   const schoolID = useParams().id;
   const schoolName = props.location.schoolData.schoolTitle;
-  const [loading, setLoading] = useState(false);
   const linkForPost = `/schools/${schoolID}/courses`;
+
+  useEffect(() => {
+    const getSubjects = async () => {
+      try {
+        const response = await Api.get(`/schools/${schoolID}/subjects`);
+        const subjectsFromApi = response.data;
+        setSubjects(subjectsFromApi);
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(true);
+      }
+    };
+
+    getSubjects();
+  }, [schoolID]);
 
   if (loading) {
     return <Loading key={0} />;
@@ -28,16 +46,16 @@ const AddCoursePage = (props) => {
           className="mt-2"
           initialValues={{
             Name: "",
-            Subject: null,
+            Subject: {},
             Description: "",
             CourseMaterials: [],
           }}
-          onSubmit={async (personData) => {
-            console.log(personData);
+          onSubmit={async (courseData) => {
+            console.log(courseData);
 
             setLoading(true);
             try {
-              const response = await Api.post(linkForPost, personData);
+              const response = await Api.post(linkForPost, courseData);
               if (response.status === 201) {
                 swal({
                   title: "Good job!",
@@ -58,7 +76,7 @@ const AddCoursePage = (props) => {
             }
           }}
         >
-          {({ setFieldValue }) => (
+          {() => (
             <Form className="mt-2">
               <div className="form-group row">
                 <label htmlFor="name" className="col-sm-2 col-form-label">
@@ -73,35 +91,41 @@ const AddCoursePage = (props) => {
                   required
                 />
               </div>
-
               <div className="form-group row">
-                <label htmlFor="photo" className="col-sm-2 col-form-label">
+                <label htmlFor="subject" className="col-sm-2 col-form-label">
                   Course Type:
                 </label>
-                <input
-                  type="file"
-                  name="Photo"
-                  onChange={(event) => {
-                    console.log(event.target.files[0].name);
-                    setFieldValue("Photo", event.target.files[0].name);
-                  }}
+                <select
+                  name="Subject"
                   className="col-sm-9 form-control mt-1"
-                  id="photo"
+                  id="subject"
+                  defaultValue={undefined}
                   required
-                />
+                >
+                  {subjects.map((subject) => {
+                    const { id, subjectType, subjectName } = subject;
+
+                    return (
+                      <option key={id} value={subjectType}>
+                        {subjectName}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
 
               <div className="form-group row">
-                <label htmlFor="birthDate" className="col-sm-2 col-form-label">
+                <label
+                  htmlFor="description"
+                  className="col-sm-2 col-form-label"
+                >
                   Description:
                 </label>
                 <Field
-                  type="date"
-                  name="BirthDate"
-                  min="1901-01-01"
-                  max="2014-01-01"
+                  type="text"
+                  name="Description"
                   className="col-sm-9 form-control mt-1"
-                  id="birthDate"
+                  id="description"
                   required
                 />
               </div>
@@ -109,7 +133,7 @@ const AddCoursePage = (props) => {
               <div className="form-group row">
                 <div className="col-sm-12">
                   <button type="submit" className="btn custom-btn">
-                    Add Person
+                    Add Course
                   </button>
                 </div>
               </div>

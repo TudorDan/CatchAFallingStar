@@ -39,7 +39,7 @@ const SchoolsPage = () => {
       <h3 className="display-3 font-weight-bolder" id="school-title">
         Schools
       </h3>
-      <div class="underline mb-3"></div>
+      <div className="underline mb-3"></div>
       <Link
         to={{
           pathname: linkToAddSchool,

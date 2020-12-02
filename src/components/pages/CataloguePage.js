@@ -42,7 +42,7 @@ const CataloguePage = (props) => {
       <h1 className="font-weight-bolder text-center" id="school-title">
         {schoolName}
       </h1>
-      <div class="underline mb-3"></div>
+      <div className="underline mb-3"></div>
       <div className="mt-5 text-center">
         <Link to={linkToSchool} className="btn custom-btn">
           Back to school menu

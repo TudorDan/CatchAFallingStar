@@ -8,6 +8,7 @@ import SchoolPage from "./pages/SchoolPage";
 import CoursePage from "./pages/CoursePage";
 import CataloguePage from "./pages/CataloguePage";
 import AddPersonPage from "./pages/AddPersonPage";
+import AddCoursePage from "./pages/AddCoursePage";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             component={CataloguePage}
           />
           <Route exact path="/schools/:id/persons" component={AddPersonPage} />
+          <Route exact path="/schools/:id/courses" component={AddCoursePage} />
           <Route path="/*" component={NotFoundPage} />
         </Switch>
       </main>
