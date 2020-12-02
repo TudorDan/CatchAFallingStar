@@ -33,7 +33,7 @@ const Catalogues = (school) => {
   return (
     <>
       <h2 className="mt-5 text-center">
-        <span id="secondary-title">Catalogues</span>
+        <span id="secondary-title">School Classes</span>
       </h2>
       <ul className="mt-5 mr-5">
         {catalogues.map((catalogue) => {

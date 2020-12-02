@@ -8,7 +8,8 @@ const Courses = (school) => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToCourse = `/schools/${schoolID}/courses/`;
-  const subjectTopics = ["History", "IT", "Astronomy"];
+  const subjectTopics = ["History", "IT", "Astronomy", "Physics", "Geography"];
+  const linkToAddCourse = `/schools/${schoolID}/courses`;
 
   useEffect(() => {
     const getCourses = async () => {
@@ -36,9 +37,23 @@ const Courses = (school) => {
       <h2 className="mt-5 text-center">
         <span id="secondary-title">Courses</span>
       </h2>
+
+      <Link
+        to={{
+          pathname: linkToAddCourse,
+          schoolData: {
+            schoolTitle: school.name,
+          },
+        }}
+        className="btn mt-5 custom-btn"
+      >
+        Add Courses
+      </Link>
+
       <ul className="mt-5 mr-5">
         {courses.map((course) => {
           const { id, name, subject, description } = course;
+          console.log(subject);
 
           return (
             <li key={id}>

@@ -7,7 +7,7 @@ const Mentors = (school) => {
   const [mentors, setMentors] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
-  const linkToAddMentor = `/schools/${schoolID}/mentors`;
+  const linkToAddMentor = `/schools/${schoolID}/persons`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -36,6 +36,7 @@ const Mentors = (school) => {
       <h2 className="mt-5 text-center">
         <span id="secondary-title">Mentors</span>
       </h2>
+
       <Link
         to={{
           pathname: linkToAddMentor,
@@ -48,6 +49,7 @@ const Mentors = (school) => {
       >
         Add Mentor
       </Link>
+
       <ul className="mt-5 mr-5">
         {mentors.map((mentor) => {
           const { id, name, birthDate, photo } = mentor;

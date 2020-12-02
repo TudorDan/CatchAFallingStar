@@ -30,7 +30,7 @@ function App() {
             path="/schools/:schoolId/catalogues/:catalogueId"
             component={CataloguePage}
           />
-          <Route exact path="/schools/:id/mentors" component={AddPersonPage} />
+          <Route exact path="/schools/:id/persons" component={AddPersonPage} />
           <Route path="/*" component={NotFoundPage} />
         </Switch>
       </main>

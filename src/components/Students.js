@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 
-const Students = () => {
+const Students = (school) => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
+  const linkToAddStudent = `/schools/${schoolID}/persons`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -34,6 +36,20 @@ const Students = () => {
       <h2 className="mt-5 text-center">
         <span id="secondary-title">Students</span>
       </h2>
+
+      <Link
+        to={{
+          pathname: linkToAddStudent,
+          schoolData: {
+            schoolTitle: school.name,
+            accessRights: 1,
+          },
+        }}
+        className="btn mt-5 custom-btn"
+      >
+        Add Student
+      </Link>
+
       <ul className="mt-5 mr-5">
         {students.map((student) => {
           const { id, name, birthDate, photo } = student;

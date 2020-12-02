@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, withRouter } from "react-router-dom";
+import { useParams, withRouter, Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
 import Api from "../utils/Api";
@@ -9,8 +9,8 @@ const AddPersonPage = (props) => {
   const schoolID = useParams().id;
   const schoolName = props.location.schoolData.schoolTitle;
   const personType = props.location.schoolData.accessRights;
+  const linkToSchool = `/schools/${schoolID}`;
   const [loading, setLoading] = useState(false);
-
   const linkForPost =
     personType === 0
       ? `/schools/${schoolID}/mentors`
@@ -28,15 +28,22 @@ const AddPersonPage = (props) => {
         {schoolName}
       </h1>
       <div className="underline mb-3"></div>
-      <h3 className="mt-4">
-        Add{" "}
-        {personType === 0
-          ? "Mentor"
-          : personType === 1
-          ? "Student"
-          : "Principal"}
-      </h3>
 
+      <h3 className="mt-4">
+        <span id="form-subtitle">
+          Add new{" "}
+          {personType === 0
+            ? "Mentor"
+            : personType === 1
+            ? "Student"
+            : "Principal"}
+        </span>
+      </h3>
+      <div className="text-center">
+        <Link to={linkToSchool} className="btn custom-btn">
+          Back to school menu
+        </Link>
+      </div>
       <div className="card mb-3 mt-5">
         <Formik
           className="mt-2"
@@ -145,7 +152,12 @@ const AddPersonPage = (props) => {
               <div className="form-group row">
                 <div className="col-sm-12">
                   <button type="submit" className="btn custom-btn">
-                    Add Person
+                    Add{" "}
+                    {personType === 0
+                      ? "Mentor"
+                      : personType === 1
+                      ? "Student"
+                      : "Principal"}
                   </button>
                 </div>
               </div>
