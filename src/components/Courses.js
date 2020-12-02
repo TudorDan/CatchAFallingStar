@@ -10,6 +10,8 @@ const Courses = (school) => {
   const linkToCourse = `/schools/${schoolID}/courses/`;
   const subjectTopics = ["History", "IT", "Astronomy", "Physics", "Geography"];
   const linkToAddCourse = `/schools/${schoolID}/courses`;
+  const linkToUpdateCourse = `/`;
+  const linkToDeleteCourse = `/`;
 
   useEffect(() => {
     const getCourses = async () => {
@@ -58,26 +60,54 @@ const Courses = (school) => {
           return (
             <li key={id}>
               <div className="card mb-3 mt-3 p-2">
-                <div className="d-inline">
-                  <small className="text-break">Name:</small>&nbsp;&nbsp;
-                  <Link
-                    to={{
-                      pathname: linkToCourse + id,
-                      schoolData: {
-                        schoolTitle: school.name,
-                      },
-                    }}
-                  >
-                    {name}
-                  </Link>
-                </div>
-                <div className="d-inline">
-                  <small className="text-break">Subject:</small>
-                  &nbsp;&nbsp;{subjectTopics[subject.id]}
-                </div>
-                <div className="d-inline">
-                  <small className="text-break">Description:</small>{" "}
-                  &nbsp;&nbsp;{description}
+                <div className="row">
+                  <div className="col-8">
+                    <div className="d-block">
+                      <small className="text-break">Name:</small>&nbsp;&nbsp;
+                      <Link
+                        to={{
+                          pathname: linkToCourse + id,
+                          schoolData: {
+                            schoolTitle: school.name,
+                          },
+                        }}
+                      >
+                        {name}
+                      </Link>
+                    </div>
+                    <div className="d-block">
+                      <small className="text-break">Subject:</small>
+                      &nbsp;&nbsp;{subjectTopics[subject.id]}
+                    </div>
+                    <div className="d-block">
+                      <small className="text-break">Description:</small>{" "}
+                      &nbsp;&nbsp;{description}
+                    </div>
+                  </div>
+                  <div className="col-4">
+                    <Link
+                      to={{
+                        pathname: linkToUpdateCourse,
+                        schoolData: {
+                          schoolTitle: school.name,
+                        },
+                      }}
+                      className="btn custom-btn mt-0 mr-3"
+                    >
+                      Update Course
+                    </Link>
+                    <Link
+                      to={{
+                        pathname: linkToDeleteCourse,
+                        schoolData: {
+                          schoolTitle: school.name,
+                        },
+                      }}
+                      className="btn custom-btn2 mt-2"
+                    >
+                      Delete Course
+                    </Link>
+                  </div>
                 </div>
               </div>
             </li>

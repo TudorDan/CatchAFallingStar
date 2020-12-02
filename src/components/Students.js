@@ -8,6 +8,8 @@ const Students = (school) => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToAddStudent = `/schools/${schoolID}/persons`;
+  const linkToUpdateStudent = `/`;
+  const linkToDeleteStudent = `/`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -67,6 +69,30 @@ const Students = (school) => {
                         BirthDate: {birthDate.substr(0, 10)}
                       </small>
                     </p>
+                    <Link
+                      to={{
+                        pathname: linkToUpdateStudent,
+                        schoolData: {
+                          schoolTitle: school.name,
+                          accessRights: 1,
+                        },
+                      }}
+                      className="btn mt-5 custom-btn mr-5"
+                    >
+                      Update Student
+                    </Link>
+                    <Link
+                      to={{
+                        pathname: linkToDeleteStudent,
+                        schoolData: {
+                          schoolTitle: school.name,
+                          accessRights: 1,
+                        },
+                      }}
+                      className="btn mt-5 custom-btn2"
+                    >
+                      Delete Student
+                    </Link>
                   </div>
                   <img
                     src={apiImgPath + photo}
