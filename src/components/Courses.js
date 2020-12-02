@@ -73,7 +73,7 @@ const Courses = (school) => {
                 </div>
                 <div className="d-inline">
                   <small className="text-break">Subject:</small>
-                  &nbsp;&nbsp;{subjectTopics[subject]}
+                  &nbsp;&nbsp;{subjectTopics[subject.id]}
                 </div>
                 <div className="d-inline">
                   <small className="text-break">Description:</small>{" "}

@@ -8,7 +8,7 @@ const CoursePage = (props) => {
   const [course, setCourse] = useState([]);
   const [loading, setLoading] = useState(true);
   const { schoolId, courseId } = useParams();
-  const subjectTopics = ["History", "IT", "Astronomy"];
+  const subjectTopics = ["History", "IT", "Astronomy", "Physics", "Geography"];
   const schoolName = props.location.schoolData.schoolTitle;
   const linkToSchool = `/schools/${schoolId}`;
 
@@ -59,7 +59,7 @@ const CoursePage = (props) => {
         <GiDiamonds className="bullets" />
         &nbsp;
         <small className="text-break">Subject:&nbsp;&nbsp;</small>
-        <span>{subjectTopics[course.subject]}</span>
+        <span>{subjectTopics[course.subject.id]}</span>
       </h3>
       <h3 className=" mb-5">
         <GiDiamonds className="bullets" />
