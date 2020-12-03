@@ -9,7 +9,6 @@ const Mentors = (school) => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToAddMentor = `/schools/${schoolID}/persons`;
-  const linkToUpdateMentor = `/`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -71,11 +70,10 @@ const Mentors = (school) => {
                     </p>
                     <Link
                       to={{
-                        pathname: linkToUpdateMentor,
+                        pathname: `${linkToAddMentor}/${id}`,
                         schoolData: {
                           schoolTitle: school.name,
                           accessRights: 0,
-                          personId: id,
                         },
                       }}
                       className="btn mt-5 custom-btn mr-5"

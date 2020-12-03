@@ -10,6 +10,7 @@ import CataloguePage from "./pages/CataloguePage";
 import AddPersonPage from "./pages/AddPersonPage";
 import AddCoursePage from "./pages/AddCoursePage";
 import AddCataloguePage from "./pages/AddCataloguePage";
+import UpdatePersonPage from "./pages/UpdatePersonPage";
 
 function App() {
   return (
@@ -38,6 +39,11 @@ function App() {
             exact
             path="/schools/:id/catalogues"
             component={AddCataloguePage}
+          />
+          <Route
+            exact
+            path="/schools/:schoolId/persons/:personId"
+            component={UpdatePersonPage}
           />
           <Route path="/*" component={NotFoundPage} />
         </Switch>

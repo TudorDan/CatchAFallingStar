@@ -75,6 +75,7 @@ const Students = (school) => {
                         schoolData: {
                           schoolTitle: school.name,
                           accessRights: 1,
+                          personId: id,
                         },
                       }}
                       className="btn mt-5 custom-btn mr-5"

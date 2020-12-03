@@ -1,22 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
-const AddPersonPage = (props) => {
-  const schoolID = useParams().id;
+const UpdatePersonPage = (props) => {
+  const { schoolId, personId } = useParams();
   const schoolName = props.location.schoolData.schoolTitle;
   const personType = props.location.schoolData.accessRights;
-  const linkToSchool = `/schools/${schoolID}`;
+  const linkToSchool = `/schools/${schoolId}`;
+  const [person, setPerson] = useState([]);
   const [loading, setLoading] = useState(false);
-  const linkForPost =
+  const linkForPut =
     personType === 0
-      ? `/schools/${schoolID}/mentors`
+      ? `/schools/${schoolId}/mentors/${personId}`
       : personType === 1
-      ? `/schools/${schoolID}/students`
-      : `/schools/${schoolID}/principal`;
+      ? `/schools/${schoolId}/students/${personId}`
+      : `/schools/${schoolId}/principal/${personId}`;
+
+  useEffect(() => {
+    const getPerson = async () => {
+      try {
+        const response = await Api.get(linkForPut);
+        const personFromApi = response.data;
+        console.log(personFromApi);
+        setPerson(personFromApi);
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(true);
+      }
+    };
+
+    getPerson();
+  }, [schoolId, linkForPut]);
 
   if (loading) {
     return <Loading key={0} />;
@@ -31,7 +50,7 @@ const AddPersonPage = (props) => {
 
       <h3 className="mt-4">
         <span id="form-subtitle">
-          Add new{" "}
+          Update{" "}
           {personType === 0
             ? "Mentor"
             : personType === 1
@@ -55,40 +74,16 @@ const AddPersonPage = (props) => {
           }}
           onSubmit={async (personData) => {
             console.log(personData);
-            /* 
-            Alternative solution for POST
-            -------------------------------
-            axios
-            .post("http://localhost:54719/api" + linkForPost, values)
-            .then((response) => {
-              console.log(response);
-              if (response.status === 201) {
-                swal({
-                  title: "Good job!",
-                  text: "Your mentor was added",
-                  icon: "success",
-                  //button: { text: "OK", className: "btn_1" },
-                }).then(function () {
-                  window.location = `/school/${schoolID}`;
-                });
-                console.log("success");
-              }
-            })
-            .catch((error) => {
-              console.log(error.response);
-              console.log(error.message);
-              console.log(error.request);
-            }); */
             setLoading(true);
             try {
-              const response = await Api.post(linkForPost, personData);
-              if (response.status === 201) {
+              const response = await Api.put(linkForPut, personData);
+              if (response.status === 204) {
                 swal({
                   title: "Good job!",
-                  text: "Your person was added",
+                  text: "Your person was updated",
                   icon: "success",
                 }).then(function () {
-                  window.location = `/schools/${schoolID}`;
+                  window.location = `/schools/${schoolId}`;
                 });
                 console.log("success");
               }
@@ -113,7 +108,7 @@ const AddPersonPage = (props) => {
                   name="Name"
                   className="col-sm-9 form-control mt-1"
                   id="name"
-                  placeholder="Person name"
+                  placeholder={person.name}
                   required
                 />
               </div>
@@ -151,7 +146,7 @@ const AddPersonPage = (props) => {
               <div className="form-group row">
                 <div className="col-sm-12">
                   <button type="submit" className="btn custom-btn">
-                    Add{" "}
+                    Update{" "}
                     {personType === 0
                       ? "Mentor"
                       : personType === 1
@@ -168,4 +163,4 @@ const AddPersonPage = (props) => {
   );
 };
 
-export default AddPersonPage;
+export default UpdatePersonPage;
