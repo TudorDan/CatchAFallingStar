@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
+import swal from "sweetalert2";
 
 const Mentors = (school) => {
   const [mentors, setMentors] = useState([]);
@@ -9,7 +10,6 @@ const Mentors = (school) => {
   const schoolID = window.location.href.split("/")[4];
   const linkToAddMentor = `/schools/${schoolID}/persons`;
   const linkToUpdateMentor = `/`;
-  const linkToDeleteMentor = `/`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -75,24 +75,48 @@ const Mentors = (school) => {
                         schoolData: {
                           schoolTitle: school.name,
                           accessRights: 0,
+                          personId: id,
                         },
                       }}
                       className="btn mt-5 custom-btn mr-5"
                     >
                       Update Mentor
                     </Link>
-                    <Link
-                      to={{
-                        pathname: linkToDeleteMentor,
-                        schoolData: {
-                          schoolTitle: school.name,
-                          accessRights: 0,
-                        },
-                      }}
+                    <button
                       className="btn mt-5 custom-btn2"
+                      onClick={() => {
+                        swal
+                          .fire({
+                            title: `Are you sure you wish to delete ${name}?`,
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes, delete it!",
+                          })
+                          .then(async (result) => {
+                            if (result.isConfirmed) {
+                              const response = await Api.delete(
+                                `/schools/${schoolID}/mentors/${id}`
+                              );
+                              if (response.status === 204) {
+                                swal
+                                  .fire(
+                                    "Deleted!",
+                                    "Your mentor has been deleted.",
+                                    "success"
+                                  )
+                                  .then(function () {
+                                    window.location = `/schools/${schoolID}`;
+                                  });
+                              }
+                            }
+                          });
+                      }}
                     >
                       Delete Mentor
-                    </Link>
+                    </button>
                   </div>
                   <img
                     src={apiImgPath + photo}
