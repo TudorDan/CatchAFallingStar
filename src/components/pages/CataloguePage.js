@@ -5,6 +5,7 @@ import Loading from "../utils/Loading";
 import CatalogueCourses from "../CatalogueCourses";
 import CatalogueMentors from "../CatalogueMentors";
 import CatalogueStudents from "../CatalogueStudents";
+import CatalogueGrades from "../CatalogueGrades";
 
 const CataloguePage = (props) => {
   const [catalogue, setCataloge] = useState([]);
@@ -43,14 +44,14 @@ const CataloguePage = (props) => {
         {schoolName}
       </h1>
       <div className="underline mb-3"></div>
-      <div className="mt-5 text-center">
-        <Link to={linkToSchool} className="btn custom-btn">
+      <div className="mt-3 text-center">
+        <Link to={linkToSchool} className="btn custom-btn3">
           Back to school menu
         </Link>
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn custom-btn ${value === 0 && "active-btn"}`}
+          className={`btn custom-btn3 ${value === 0 && "active-custom-btn3"}`}
           onClick={() => {
             setValue(0);
           }}
@@ -60,7 +61,7 @@ const CataloguePage = (props) => {
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn custom-btn ${value === 1 && "active-btn"}`}
+          className={`btn custom-btn3 ${value === 1 && "active-custom-btn3"}`}
           onClick={() => {
             setValue(1);
           }}
@@ -70,14 +71,67 @@ const CataloguePage = (props) => {
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn custom-btn ${value === 2 && "active-btn"}`}
+          className={`btn custom-btn3 ${value === 2 && "active-custom-btn3"}`}
           onClick={() => {
             setValue(2);
           }}
         >
           Students
         </button>
+        &nbsp;&nbsp;
+        <button
+          to={linkToSchool}
+          className={`btn custom-btn3 ${value === 3 && "active-custom-btn3"}`}
+          onClick={() => {
+            setValue(3);
+          }}
+        >
+          Grades
+        </button>
       </div>
+
+      <div className="mt-1 text-center">
+        {value === 1 ? (
+          <button
+            className="btn custom-btn"
+            onClick={() => {
+              setValue(4);
+            }}
+          >
+            Add Mentor
+          </button>
+        ) : value === 2 ? (
+          <button
+            className="btn custom-btn"
+            onClick={() => {
+              setValue(5);
+            }}
+          >
+            Add Student
+          </button>
+        ) : value === 3 ? (
+          <button
+            className="btn custom-btn"
+            onClick={() => {
+              setValue(6);
+            }}
+          >
+            Add Grade
+          </button>
+        ) : (
+          value === 0 && (
+            <button
+              className="btn custom-btn"
+              onClick={() => {
+                setValue(7);
+              }}
+            >
+              Add Course
+            </button>
+          )
+        )}
+      </div>
+
       <h3 className="mt-5">
         <small className="text-break">School Class Name:&nbsp;&nbsp;</small>
         <span id="secondary-title">{catalogue.className}</span>
@@ -89,6 +143,8 @@ const CataloguePage = (props) => {
             <CatalogueMentors key={catalogueId} {...catalogue} />
           ) : value === 2 ? (
             <CatalogueStudents key={catalogueId} {...catalogue} />
+          ) : value === 3 ? (
+            <CatalogueGrades key={catalogueId} {...catalogue} />
           ) : (
             value === 0 && <CatalogueCourses key={catalogueId} {...catalogue} />
           )}

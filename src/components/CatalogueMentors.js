@@ -1,9 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CatalogueMentors = (catalogue) => {
+  const linkToAddMentorToSchool = "/";
+
   return (
     <>
       <h2 className="mt-5 text-left">School Class Mentors:</h2>
+      <Link to={linkToAddMentorToSchool} className="btn custom-btn">
+        Add Mentor
+      </Link>
       {catalogue.classCourses.length === 0 ? (
         <h3 className="mt-5 text-info">No mentors in current school class.</h3>
       ) : (

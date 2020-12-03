@@ -245,7 +245,7 @@ a.custom-btn {
   text-align: center;
   transition: all 0.4s ease 0s;
 }
-button.custom-btn:hover,
+div#root main button.custom-btn:hover,
 a.custom-btn:hover {
   color: #fff;
   background: #3ec1d5;
@@ -280,4 +280,28 @@ a.custom-btn2:hover {
 
 #form-subtitle {
   border-bottom: 0.2rem dotted #444;
+}
+
+div#root button.custom-btn3,
+div#root a.custom-btn3 {
+  border-bottom: 4px solid transparent;
+  font-size: 1.4rem;
+  color: #444;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bolder;
+  margin-top: 30px;
+  margin-right: 30px;
+  padding: 5px 0px;
+  text-align: center;
+}
+div#root main button.custom-btn3:hover,
+div#root a.custom-btn3:hover {
+  border-bottom: 4px solid #3ec1d5;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out 0s;
+}
+body div#root main .active-custom-btn3 {
+  color: black;
+  border-bottom: 4px solid #3ec1d5;
 }
