@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, withRouter, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
 import Api from "../utils/Api";
@@ -169,4 +169,4 @@ const AddPersonPage = (props) => {
   );
 };
 
-export default withRouter(AddPersonPage);
+export default AddPersonPage;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, withRouter } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
 import Api from "../utils/Api";
@@ -10,6 +10,7 @@ const AddCoursePage = (props) => {
   const [loading, setLoading] = useState(false);
   const schoolID = useParams().id;
   const schoolName = props.location.schoolData.schoolTitle;
+  const linkToSchool = `/schools/${schoolID}`;
   const linkForPost = `/schools/${schoolID}/courses`;
 
   useEffect(() => {
@@ -39,7 +40,10 @@ const AddCoursePage = (props) => {
         {schoolName}
       </h1>
       <div className="underline mb-3"></div>
-      <h3 className="mt-4">Add Course</h3>
+      <h3 className="mt-4">Add new Course</h3>
+      <Link to={linkToSchool} className="btn custom-btn">
+        Back to school menu
+      </Link>
 
       <div className="card mb-3 mt-5">
         <Formik
@@ -145,4 +149,4 @@ const AddCoursePage = (props) => {
   );
 };
 
-export default withRouter(AddCoursePage);
+export default AddCoursePage;

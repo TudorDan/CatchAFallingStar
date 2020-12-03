@@ -8,7 +8,6 @@ const Catalogues = (school) => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToCatalogue = `/schools/${schoolID}/catalogues/`;
-  const linkToAddCatalogue = `/`;
   const linkToUpdateCatalogue = `/`;
   const linkToDeleteCatalogue = `/`;
 
@@ -41,7 +40,7 @@ const Catalogues = (school) => {
 
       <Link
         to={{
-          pathname: linkToAddCatalogue,
+          pathname: linkToCatalogue,
           schoolData: {
             schoolTitle: school.name,
           },
