@@ -89,9 +89,9 @@ const Mentors = (school) => {
                             text: "You won't be able to revert this!",
                             icon: "warning",
                             showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, delete it!",
+                            confirmButtonColor: "#3ec1d5",
+                            cancelButtonColor: "#3f000f",
+                            confirmButtonText: "Yes, delete mentor!",
                           })
                           .then(async (result) => {
                             if (result.isConfirmed) {

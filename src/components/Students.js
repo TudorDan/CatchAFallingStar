@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
+import swal from "sweetalert2";
 
 const Students = (school) => {
   const [students, setStudents] = useState([]);
@@ -9,7 +10,6 @@ const Students = (school) => {
   const schoolID = window.location.href.split("/")[4];
   const linkToAddStudent = `/schools/${schoolID}/persons`;
   const linkToUpdateStudent = `/`;
-  const linkToDeleteStudent = `/`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -82,18 +82,41 @@ const Students = (school) => {
                     >
                       Update Student
                     </Link>
-                    <Link
-                      to={{
-                        pathname: linkToDeleteStudent,
-                        schoolData: {
-                          schoolTitle: school.name,
-                          accessRights: 1,
-                        },
-                      }}
+                    <button
                       className="btn mt-5 custom-btn2"
+                      onClick={() => {
+                        swal
+                          .fire({
+                            title: `Are you sure you wish to delete ${name}?`,
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3ec1d5",
+                            cancelButtonColor: "#3f000f",
+                            confirmButtonText: "Yes, delete student!",
+                          })
+                          .then(async (result) => {
+                            if (result.isConfirmed) {
+                              const response = await Api.delete(
+                                `/schools/${schoolID}/students/${id}`
+                              );
+                              if (response.status === 204) {
+                                swal
+                                  .fire(
+                                    "Deleted!",
+                                    "Your student has been deleted.",
+                                    "success"
+                                  )
+                                  .then(function () {
+                                    window.location = `/schools/${schoolID}`;
+                                  });
+                              }
+                            }
+                          });
+                      }}
                     >
                       Delete Student
-                    </Link>
+                    </button>
                   </div>
                   <img
                     src={apiImgPath + photo}
