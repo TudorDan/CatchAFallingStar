@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
+import swal from "sweetalert2";
 
 const Catalogues = (school) => {
   const [catalogues, setCatalogues] = useState([]);
@@ -9,7 +10,6 @@ const Catalogues = (school) => {
   const schoolID = window.location.href.split("/")[4];
   const linkToCatalogue = `/schools/${schoolID}/catalogues/`;
   const linkToUpdateCatalogue = `/`;
-  const linkToDeleteCatalogue = `/`;
 
   useEffect(() => {
     const getCatalogues = async () => {
@@ -85,17 +85,41 @@ const Catalogues = (school) => {
                     >
                       Update School Class
                     </Link>
-                    <Link
-                      to={{
-                        pathname: linkToDeleteCatalogue,
-                        schoolData: {
-                          schoolTitle: school.name,
-                        },
-                      }}
+                    <button
                       className="btn custom-btn2 mt-0"
+                      onClick={() => {
+                        swal
+                          .fire({
+                            title: `Are you sure you wish to delete ${className}?`,
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3ec1d5",
+                            cancelButtonColor: "#3f000f",
+                            confirmButtonText: "Yes, delete school class!",
+                          })
+                          .then(async (result) => {
+                            if (result.isConfirmed) {
+                              const response = await Api.delete(
+                                `/schools/${schoolID}/catalogues/${id}`
+                              );
+                              if (response.status === 204) {
+                                swal
+                                  .fire(
+                                    "Deleted!",
+                                    "Your school class has been deleted.",
+                                    "success"
+                                  )
+                                  .then(function () {
+                                    window.location = `/schools/${schoolID}`;
+                                  });
+                              }
+                            }
+                          });
+                      }}
                     >
                       Delete School Class
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
+import swal from "sweetalert2";
 
 const Courses = (school) => {
   const [courses, setCourses] = useState([]);
@@ -11,7 +12,6 @@ const Courses = (school) => {
   const subjectTopics = ["History", "IT", "Astronomy", "Physics", "Geography"];
   const linkToAddCourse = `/schools/${schoolID}/courses`;
   const linkToUpdateCourse = `/`;
-  const linkToDeleteCourse = `/`;
 
   useEffect(() => {
     const getCourses = async () => {
@@ -95,17 +95,41 @@ const Courses = (school) => {
                     >
                       Update Course
                     </Link>
-                    <Link
-                      to={{
-                        pathname: linkToDeleteCourse,
-                        schoolData: {
-                          schoolTitle: school.name,
-                        },
-                      }}
+                    <button
                       className="btn custom-btn2 mt-2"
+                      onClick={() => {
+                        swal
+                          .fire({
+                            title: `Are you sure you wish to delete ${name}?`,
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3ec1d5",
+                            cancelButtonColor: "#3f000f",
+                            confirmButtonText: "Yes, delete course!",
+                          })
+                          .then(async (result) => {
+                            if (result.isConfirmed) {
+                              const response = await Api.delete(
+                                `/schools/${schoolID}/courses/${id}`
+                              );
+                              if (response.status === 204) {
+                                swal
+                                  .fire(
+                                    "Deleted!",
+                                    "Your course has been deleted.",
+                                    "success"
+                                  )
+                                  .then(function () {
+                                    window.location = `/schools/${schoolID}`;
+                                  });
+                              }
+                            }
+                          });
+                      }}
                     >
                       Delete Course
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
