@@ -1,21 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 import CatalogueCourses from "../CatalogueCourses";
 import CatalogueMentors from "../CatalogueMentors";
 import CatalogueStudents from "../CatalogueStudents";
 import CatalogueGrades from "../CatalogueGrades";
+import CatalogueAddMentor from "../CatalogueAddMentor";
 
-const CataloguePage = (props) => {
+const CataloguePage = () => {
   const [catalogue, setCataloge] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { schoolId, catalogueId } = useParams();
-  const schoolName = props.location.schoolData.schoolTitle;
+  const [school, setSchool] = useState([]);
+  // const { schoolId, catalogueId } = useParams();
+  // const schoolName = props.location.schoolData.schoolTitle;
+  const schoolId = window.location.href.split("/")[4];
+  const catalogueId = window.location.href.split("/")[6];
   const linkToSchool = `/schools/${schoolId}`;
   const [value, setValue] = useState(0);
 
   useEffect(() => {
+    const getSchool = async () => {
+      try {
+        const response = await Api.get(`/schools/${schoolId}`);
+        const schoolFromAPI = response.data;
+        setSchool(schoolFromAPI);
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(true);
+      }
+    };
+
+    getSchool();
+
     const getCatalogue = async () => {
       try {
         const response = await Api.get(
@@ -31,6 +50,7 @@ const CataloguePage = (props) => {
       }
     };
 
+    getSchool();
     getCatalogue();
   }, [schoolId, catalogueId]);
 
@@ -41,7 +61,7 @@ const CataloguePage = (props) => {
   return (
     <div className="container school-list text-left">
       <h1 className="font-weight-bolder text-center" id="school-title">
-        {schoolName}
+        {school.name}
       </h1>
       <div className="underline mb-3"></div>
       <div className="mt-3 text-center">
@@ -140,11 +160,13 @@ const CataloguePage = (props) => {
       <article className="container">
         <section>
           {value === 1 ? (
-            <CatalogueMentors key={catalogueId} {...catalogue} />
+            <CatalogueMentors key={catalogueId} />
           ) : value === 2 ? (
             <CatalogueStudents key={catalogueId} {...catalogue} />
           ) : value === 3 ? (
             <CatalogueGrades key={catalogueId} {...catalogue} />
+          ) : value === 4 ? (
+            <CatalogueAddMentor key={catalogueId} {...catalogue} />
           ) : (
             value === 0 && <CatalogueCourses key={catalogueId} {...catalogue} />
           )}
