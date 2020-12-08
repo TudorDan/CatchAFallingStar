@@ -113,8 +113,15 @@ const UpdatePersonPage = (props) => {
                 />
               </div>
               <div className="form-group row">
+                <label className="col-sm-2 col-form-label">
+                  Current Photo:
+                </label>
+                &nbsp;&nbsp;
+                <span className="mt-1 text-muted">{person.photo}</span>
+              </div>
+              <div className="form-group row">
                 <label htmlFor="photo" className="col-sm-2 col-form-label">
-                  Photo:
+                  New Photo:
                 </label>
                 <input
                   type="file"
@@ -139,6 +146,9 @@ const UpdatePersonPage = (props) => {
                   max="2014-01-01"
                   className="col-sm-9 form-control mt-1"
                   id="birthDate"
+                  value={
+                    person.birthDate ? person.birthDate.substr(0, 10) : null
+                  }
                   required
                 />
               </div>
