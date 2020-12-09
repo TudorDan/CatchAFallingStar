@@ -55,30 +55,7 @@ const AddPersonPage = (props) => {
           }}
           onSubmit={async (personData) => {
             console.log(personData);
-            /* 
-            Alternative solution for POST
-            -------------------------------
-            axios
-            .post("http://localhost:54719/api" + linkForPost, values)
-            .then((response) => {
-              console.log(response);
-              if (response.status === 201) {
-                swal({
-                  title: "Good job!",
-                  text: "Your mentor was added",
-                  icon: "success",
-                  //button: { text: "OK", className: "btn_1" },
-                }).then(function () {
-                  window.location = `/school/${schoolID}`;
-                });
-                console.log("success");
-              }
-            })
-            .catch((error) => {
-              console.log(error.response);
-              console.log(error.message);
-              console.log(error.request);
-            }); */
+
             setLoading(true);
             try {
               const response = await Api.post(linkForPost, personData);

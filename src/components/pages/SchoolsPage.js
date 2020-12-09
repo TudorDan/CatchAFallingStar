@@ -8,7 +8,7 @@ const SchoolsPage = () => {
   const [loading, setLoading] = useState(true);
   const linkToSchool = `/schools/`;
   const apiImgPath = "http://localhost:54719/images/";
-  const linkToAddSchool = `/`;
+  const linkToAddSchool = `/addschool`;
   const linkToUpdateSchool = `/`;
   const linkToDeleteSchool = `/`;
 

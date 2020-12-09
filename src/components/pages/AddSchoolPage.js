@@ -8,7 +8,6 @@ import Loading from "../utils/Loading";
 const AddSchoolPage = () => {
   const linkToSchools = `/schools`;
   const [loading, setLoading] = useState(false);
-  const linkForPost = "";
 
   if (loading) {
     return <Loading key={0} />;
@@ -31,16 +30,29 @@ const AddSchoolPage = () => {
           className="mt-2"
           initialValues={{
             Name: "",
+            Photo: "",
+            Principal: {
+              Name: "",
+              Photo: "",
+              BirthDate: "",
+              AccessRights: 2,
+            },
+            MentorsList: [],
+            StudentsList: [],
+            CoursesList: [],
+            CataloguesList: [],
+            subjects: [],
           }}
           onSubmit={async (schoolData) => {
             console.log(schoolData);
             setLoading(true);
+
             try {
-              const response = await Api.post(linkForPost, schoolData);
+              const response = await Api.post("/schools", schoolData);
               if (response.status === 201) {
                 swal({
                   title: "Good job!",
-                  text: "Your person was added",
+                  text: "Your school has been added",
                   icon: "success",
                 }).then(function () {
                   window.location = `/schools`;
@@ -60,15 +72,88 @@ const AddSchoolPage = () => {
           {({ setFieldValue }) => (
             <Form className="mt-2">
               <div className="form-group row">
-                <label htmlFor="name" className="col-sm-2 col-form-label">
-                  Name:
+                <label htmlFor="schoolName" className="col-sm-2 col-form-label">
+                  School Name:
                 </label>
                 <Field
                   type="text"
                   name="Name"
                   className="col-sm-9 form-control mt-1"
-                  id="name"
-                  placeholder="Person name"
+                  id="schoolName"
+                  placeholder="School name"
+                  required
+                />
+              </div>
+
+              <div className="form-group row">
+                <label
+                  htmlFor="schoolPhoto"
+                  className="col-sm-2 col-form-label"
+                >
+                  School Photo:
+                </label>
+                <input
+                  type="file"
+                  name="Photo"
+                  onChange={(event) => {
+                    console.log(event.target.files[0].name);
+                    setFieldValue("Photo", event.target.files[0].name);
+                  }}
+                  className="col-sm-9 form-control mt-1"
+                  id="schoolPhoto"
+                  required
+                />
+              </div>
+
+              <div className="form-group row">
+                <label
+                  htmlFor="principalName"
+                  className="col-sm-2 col-form-label"
+                >
+                  Principal Name:
+                </label>
+                <Field
+                  type="text"
+                  name="Principal.Name"
+                  className="col-sm-9 form-control mt-1"
+                  id="principalName"
+                  placeholder="Principal name"
+                  required
+                />
+              </div>
+              <div className="form-group row">
+                <label
+                  htmlFor="principalPhoto"
+                  className="col-sm-2 col-form-label"
+                >
+                  Principal Photo:
+                </label>
+                <input
+                  type="file"
+                  name="Principal.Photo"
+                  onChange={(event) => {
+                    console.log(event.target.files[0].name);
+                    setFieldValue(
+                      "Principal.Photo",
+                      event.target.files[0].name
+                    );
+                  }}
+                  className="col-sm-9 form-control mt-1"
+                  id="principalPhoto"
+                  required
+                />
+              </div>
+              <div className="form-group row">
+                <label htmlFor="birthDate" className="col-sm-2 col-form-label">
+                  Principal BirthDate:
+                </label>
+                <Field
+                  type="date"
+                  name="Principal.BirthDate"
+                  min="1901-01-01"
+                  max="2014-01-01"
+                  className="col-sm-9 form-control mt-1"
+                  id="birthDate"
                   required
                 />
               </div>
