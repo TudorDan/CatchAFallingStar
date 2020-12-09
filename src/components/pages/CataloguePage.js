@@ -12,8 +12,6 @@ const CataloguePage = () => {
   const [catalogue, setCataloge] = useState([]);
   const [loading, setLoading] = useState(true);
   const [school, setSchool] = useState([]);
-  // const { schoolId, catalogueId } = useParams();
-  // const schoolName = props.location.schoolData.schoolTitle;
   const schoolId = window.location.href.split("/")[4];
   const catalogueId = window.location.href.split("/")[6];
   const linkToSchool = `/schools/${schoolId}`;

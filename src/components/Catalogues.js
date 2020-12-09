@@ -77,9 +77,6 @@ const Catalogues = (school) => {
                     <Link
                       to={{
                         pathname: linkToUpdateCatalogue,
-                        /* schoolData: {
-                          schoolTitle: school.name,
-                        }, */
                       }}
                       className="btn custom-btn mt-0 mr-3"
                     >

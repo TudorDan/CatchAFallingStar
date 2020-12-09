@@ -15,7 +15,10 @@ const CatalogueAddMentor = (catalogue) => {
       try {
         const response = await Api.get(`/schools/${schoolID}/mentors`);
         const mentorsFromApi = response.data;
-        setMentors(mentorsFromApi);
+        setMentors([
+          { id: 0, name: "Please choose option" },
+          ...mentorsFromApi,
+        ]);
 
         setLoading(false);
       } catch (error) {
@@ -51,7 +54,7 @@ const CatalogueAddMentor = (catalogue) => {
                   text: "Mentor was added to the school class",
                   icon: "success",
                 }).then(function () {
-                  window.location = `/schools/${schoolID}/catalogues`;
+                  window.location = `/schools/${schoolID}/catalogues/${catalogue.id}`;
                 });
                 console.log("success");
               }
@@ -71,16 +74,10 @@ const CatalogueAddMentor = (catalogue) => {
                 <label htmlFor="mentorId" className="col-sm-2 col-form-label">
                   Choose Mentor:
                 </label>
-                <Field
-                  as="select"
-                  name="Id"
-                  id="mentorId"
-                  value="selectedValue"
-                >
-                  {/* <option>Please choose</option> */}
+                <Field component="select" name="Id" id="mentorId">
                   {mentors.map((mentor) => {
                     const { id, name } = mentor;
-
+                    console.log(id, name);
                     return (
                       <option key={id} value={id}>
                         {name}
@@ -89,7 +86,7 @@ const CatalogueAddMentor = (catalogue) => {
                   })}
                 </Field>
               </div>
-              <pre>{JSON.stringify(values, null, 2)}</pre>
+              {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
               <div className="form-group row">
                 <div className="col-sm-12 text-center">
                   <button type="submit" className="btn custom-btn">
