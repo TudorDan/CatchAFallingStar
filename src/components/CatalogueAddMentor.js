@@ -3,12 +3,15 @@ import { Formik, Form, Field } from "formik";
 import Loading from "./utils/Loading";
 import Api from "./utils/Api";
 import swal from "sweetalert";
+import swal2 from "sweetalert2";
 
 const CatalogueAddMentor = (catalogue) => {
   const [loading, setLoading] = useState(false);
   const schoolID = window.location.href.split("/")[4];
+  const catalogueId = window.location.href.split("/")[6];
   const [mentors, setMentors] = useState([]);
-  const linkForPost = `/schools/${schoolID}/catalogues/${catalogue.id}/mentors`;
+  const [catalogueMentors, setCatalogueMentors] = useState([]);
+  const linkForPost = `/schools/${schoolID}/catalogues/${catalogueId}/mentors`;
 
   useEffect(() => {
     const getSchoolMentors = async () => {
@@ -27,8 +30,24 @@ const CatalogueAddMentor = (catalogue) => {
       }
     };
 
+    const getCatalogueMentors = async () => {
+      try {
+        const response = await Api.get(
+          `/schools/${schoolID}/catalogues/${catalogueId}/mentors`
+        );
+        const catalogueMentorsFromApi = response.data;
+        setCatalogueMentors(catalogueMentorsFromApi);
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(true);
+      }
+    };
+
     getSchoolMentors();
-  }, [schoolID]);
+    getCatalogueMentors();
+  }, [schoolID, catalogueId]);
 
   if (loading) {
     return <Loading key={0} />;
@@ -44,9 +63,11 @@ const CatalogueAddMentor = (catalogue) => {
             Id: "",
           }}
           onSubmit={async (mentorData) => {
+            mentorData.Id = parseInt(mentorData.Id);
+            /*
+             */
             setLoading(true);
             try {
-              mentorData.Id = parseInt(mentorData.Id);
               const response = await Api.post(linkForPost, mentorData);
               if (response.status === 201) {
                 swal({
@@ -54,7 +75,7 @@ const CatalogueAddMentor = (catalogue) => {
                   text: "Mentor was added to the school class",
                   icon: "success",
                 }).then(function () {
-                  window.location = `/schools/${schoolID}/catalogues/${catalogue.id}`;
+                  window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
                 });
                 console.log("success");
               }
@@ -64,6 +85,25 @@ const CatalogueAddMentor = (catalogue) => {
               setLoading(false);
             } catch (error) {
               console.log(error.response);
+              const response = error.response;
+              let mentorName = "";
+              catalogueMentors.map((mentor) => {
+                if (mentor.id === mentorData.Id) {
+                  mentorName = mentor.name;
+                }
+                return "mentor check finished";
+              });
+              if (response.status === 409) {
+                swal2
+                  .fire({
+                    title: `Mentor ${mentorName} already exists in this school class!`,
+                    text: "Choose someone else!",
+                  })
+                  .then(function () {
+                    window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
+                  });
+              }
+
               setLoading(true);
             }
           }}
