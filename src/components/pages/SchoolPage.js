@@ -3,6 +3,7 @@ import Mentors from "../Mentors";
 import Students from "../Students";
 import Courses from "../Courses";
 import Catalogues from "../Catalogues";
+import Subjects from "../Subjects";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
@@ -49,6 +50,7 @@ const SchoolPage = () => {
             >
               School Details
             </button>
+
             <button
               className={`list-group-item list-group-item-action bg-light ${
                 value === 1 && "active-btn"
@@ -59,6 +61,7 @@ const SchoolPage = () => {
             >
               Mentors
             </button>
+
             <button
               className={`list-group-item list-group-item-action bg-light ${
                 value === 2 && "active-btn"
@@ -69,6 +72,7 @@ const SchoolPage = () => {
             >
               Students
             </button>
+
             <button
               className={`list-group-item list-group-item-action bg-light ${
                 value === 3 && "active-btn"
@@ -79,6 +83,7 @@ const SchoolPage = () => {
             >
               Courses
             </button>
+
             <button
               className={`list-group-item list-group-item-action bg-light ${
                 value === 4 && "active-btn"
@@ -88,6 +93,17 @@ const SchoolPage = () => {
               }}
             >
               School Classes
+            </button>
+
+            <button
+              className={`list-group-item list-group-item-action bg-light ${
+                value === 5 && "active-btn"
+              }`}
+              onClick={() => {
+                setValue(5);
+              }}
+            >
+              School Subjects
             </button>
           </div>
         </div>
@@ -105,6 +121,8 @@ const SchoolPage = () => {
             <Courses key={schoolID} {...school} />
           ) : value === 4 ? (
             <Catalogues key={schoolID} {...school} />
+          ) : value === 5 ? (
+            <Subjects key={schoolID} {...school} />
           ) : (
             value === 0 && (
               <>
