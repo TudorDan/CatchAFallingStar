@@ -65,13 +65,13 @@ const CataloguePage = () => {
       </h1>
       <div className="underline mb-3"></div>
       <div className="mt-3 text-center">
-        <Link to={linkToSchool} className="btn custom-btn3">
+        <Link to={linkToSchool} className="custom-btn3">
           Back to school menu
         </Link>
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn custom-btn3 ${value === 0 && "active-custom-btn3"}`}
+          className={`custom-btn3 ${value === 0 && "active-custom-btn3"}`}
           onClick={() => {
             setValue(0);
           }}
@@ -81,7 +81,7 @@ const CataloguePage = () => {
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn custom-btn3 ${value === 1 && "active-custom-btn3"}`}
+          className={`custom-btn3 ${value === 1 && "active-custom-btn3"}`}
           onClick={() => {
             setValue(1);
           }}
@@ -91,7 +91,7 @@ const CataloguePage = () => {
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn custom-btn3 ${value === 2 && "active-custom-btn3"}`}
+          className={`custom-btn3 ${value === 2 && "active-custom-btn3"}`}
           onClick={() => {
             setValue(2);
           }}
@@ -101,7 +101,7 @@ const CataloguePage = () => {
         &nbsp;&nbsp;
         <button
           to={linkToSchool}
-          className={`btn custom-btn3 ${value === 3 && "active-custom-btn3"}`}
+          className={`custom-btn3 ${value === 3 && "active-custom-btn3"}`}
           onClick={() => {
             setValue(3);
           }}
@@ -172,7 +172,9 @@ const CataloguePage = () => {
           ) : value === 7 ? (
             <CatalogueAddCourse key={catalogueId} />
           ) : (
-            value === 0 && <CatalogueCourses key={catalogueId} {...catalogue} />
+            value === 0 && (
+              <CatalogueCourses key={catalogueId} schoolName={school.name} />
+            )
           )}
         </section>
       </article>

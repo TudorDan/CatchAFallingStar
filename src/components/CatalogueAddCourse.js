@@ -103,6 +103,16 @@ const CatalogueAddCourse = () => {
                     window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
                   });
               }
+              if (response.status === 400) {
+                swal2
+                  .fire({
+                    title: `No course was selected!`,
+                    text: "Please choose something!",
+                  })
+                  .then(function () {
+                    window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
+                  });
+              }
 
               setLoading(true);
             }

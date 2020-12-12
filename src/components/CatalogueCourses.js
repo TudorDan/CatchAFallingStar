@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 
-const CatalogueCourses = (catalogue) => {
+const CatalogueCourses = ({ schoolName }) => {
   const schoolId = window.location.href.split("/")[4];
   const catalogueId = window.location.href.split("/")[6];
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const linkToCourse = `/schools/${schoolId}/courses/`;
 
   useEffect(() => {
     const getSchoolClassCourses = async () => {
@@ -46,7 +48,16 @@ const CatalogueCourses = (catalogue) => {
                 <div className="card mb-3 mt-3 p-2">
                   <div className="d-inline">
                     <small className="text-break">Name:</small>&nbsp;&nbsp;
-                    {name}
+                    <Link
+                      to={{
+                        pathname: linkToCourse + id,
+                        schoolData: {
+                          schoolTitle: schoolName,
+                        },
+                      }}
+                    >
+                      {name}
+                    </Link>
                   </div>
                   <div className="d-inline">
                     <small className="text-break">Subject:</small>

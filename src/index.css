@@ -285,6 +285,9 @@ a.custom-btn2:hover {
 div#root button.custom-btn3,
 div#root a.custom-btn3 {
   border-bottom: 4px solid transparent;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
   font-size: 1.4rem;
   color: #444;
   cursor: pointer;
@@ -294,14 +297,47 @@ div#root a.custom-btn3 {
   margin-right: 30px;
   padding: 5px 0px;
   text-align: center;
+  background: rgba(0, 0, 0, 0);
 }
+
+button.custom-btn3:before,
+a.custom-btn3:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -6px;
+  left: 0;
+  background-color: #5c9f24;
+  visibility: hidden;
+  width: 0px;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+button.custom-btn3:hover:before,
+button.active-custom-btn3:before {
+  visibility: visible;
+  width: 100%;
+}
+
 div#root main button.custom-btn3:hover,
 div#root a.custom-btn3:hover {
   border-bottom: 4px solid #3ec1d5;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
   text-decoration: none;
   transition: all 0.3s ease-in-out 0s;
+  background: rgba(0, 0, 0, 0);
 }
 body div#root main .active-custom-btn3 {
   color: black;
   border-bottom: 4px solid #3ec1d5;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+button:focus {
+  outline: none !important;
 }

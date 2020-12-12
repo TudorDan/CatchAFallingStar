@@ -108,7 +108,7 @@ const CatalogueAddMentor = () => {
             }
           }}
         >
-          {(values) => (
+          {() => (
             <Form className="mt-2">
               <div className="form-group-row">
                 <label htmlFor="mentorId" className="col-sm-2 col-form-label">

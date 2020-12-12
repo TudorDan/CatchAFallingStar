@@ -96,8 +96,11 @@ const AddSchoolPage = () => {
                   type="file"
                   name="Photo"
                   onChange={(event) => {
-                    console.log(event.target.files[0].name);
-                    setFieldValue("Photo", event.target.files[0].name);
+                    if (event.target.files[0]) {
+                      setFieldValue("Photo", event.target.files[0].name);
+                    } else {
+                      setFieldValue("Photo", "");
+                    }
                   }}
                   className="col-sm-9 form-control mt-1"
                   id="schoolPhoto"
@@ -132,11 +135,14 @@ const AddSchoolPage = () => {
                   type="file"
                   name="Principal.Photo"
                   onChange={(event) => {
-                    console.log(event.target.files[0].name);
-                    setFieldValue(
-                      "Principal.Photo",
-                      event.target.files[0].name
-                    );
+                    if (event.target.files[0]) {
+                      setFieldValue(
+                        "Principal.Photo",
+                        event.target.files[0].name
+                      );
+                    } else {
+                      setFieldValue("Principal.Photo", "");
+                    }
                   }}
                   className="col-sm-9 form-control mt-1"
                   id="principalPhoto"
