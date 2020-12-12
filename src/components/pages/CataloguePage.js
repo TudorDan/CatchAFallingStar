@@ -7,6 +7,7 @@ import CatalogueMentors from "../CatalogueMentors";
 import CatalogueStudents from "../CatalogueStudents";
 import CatalogueGrades from "../CatalogueGrades";
 import CatalogueAddMentor from "../CatalogueAddMentor";
+import CatalogueAddStudent from "../CatalogueAddStudent";
 
 const CataloguePage = () => {
   const [catalogue, setCataloge] = useState([]);
@@ -160,11 +161,13 @@ const CataloguePage = () => {
           {value === 1 ? (
             <CatalogueMentors key={catalogueId} />
           ) : value === 2 ? (
-            <CatalogueStudents key={catalogueId} {...catalogue} />
+            <CatalogueStudents key={catalogueId} />
           ) : value === 3 ? (
             <CatalogueGrades key={catalogueId} {...catalogue} />
           ) : value === 4 ? (
-            <CatalogueAddMentor key={catalogueId} {...catalogue} />
+            <CatalogueAddMentor key={catalogueId} />
+          ) : value === 5 ? (
+            <CatalogueAddStudent key={catalogueId} />
           ) : (
             value === 0 && <CatalogueCourses key={catalogueId} {...catalogue} />
           )}

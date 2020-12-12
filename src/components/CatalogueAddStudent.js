@@ -5,22 +5,22 @@ import Api from "./utils/Api";
 import swal from "sweetalert";
 import swal2 from "sweetalert2";
 
-const CatalogueAddMentor = () => {
+const CatalogueAddStudent = () => {
   const [loading, setLoading] = useState(false);
   const schoolID = window.location.href.split("/")[4];
   const catalogueId = window.location.href.split("/")[6];
-  const [mentors, setMentors] = useState([]);
-  const [catalogueMentors, setCatalogueMentors] = useState([]);
-  const linkForPost = `/schools/${schoolID}/catalogues/${catalogueId}/mentors`;
+  const [students, setStudents] = useState([]);
+  const [catalogueStudents, setCatalogueStudents] = useState([]);
+  const linkForPost = `/schools/${schoolID}/catalogues/${catalogueId}/students`;
 
   useEffect(() => {
-    const getSchoolMentors = async () => {
+    const getSchoolStudents = async () => {
       try {
-        const response = await Api.get(`/schools/${schoolID}/mentors`);
-        const mentorsFromApi = response.data;
-        setMentors([
+        const response = await Api.get(`/schools/${schoolID}/students`);
+        const studentsFromApi = response.data;
+        setStudents([
           { id: 0, name: "Please choose option" },
-          ...mentorsFromApi,
+          ...studentsFromApi,
         ]);
 
         setLoading(false);
@@ -30,13 +30,13 @@ const CatalogueAddMentor = () => {
       }
     };
 
-    const getCatalogueMentors = async () => {
+    const getCatalogueStudents = async () => {
       try {
         const response = await Api.get(
-          `/schools/${schoolID}/catalogues/${catalogueId}/mentors`
+          `/schools/${schoolID}/catalogues/${catalogueId}/students`
         );
-        const catalogueMentorsFromApi = response.data;
-        setCatalogueMentors(catalogueMentorsFromApi);
+        const catalogueStudentsFromApi = response.data;
+        setCatalogueStudents(catalogueStudentsFromApi);
 
         setLoading(false);
       } catch (error) {
@@ -45,8 +45,8 @@ const CatalogueAddMentor = () => {
       }
     };
 
-    getSchoolMentors();
-    getCatalogueMentors();
+    getSchoolStudents();
+    getCatalogueStudents();
   }, [schoolID, catalogueId]);
 
   if (loading) {
@@ -55,48 +55,49 @@ const CatalogueAddMentor = () => {
 
   return (
     <>
-      <h3 className="mt-4">Add new Mentor</h3>
+      <h3 className="mt-4">Add new Student</h3>
       <div className="card mb-3 mt-5">
         <Formik
           className="mt-2"
           initialValues={{
             Id: "",
           }}
-          onSubmit={async (mentorData) => {
-            mentorData.Id = parseInt(mentorData.Id);
-            /*
-             */
+          onSubmit={async (studentData) => {
+            studentData.Id = parseInt(studentData.Id);
+
             setLoading(true);
             try {
-              const response = await Api.post(linkForPost, mentorData);
+              const response = await Api.post(linkForPost, studentData);
               if (response.status === 201) {
                 swal({
                   title: "Good job!",
-                  text: "Mentor was added to the school class",
+                  text: "Student was added to the school class",
                   icon: "success",
                 }).then(function () {
                   window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
                 });
                 console.log("success");
               }
-              const catalogueMentorFromApi = response.data;
-              console.log(catalogueMentorFromApi);
+              const catalogueStudentFromApi = response.data;
+              console.log(catalogueStudentFromApi);
 
               setLoading(false);
             } catch (error) {
               console.log(error.response);
               const response = error.response;
-              let mentorName = "";
-              catalogueMentors.map((mentor) => {
-                if (mentor.id === mentorData.Id) {
-                  mentorName = mentor.name;
+              let studentName = "";
+
+              catalogueStudents.map((student) => {
+                if (student.id === studentData.Id) {
+                  studentName = student.name;
                 }
-                return "mentor check finished";
+                return "student check finished";
               });
+
               if (response.status === 409) {
                 swal2
                   .fire({
-                    title: `Mentor ${mentorName} already exists in this school class!`,
+                    title: `Student ${studentName} already exists in this school class!`,
                     text: "Choose someone else!",
                   })
                   .then(function () {
@@ -112,11 +113,11 @@ const CatalogueAddMentor = () => {
             <Form className="mt-2">
               <div className="form-group-row">
                 <label htmlFor="mentorId" className="col-sm-2 col-form-label">
-                  Choose Mentor:
+                  Choose Student:
                 </label>
                 <Field component="select" name="Id" id="mentorId">
-                  {mentors.map((mentor) => {
-                    const { id, name } = mentor;
+                  {students.map((student) => {
+                    const { id, name } = student;
                     console.log(id, name);
                     return (
                       <option key={id} value={id}>
@@ -130,7 +131,7 @@ const CatalogueAddMentor = () => {
               <div className="form-group row">
                 <div className="col-sm-12 text-center">
                   <button type="submit" className="btn custom-btn">
-                    Add Mentor
+                    Add Student
                   </button>
                 </div>
               </div>
@@ -142,4 +143,4 @@ const CatalogueAddMentor = () => {
   );
 };
 
-export default CatalogueAddMentor;
+export default CatalogueAddStudent;

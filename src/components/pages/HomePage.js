@@ -26,28 +26,28 @@ const HomePage = () => {
           <img src={slide1} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
-            <p>Finis coronat opus.</p>
+            <p>Finis coronat opus</p>
           </div>
         </div>
         <div className="carousel-item">
           <img src={slide2} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
-            <p>Barba non facit philosophum.</p>
+            <p>Barba non facit philosophum</p>
           </div>
         </div>
         <div className="carousel-item">
           <img src={slide3} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
-            <p>Vivere memento.</p>
+            <p>Vivere memento</p>
           </div>
         </div>
         <div className="carousel-item">
           <img src={slide4} className="d-block w-100" alt="..." />
           <div className="carousel-caption d-none d-md-block">
             <h2>Online Schools System</h2>
-            <p>Nemo dat quod non habet.</p>
+            <p>Nemo dat quod non habet</p>
           </div>
         </div>
       </div>
