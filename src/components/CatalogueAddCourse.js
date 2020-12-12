@@ -5,22 +5,22 @@ import Api from "./utils/Api";
 import swal from "sweetalert";
 import swal2 from "sweetalert2";
 
-const CatalogueAddStudent = () => {
+const CatalogueAddCourse = () => {
   const [loading, setLoading] = useState(false);
   const schoolID = window.location.href.split("/")[4];
   const catalogueId = window.location.href.split("/")[6];
-  const [students, setStudents] = useState([]);
-  const [catalogueStudents, setCatalogueStudents] = useState([]);
-  const linkForPost = `/schools/${schoolID}/catalogues/${catalogueId}/students`;
+  const [courses, setCourses] = useState([]);
+  const [catalogueCourses, setCatalogueCourses] = useState([]);
+  const linkForPost = `/schools/${schoolID}/catalogues/${catalogueId}/courses`;
 
   useEffect(() => {
-    const getSchoolStudents = async () => {
+    const getSchoolCourses = async () => {
       try {
-        const response = await Api.get(`/schools/${schoolID}/students`);
-        const studentsFromApi = response.data;
-        setStudents([
+        const response = await Api.get(`/schools/${schoolID}/courses`);
+        const coursesFromApi = response.data;
+        setCourses([
           { id: 0, name: "Please choose option" },
-          ...studentsFromApi,
+          ...coursesFromApi,
         ]);
 
         setLoading(false);
@@ -30,13 +30,13 @@ const CatalogueAddStudent = () => {
       }
     };
 
-    const getCatalogueStudents = async () => {
+    const getCatalogueCourses = async () => {
       try {
         const response = await Api.get(
-          `/schools/${schoolID}/catalogues/${catalogueId}/students`
+          `/schools/${schoolID}/catalogues/${catalogueId}/courses`
         );
-        const catalogueStudentsFromApi = response.data;
-        setCatalogueStudents(catalogueStudentsFromApi);
+        const catalogueCoursesFromApi = response.data;
+        setCatalogueCourses(catalogueCoursesFromApi);
 
         setLoading(false);
       } catch (error) {
@@ -45,8 +45,8 @@ const CatalogueAddStudent = () => {
       }
     };
 
-    getSchoolStudents();
-    getCatalogueStudents();
+    getSchoolCourses();
+    getCatalogueCourses();
   }, [schoolID, catalogueId]);
 
   if (loading) {
@@ -55,50 +55,49 @@ const CatalogueAddStudent = () => {
 
   return (
     <>
-      <h3 className="mt-4">Add new Student</h3>
+      <h3 className="mt-4">Add new Course</h3>
       <div className="card mb-3 mt-5">
         <Formik
           className="mt-2"
           initialValues={{
             Id: "",
           }}
-          onSubmit={async (studentData) => {
-            studentData.Id = parseInt(studentData.Id);
+          onSubmit={async (courseData) => {
+            courseData.Id = parseInt(courseData.Id);
 
             setLoading(true);
             try {
-              const response = await Api.post(linkForPost, studentData);
+              const response = await Api.post(linkForPost, courseData);
               if (response.status === 201) {
                 swal({
                   title: "Good job!",
-                  text: "Student was added to the school class",
+                  text: "Course was added to the school class",
                   icon: "success",
                 }).then(function () {
                   window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
                 });
                 console.log("success");
               }
-              const catalogueStudentFromApi = response.data;
-              console.log(catalogueStudentFromApi);
+              const catalogueCourseFromApi = response.data;
+              console.log(catalogueCourseFromApi);
 
               setLoading(false);
             } catch (error) {
               console.log(error.response);
               const response = error.response;
-              let studentName = "";
+              let courseName = "";
 
-              catalogueStudents.map((student) => {
-                if (student.id === studentData.Id) {
-                  studentName = student.name;
+              catalogueCourses.map((course) => {
+                if (course.id === courseData.Id) {
+                  courseName = course.name;
                 }
-                return "student check finished";
+                return "course check finished";
               });
-
               if (response.status === 409) {
                 swal2
                   .fire({
-                    title: `Student ${studentName} already exists in this school class!`,
-                    text: "Choose someone else!",
+                    title: `Course ${courseName} already exists in this school class!`,
+                    text: "Choose something else!",
                   })
                   .then(function () {
                     window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
@@ -112,12 +111,12 @@ const CatalogueAddStudent = () => {
           {(values) => (
             <Form className="mt-2">
               <div className="form-group-row">
-                <label htmlFor="studentId" className="col-sm-2 col-form-label">
-                  Choose Student:
+                <label htmlFor="courseId" className="col-sm-2 col-form-label">
+                  Choose Course:
                 </label>
-                <Field component="select" name="Id" id="studentId">
-                  {students.map((student) => {
-                    const { id, name } = student;
+                <Field component="select" name="Id" id="courseId">
+                  {courses.map((course) => {
+                    const { id, name } = course;
                     console.log(id, name);
                     return (
                       <option key={id} value={id}>
@@ -131,7 +130,7 @@ const CatalogueAddStudent = () => {
               <div className="form-group row">
                 <div className="col-sm-12 text-center">
                   <button type="submit" className="btn custom-btn">
-                    Add Student
+                    Add Course
                   </button>
                 </div>
               </div>
@@ -143,4 +142,4 @@ const CatalogueAddStudent = () => {
   );
 };
 
-export default CatalogueAddStudent;
+export default CatalogueAddCourse;

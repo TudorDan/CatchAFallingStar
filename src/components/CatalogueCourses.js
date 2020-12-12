@@ -3,7 +3,6 @@ import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 
 const CatalogueCourses = (catalogue) => {
-  const subjectTopics = ["History", "IT", "Astronomy"];
   const schoolId = window.location.href.split("/")[4];
   const catalogueId = window.location.href.split("/")[6];
   const [courses, setCourses] = useState([]);
@@ -38,29 +37,31 @@ const CatalogueCourses = (catalogue) => {
       {courses.length === 0 ? (
         <h3 className="mt-5 text-info">No courses in current school class.</h3>
       ) : (
-        courses.map((course) => {
-          const { id, name, subject, description } = course;
+        <ul>
+          {courses.map((course) => {
+            const { id, name, subject, description } = course;
 
-          return (
-            <li key={id}>
-              <div className="card mb-3 mt-3 p-2">
-                <div className="d-inline">
-                  <small className="text-break">Name:</small>&nbsp;&nbsp;
-                  {name}
+            return (
+              <li key={id}>
+                <div className="card mb-3 mt-3 p-2">
+                  <div className="d-inline">
+                    <small className="text-break">Name:</small>&nbsp;&nbsp;
+                    {name}
+                  </div>
+                  <div className="d-inline">
+                    <small className="text-break">Subject:</small>
+                    &nbsp;&nbsp;{subject.subjectName}
+                  </div>
+                  <div className="d-inline">
+                    <small className="text-break">Description:</small>{" "}
+                    &nbsp;&nbsp;
+                    {description}
+                  </div>
                 </div>
-                <div className="d-inline">
-                  <small className="text-break">Subject:</small>
-                  &nbsp;&nbsp;{subjectTopics[subject]}
-                </div>
-                <div className="d-inline">
-                  <small className="text-break">Description:</small>{" "}
-                  &nbsp;&nbsp;
-                  {description}
-                </div>
-              </div>
-            </li>
-          );
-        })
+              </li>
+            );
+          })}
+        </ul>
       )}
     </>
   );

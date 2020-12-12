@@ -9,7 +9,6 @@ const Courses = (school) => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToCourse = `/schools/${schoolID}/courses/`;
-  const subjectTopics = ["History", "IT", "Astronomy", "Physics", "Geography"];
   const linkToAddCourse = `/schools/${schoolID}/courses`;
   const linkToUpdateCourse = `/`;
 
@@ -76,7 +75,7 @@ const Courses = (school) => {
                     </div>
                     <div className="d-block">
                       <small className="text-break">Subject:</small>
-                      &nbsp;&nbsp;{subjectTopics[subject.id]}
+                      &nbsp;&nbsp;{subject.subjectName}
                     </div>
                     <div className="d-block">
                       <small className="text-break">Description:</small>{" "}
