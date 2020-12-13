@@ -300,7 +300,7 @@ div#root a.custom-btn3 {
   background: rgba(0, 0, 0, 0);
 }
 
-button.custom-btn3:before,
+/* button.custom-btn3:before,
 a.custom-btn3:before {
   content: "";
   position: absolute;
@@ -318,7 +318,7 @@ button.custom-btn3:hover:before,
 button.active-custom-btn3:before {
   visibility: visible;
   width: 100%;
-}
+} */
 
 div#root main button.custom-btn3:hover,
 div#root a.custom-btn3:hover {
@@ -340,4 +340,14 @@ body div#root main .active-custom-btn3 {
 
 button:focus {
   outline: none !important;
+}
+
+table.table.table-bordered th,
+table.table.table-bordered td {
+  font-size: 1.2rem;
+  border: #fff solid 0.2rem;
+}
+
+table.table.table-bordered td {
+  font-style: italic;
 }
