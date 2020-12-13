@@ -41,6 +41,9 @@ const Subjects = (school) => {
       <Link
         to={{
           pathname: linkToAddSubject,
+          schoolData: {
+            schoolTitle: school.name,
+          },
         }}
         className="btn mt-5 custom-btn"
       >

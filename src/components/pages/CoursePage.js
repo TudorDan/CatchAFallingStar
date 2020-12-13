@@ -8,7 +8,6 @@ const CoursePage = (props) => {
   const [course, setCourse] = useState([]);
   const [loading, setLoading] = useState(true);
   const { schoolId, courseId } = useParams();
-  const subjectTopics = ["History", "IT", "Astronomy", "Physics", "Geography"];
   const schoolName = props.location.schoolData.schoolTitle;
   const linkToSchool = `/schools/${schoolId}`;
 
@@ -59,7 +58,7 @@ const CoursePage = (props) => {
         <GiDiamonds className="bullets" />
         &nbsp;
         <small className="text-break">Subject:&nbsp;&nbsp;</small>
-        <span>{subjectTopics[course.subject.id]}</span>
+        <span>{course.subject.subjectName}</span>
       </h3>
       <h3 className=" mb-5">
         <GiDiamonds className="bullets" />
@@ -68,11 +67,11 @@ const CoursePage = (props) => {
         <span>{course.description}</span>
       </h3>
       <div className="row d-flex">
-        <div className="col-sm-6">
-          {course.courseMaterials.map((document) => {
-            const { id, documentation, link } = document;
+        {course.courseMaterials.map((document) => {
+          const { id, documentation, link } = document;
 
-            return (
+          return (
+            <div className="col-sm-6">
               <div className="card mb-3" key={id}>
                 <div className="card-body">
                   <h3 className="card-title">{documentation}</h3>
@@ -81,9 +80,9 @@ const CoursePage = (props) => {
                   </a>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

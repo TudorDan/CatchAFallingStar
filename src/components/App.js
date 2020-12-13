@@ -12,6 +12,7 @@ import AddCoursePage from "./pages/AddCoursePage";
 import AddCataloguePage from "./pages/AddCataloguePage";
 import UpdatePersonPage from "./pages/UpdatePersonPage";
 import AddSchoolPage from "./pages/AddSchoolPage";
+import AddSubjectPage from "./pages/AddSubjectPage";
 
 function App() {
   return (
@@ -37,6 +38,11 @@ function App() {
           <Route exact path="/addschool" component={AddSchoolPage} />
           <Route exact path="/schools/:id/persons" component={AddPersonPage} />
           <Route exact path="/schools/:id/courses" component={AddCoursePage} />
+          <Route
+            exact
+            path="/schools/:id/subjects"
+            component={AddSubjectPage}
+          />
           <Route
             exact
             path="/schools/:id/catalogues"
