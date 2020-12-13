@@ -104,6 +104,16 @@ const CatalogueAddStudent = () => {
                     window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
                   });
               }
+              if (response.status === 400) {
+                swal2
+                  .fire({
+                    title: `No student was selected!`,
+                    text: "Please choose someone!",
+                  })
+                  .then(function () {
+                    window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
+                  });
+              }
 
               setLoading(true);
             }

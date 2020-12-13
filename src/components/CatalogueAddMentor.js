@@ -103,6 +103,16 @@ const CatalogueAddMentor = () => {
                     window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
                   });
               }
+              if (response.status === 400) {
+                swal2
+                  .fire({
+                    title: `No mentor was selected!`,
+                    text: "Please choose someone!",
+                  })
+                  .then(function () {
+                    window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
+                  });
+              }
 
               setLoading(true);
             }
