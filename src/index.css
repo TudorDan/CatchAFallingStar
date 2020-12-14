@@ -342,10 +342,10 @@ button:focus {
   outline: none !important;
 }
 
-table.table.table-bordered th,
-table.table.table-bordered td {
+table.table.table-bordered,
+table.table.table-bordered {
   font-size: 1.2rem;
-  border: #fff solid 0.2rem;
+  border: #444 solid 0.3rem;
 }
 
 table.table.table-bordered td {

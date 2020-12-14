@@ -1,28 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
+import swal2 from "sweetalert2";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
-const AddSchoolPage = () => {
+const UpdateSchoolPage = () => {
+  const schoolId = window.location.href.split("/")[4];
+  const [school, setSchool] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const linkToSchool = `/schools/${schoolId}`;
   const linkToSchools = `/schools`;
-  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getSchool = async () => {
+      setLoading(true);
+      try {
+        const response = await Api.get(linkToSchool);
+        const schoolFromApi = response.data;
+        console.log(schoolFromApi);
+        setSchool(schoolFromApi);
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(true);
+      }
+    };
+
+    getSchool();
+  }, [linkToSchool]);
 
   if (loading) {
     return <Loading key={0} />;
   }
-
+  console.log(`school: ${school}`);
   return (
     <div className="container school-list text-center">
       <h1 className="font-weight-bolder" id="school-title">
-        Add new School
+        {school.name}
       </h1>
       <div className="underline mb-3"></div>
 
+      <h3 className="mt-4">
+        <span id="form-subtitle">Update School</span>
+      </h3>
       <div className="text-center">
         <Link to={linkToSchools} className="btn custom-btn">
-          Back to schools menu
+          Back to schools
         </Link>
       </div>
       <div className="card mb-3 mt-5">
@@ -37,60 +63,75 @@ const AddSchoolPage = () => {
               BirthDate: "",
               AccessRights: 2,
             },
-            MentorsList: [],
-            StudentsList: [],
-            CoursesList: [],
-            CataloguesList: [],
-            Subjects: [],
+            MentorsList: school.MentorsList,
+            StudentsList: school.StudentsList,
+            CoursesList: school.StudentsList,
+            CataloguesList: school.CataloguesList,
+            Subjects: school.Subjects,
           }}
           onSubmit={async (schoolData) => {
             console.log(schoolData);
             setLoading(true);
 
             try {
-              const response = await Api.post("/schools", schoolData);
-              if (response.status === 201) {
+              const response = await Api.put(linkToSchool, schoolData);
+              if (response.status === 204) {
                 swal({
                   title: "Good job!",
-                  text: "Your school has been added",
+                  text: "Your school was updated",
                   icon: "success",
                 }).then(function () {
                   window.location = `/schools`;
                 });
                 console.log("success");
               }
-              const schoolFromApi = response.data;
-              console.log(schoolFromApi);
+              const personFromApi = response.data;
+              console.log(personFromApi);
 
               setLoading(false);
             } catch (error) {
               console.log(error.response);
+              const response = error.response;
+              if (response.status === 400) {
+                swal2
+                  .fire({
+                    title: `One or more form fields was not completed!`,
+                    text: "Please fill out all fields!",
+                  })
+                  .then(function () {
+                    window.location = `/schools`;
+                  });
+              }
+
               setLoading(true);
             }
           }}
         >
           {({ setFieldValue }) => (
-            <Form className="mt-2">
+            <Form className="mt-2 ml-3">
               <div className="form-group row">
-                <label htmlFor="schoolName" className="col-sm-2 col-form-label">
-                  School Name:
+                <label htmlFor="name" className="col-sm-2 col-form-label">
+                  Name:
                 </label>
                 <Field
                   type="text"
                   name="Name"
                   className="col-sm-9 form-control mt-1"
-                  id="schoolName"
-                  placeholder="School name"
+                  id="name"
+                  placeholder={school.name}
                   required
                 />
               </div>
-
               <div className="form-group row">
-                <label
-                  htmlFor="schoolPhoto"
-                  className="col-sm-2 col-form-label"
-                >
-                  School Photo:
+                <label className="col-sm-2 col-form-label">
+                  Current School Photo:
+                </label>
+                &nbsp;&nbsp;
+                <span className="mt-1 text-muted">{school.photo}</span>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="photo" className="col-sm-2 col-form-label">
+                  New Photo:
                 </label>
                 <input
                   type="file"
@@ -103,7 +144,7 @@ const AddSchoolPage = () => {
                     }
                   }}
                   className="col-sm-9 form-control mt-1"
-                  id="schoolPhoto"
+                  id="photo"
                   required
                 />
               </div>
@@ -120,16 +161,22 @@ const AddSchoolPage = () => {
                   name="Principal.Name"
                   className="col-sm-9 form-control mt-1"
                   id="principalName"
-                  placeholder="Principal name"
+                  placeholder={school.principal?.name}
                   required
                 />
               </div>
               <div className="form-group row">
-                <label
-                  htmlFor="principalPhoto"
-                  className="col-sm-2 col-form-label"
-                >
-                  Principal Photo:
+                <label className="col-sm-2 col-form-label">
+                  Current Principal Photo:
+                </label>
+                &nbsp;&nbsp;
+                <span className="mt-1 text-muted">
+                  {school.principal?.photo}
+                </span>
+              </div>
+              <div className="form-group row">
+                <label htmlFor="photo" className="col-sm-2 col-form-label">
+                  New Principal Photo:
                 </label>
                 <input
                   type="file"
@@ -145,13 +192,14 @@ const AddSchoolPage = () => {
                     }
                   }}
                   className="col-sm-9 form-control mt-1"
-                  id="principalPhoto"
+                  id="photo"
                   required
                 />
               </div>
+
               <div className="form-group row">
                 <label htmlFor="birthDate" className="col-sm-2 col-form-label">
-                  Principal BirthDate:
+                  BirthDate:
                 </label>
                 <Field
                   type="date"
@@ -160,6 +208,7 @@ const AddSchoolPage = () => {
                   max="2014-01-01"
                   className="col-sm-9 form-control mt-1"
                   id="birthDate"
+                  value={school.principal?.birthDate.substr(0, 10)}
                   required
                 />
               </div>
@@ -167,7 +216,7 @@ const AddSchoolPage = () => {
               <div className="form-group row">
                 <div className="col-sm-12">
                   <button type="submit" className="btn custom-btn">
-                    Add School
+                    Update School
                   </button>
                 </div>
               </div>
@@ -179,4 +228,4 @@ const AddSchoolPage = () => {
   );
 };
 
-export default AddSchoolPage;
+export default UpdateSchoolPage;

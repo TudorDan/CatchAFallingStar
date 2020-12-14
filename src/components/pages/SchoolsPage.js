@@ -9,7 +9,6 @@ const SchoolsPage = () => {
   const linkToSchool = `/schools/`;
   const apiImgPath = "http://localhost:54719/images/";
   const linkToAddSchool = `/addschool`;
-  const linkToUpdateSchool = `/`;
   const linkToDeleteSchool = `/`;
 
   const getSchools = async () => {
@@ -79,7 +78,7 @@ const SchoolsPage = () => {
                     <div className="col-6">
                       <Link
                         to={{
-                          pathname: linkToUpdateSchool,
+                          pathname: `/schools/${id}/update`,
                         }}
                         className="btn custom-btn mt-0 mr-3"
                       >

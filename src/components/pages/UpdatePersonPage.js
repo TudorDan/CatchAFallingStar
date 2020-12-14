@@ -127,8 +127,11 @@ const UpdatePersonPage = (props) => {
                   type="file"
                   name="Photo"
                   onChange={(event) => {
-                    console.log(event.target.files[0].name);
-                    setFieldValue("Photo", event.target.files[0].name);
+                    if (event.target.files[0]) {
+                      setFieldValue("Photo", event.target.files[0].name);
+                    } else {
+                      setFieldValue("Photo", "");
+                    }
                   }}
                   className="col-sm-9 form-control mt-1"
                   id="photo"
@@ -146,9 +149,7 @@ const UpdatePersonPage = (props) => {
                   max="2014-01-01"
                   className="col-sm-9 form-control mt-1"
                   id="birthDate"
-                  value={
-                    person.birthDate ? person.birthDate.substr(0, 10) : null
-                  }
+                  value={person?.birthDate.substr(0, 10)}
                   required
                 />
               </div>
