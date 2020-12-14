@@ -9,7 +9,6 @@ const Students = (school) => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToAddStudent = `/schools/${schoolID}/persons`;
-  const linkToUpdateStudent = `/`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -71,7 +70,7 @@ const Students = (school) => {
                     </p>
                     <Link
                       to={{
-                        pathname: linkToUpdateStudent,
+                        pathname: `/schools/${schoolID}/persons/${id}`,
                         schoolData: {
                           schoolTitle: school.name,
                           accessRights: 1,

@@ -3,9 +3,17 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
   color: #444 !important;
+
+  background: url("http://localhost:3000/images/backgr1.jpg") no-repeat center
+    center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
 }
 
 code {
@@ -26,7 +34,7 @@ header h1 {
 
 .logo {
   max-height: 4rem;
-  color: red;
+  color: white;
 }
 #logo-name {
   color: red;
@@ -346,6 +354,8 @@ table.table.table-bordered,
 table.table.table-bordered {
   font-size: 1.2rem;
   border: #444 solid 0.3rem;
+  -webkit-box-shadow: 6px 6px 13px 2px #000000;
+  box-shadow: 6px 6px 13px 2px #000000;
 }
 
 table.table.table-bordered td {

@@ -39,11 +39,11 @@ const CatalogueGrades = (catalogue) => {
         <table className="table table-striped table-bordered table-hover text-center">
           <thead>
             <tr>
-              <th>Mentor</th>
+              <th>Student</th>
               <th>Course</th>
               <th>Date</th>
               <th>Mark</th>
-              <th>Student</th>
+              <th>Mentor</th>
             </tr>
           </thead>
           <tbody>
@@ -52,11 +52,11 @@ const CatalogueGrades = (catalogue) => {
 
               return (
                 <tr key={id}>
-                  <td>{mentor.name}</td>
+                  <td>{student.name}</td>
                   <td>{course.name}</td>
                   <td>{date.substr(0, 10)}</td>
                   <td>{mark}</td>
-                  <td>{student.name}</td>
+                  <td>{mentor.name}</td>
                 </tr>
               );
             })}

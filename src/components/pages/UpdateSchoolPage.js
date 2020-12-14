@@ -63,11 +63,11 @@ const UpdateSchoolPage = () => {
               BirthDate: "",
               AccessRights: 2,
             },
-            MentorsList: school.MentorsList,
-            StudentsList: school.StudentsList,
-            CoursesList: school.StudentsList,
-            CataloguesList: school.CataloguesList,
-            Subjects: school.Subjects,
+            MentorsList: [],
+            StudentsList: [],
+            CoursesList: [],
+            CataloguesList: [],
+            Subjects: [],
           }}
           onSubmit={async (schoolData) => {
             console.log(schoolData);
@@ -198,8 +198,19 @@ const UpdateSchoolPage = () => {
               </div>
 
               <div className="form-group row">
+                <label className="col-sm-2 col-form-label">
+                  Current Principal BirthDate:
+                </label>
+                &nbsp;&nbsp;
+                <span className="mt-1 text-muted">
+                  {school.principal.birthDate
+                    ? school.principal.birthDate.substr(0, 10)
+                    : null}
+                </span>
+              </div>
+              <div className="form-group row">
                 <label htmlFor="birthDate" className="col-sm-2 col-form-label">
-                  BirthDate:
+                  New BirthDate:
                 </label>
                 <Field
                   type="date"
@@ -208,7 +219,6 @@ const UpdateSchoolPage = () => {
                   max="2014-01-01"
                   className="col-sm-9 form-control mt-1"
                   id="birthDate"
-                  value={school.principal?.birthDate.substr(0, 10)}
                   required
                 />
               </div>

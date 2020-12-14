@@ -4,6 +4,7 @@ import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
+import swal2 from "sweetalert2";
 
 const UpdatePersonPage = (props) => {
   const { schoolId, personId } = useParams();
@@ -93,6 +94,19 @@ const UpdatePersonPage = (props) => {
               setLoading(false);
             } catch (error) {
               console.log(error.response);
+              const response = error.response;
+
+              if (response.status === 400) {
+                swal2
+                  .fire({
+                    title: `One or more form fields was not completed!`,
+                    text: "Please fill out all fields!",
+                  })
+                  .then(function () {
+                    window.location = `/schools/${schoolId}`;
+                  });
+              }
+
               setLoading(true);
             }
           }}
@@ -139,8 +153,17 @@ const UpdatePersonPage = (props) => {
                 />
               </div>
               <div className="form-group row">
+                <label className="col-sm-2 col-form-label">
+                  Current BirthDate:
+                </label>
+                &nbsp;&nbsp;
+                <span className="mt-1 text-muted">
+                  {person.birthDate ? person.birthDate.substr(0, 10) : null}
+                </span>
+              </div>
+              <div className="form-group row">
                 <label htmlFor="birthDate" className="col-sm-2 col-form-label">
-                  BirthDate:
+                  New BirthDate:
                 </label>
                 <Field
                   type="date"
@@ -149,7 +172,6 @@ const UpdatePersonPage = (props) => {
                   max="2014-01-01"
                   className="col-sm-9 form-control mt-1"
                   id="birthDate"
-                  value={person?.birthDate.substr(0, 10)}
                   required
                 />
               </div>

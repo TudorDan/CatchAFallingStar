@@ -220,7 +220,7 @@ const CatalogueAddGrade = () => {
                 <Field
                   type="number"
                   name="Mark"
-                  min="0"
+                  min="1"
                   max="10"
                   step="0.1"
                   className="col-sm-9 form-control"
