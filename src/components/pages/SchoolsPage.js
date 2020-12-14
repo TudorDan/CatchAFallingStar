@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
+import swal2 from "sweetalert2";
 
 const SchoolsPage = () => {
   const [schools, setSchools] = useState([]);
@@ -9,7 +10,6 @@ const SchoolsPage = () => {
   const linkToSchool = `/schools/`;
   const apiImgPath = "http://localhost:54719/images/";
   const linkToAddSchool = `/addschool`;
-  const linkToDeleteSchool = `/`;
 
   const getSchools = async () => {
     try {
@@ -84,14 +84,41 @@ const SchoolsPage = () => {
                       >
                         Update School
                       </Link>
-                      <Link
-                        to={{
-                          pathname: linkToDeleteSchool,
-                        }}
+                      <button
                         className="btn custom-btn2 mt-0"
+                        onClick={() => {
+                          swal2
+                            .fire({
+                              title: `Are you sure you wish to delete ${name}?`,
+                              text: "You won't be able to revert this!",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#3ec1d5",
+                              cancelButtonColor: "#3f000f",
+                              confirmButtonText: "Yes, delete school!",
+                            })
+                            .then(async (result) => {
+                              if (result.isConfirmed) {
+                                const response = await Api.delete(
+                                  `/schools/${id}`
+                                );
+                                if (response.status === 204) {
+                                  swal2
+                                    .fire(
+                                      "Deleted!",
+                                      "Your school has been deleted.",
+                                      "success"
+                                    )
+                                    .then(function () {
+                                      window.location = `/schools`;
+                                    });
+                                }
+                              }
+                            });
+                        }}
                       >
                         Delete School
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
