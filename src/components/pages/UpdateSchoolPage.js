@@ -63,11 +63,6 @@ const UpdateSchoolPage = () => {
               BirthDate: "",
               AccessRights: 2,
             },
-            MentorsList: [],
-            StudentsList: [],
-            CoursesList: [],
-            CataloguesList: [],
-            Subjects: [],
           }}
           onSubmit={async (schoolData) => {
             console.log(schoolData);
