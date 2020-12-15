@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
+import swal2 from "sweetalert2";
 
 const CatalogueStudents = () => {
   const schoolId = window.location.href.split("/")[4];
@@ -55,6 +56,41 @@ const CatalogueStudents = () => {
                           BirthDate: {birthDate.substr(0, 10)}
                         </small>
                       </p>
+                      <button
+                        className="btn custom-btn2 mt-0"
+                        onClick={() => {
+                          swal2
+                            .fire({
+                              title: `Are you sure you wish to delete ${name} from this class?`,
+                              text: "You won't be able to revert this!",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#3ec1d5",
+                              cancelButtonColor: "#3f000f",
+                              confirmButtonText: "Yes, delete student!",
+                            })
+                            .then(async (result) => {
+                              if (result.isConfirmed) {
+                                const response = await Api.delete(
+                                  `/schools/${schoolId}/catalogues/${catalogueId}/students/${id}`
+                                );
+                                if (response.status === 204) {
+                                  swal2
+                                    .fire(
+                                      "Deleted!",
+                                      "Your student has been deleted.",
+                                      "success"
+                                    )
+                                    .then(function () {
+                                      window.location = `/schools/${schoolId}/catalogues/${catalogueId}`;
+                                    });
+                                }
+                              }
+                            });
+                        }}
+                      >
+                        Delete Student
+                      </button>
                     </div>
                     <img
                       src={apiImgPath + photo}

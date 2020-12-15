@@ -99,7 +99,7 @@ const Courses = (school) => {
                       onClick={() => {
                         swal
                           .fire({
-                            title: `Are you sure you wish to delete ${name}?`,
+                            title: `Are you sure you wish to delete "${name}"?`,
                             text: "You won't be able to revert this!",
                             icon: "warning",
                             showCancelButton: true,

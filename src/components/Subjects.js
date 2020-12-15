@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
-import swal from "sweetalert2";
+import swal2 from "sweetalert2";
 
 const Subjects = (school) => {
   const [subjects, setSubjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToAddSubject = `/schools/${schoolID}/subjects`;
-  const linkToUpdateSubject = `/`;
 
   useEffect(() => {
     const getSubjects = async () => {
@@ -58,29 +57,18 @@ const Subjects = (school) => {
             <li key={id}>
               <div className="card mb-3 mt-3 p-2">
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-6">
                     <div className="d-block">
                       <small className="text-break">Name:</small>
                       &nbsp;&nbsp;{subjectName}
                     </div>
                   </div>
 
-                  <div className="col-4">
-                    <Link
-                      to={{
-                        pathname: linkToUpdateSubject,
-                      }}
-                      className="btn custom-btn mt-0 mr-3"
-                    >
-                      Update Subject
-                    </Link>
-                  </div>
-
-                  <div className="col-4">
+                  <div className="col-6">
                     <button
                       className="btn custom-btn2 mt-0"
                       onClick={() => {
-                        swal
+                        swal2
                           .fire({
                             title: `Are you sure you wish to delete ${subjectName}?`,
                             text: "You won't be able to revert this!",
@@ -96,7 +84,7 @@ const Subjects = (school) => {
                                 `/schools/${schoolID}/subjects/${id}`
                               );
                               if (response.status === 204) {
-                                swal
+                                swal2
                                   .fire(
                                     "Deleted!",
                                     "Your subject has been deleted.",
