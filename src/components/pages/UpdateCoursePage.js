@@ -7,11 +7,6 @@ import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
 const UpdateCoursePage = () => {
-  /* const [updateCourse, setUpdateCourse] = useState({
-    school: null,
-    course: null,
-    subjects: null,
-  }); */
   const [school, setSchool] = useState([]);
   const [course, setCourse] = useState([]);
   const [subjects, setSubjects] = useState([]);
@@ -50,7 +45,6 @@ const UpdateCoursePage = () => {
   if (loading) {
     return <Loading key={0} />;
   }
-  debugger;
 
   return (
     <div className="container school-list text-center">
@@ -74,6 +68,7 @@ const UpdateCoursePage = () => {
             Name: "",
             Subject: {},
             Description: "",
+            CourseMaterials: course.courseMaterials,
           }}
           onSubmit={async (courseData) => {
             console.log(courseData);
