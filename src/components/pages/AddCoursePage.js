@@ -97,7 +97,7 @@ const AddCoursePage = (props) => {
               </div>
               <div className="form-group row">
                 <label htmlFor="subject" className="col-sm-2 col-form-label">
-                  Course Type:
+                  Course Subject:
                 </label>
                 <select
                   name="Subject"

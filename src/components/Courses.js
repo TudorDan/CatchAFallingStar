@@ -10,7 +10,6 @@ const Courses = (school) => {
   const schoolID = window.location.href.split("/")[4];
   const linkToCourse = `/schools/${schoolID}/courses/`;
   const linkToAddCourse = `/schools/${schoolID}/courses`;
-  const linkToUpdateCourse = `/`;
 
   useEffect(() => {
     const getCourses = async () => {
@@ -85,7 +84,7 @@ const Courses = (school) => {
                   <div className="col-4">
                     <Link
                       to={{
-                        pathname: linkToUpdateCourse,
+                        pathname: `/schools/${schoolID}/courses/${id}/update`,
                         schoolData: {
                           schoolTitle: school.name,
                         },

@@ -35,7 +35,7 @@ const UpdateSchoolPage = () => {
   if (loading) {
     return <Loading key={0} />;
   }
-  console.log(`school: ${school}`);
+
   return (
     <div className="container school-list text-center">
       <h1 className="font-weight-bolder" id="school-title">
