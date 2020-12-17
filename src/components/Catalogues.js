@@ -9,7 +9,6 @@ const Catalogues = (school) => {
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4];
   const linkToCatalogue = `/schools/${schoolID}/catalogues/`;
-  const linkToUpdateCatalogue = `/`;
 
   useEffect(() => {
     const getCatalogues = async () => {
@@ -76,7 +75,7 @@ const Catalogues = (school) => {
                   <div className="col-6">
                     <Link
                       to={{
-                        pathname: linkToUpdateCatalogue,
+                        pathname: `/schools/${schoolID}/catalogues/${id}/update`,
                       }}
                       className="btn custom-btn mt-0 mr-3"
                     >

@@ -17,8 +17,8 @@ const CatalogueCourses = ({ schoolName }) => {
         const response = await Api.get(
           `/schools/${schoolId}/catalogues/${catalogueId}/courses`
         );
-        const catalogueMentorsFromAPI = response.data;
-        setCourses(catalogueMentorsFromAPI);
+        const catalogueCoursesFromAPI = response.data;
+        setCourses(catalogueCoursesFromAPI);
 
         setLoading(false);
       } catch (error) {

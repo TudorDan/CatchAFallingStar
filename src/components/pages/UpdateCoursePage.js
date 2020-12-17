@@ -68,7 +68,6 @@ const UpdateCoursePage = () => {
             Name: "",
             Subject: {},
             Description: "",
-            CourseMaterials: course.courseMaterials,
           }}
           onSubmit={async (courseData) => {
             console.log(courseData);
