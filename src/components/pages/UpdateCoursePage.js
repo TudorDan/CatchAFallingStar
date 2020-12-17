@@ -26,7 +26,6 @@ const UpdateCoursePage = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        debugger;
         const responseSchool = await Api.get(linkToSchool);
         const responseCourse = await Api.get(linkToCourse);
         const responseSubjects = await Api.get(linkToSubjects);
@@ -34,16 +33,11 @@ const UpdateCoursePage = () => {
         const schoolFromApi = responseSchool.data;
         const courseFromApi = responseCourse.data;
         const subjectsFromApi = responseSubjects.data;
-        debugger;
+
         setSchool(schoolFromApi);
         setCourse(courseFromApi);
         setSubjects(subjectsFromApi);
 
-        /* setUpdateCourse({
-          school: responseSchool.data,
-          course: responseCourse.data,
-          subjects: responseSubjects.data,
-        }); */
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -51,52 +45,6 @@ const UpdateCoursePage = () => {
       }
     };
     fetchData();
-    /* const getSchool = async () => {
-      setLoading(true);
-      try {
-        const response = await Api.get(linkToSchool);
-        const schoolFromApi = response.data;
-        console.log(schoolFromApi);
-        setSchool(schoolFromApi);
-
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(true);
-      }
-    };
-
-    const getCourse = async () => {
-      setLoading(true);
-      try {
-        const response = await Api.get(linkToCourse);
-        const courseFromApi = response.data;
-        console.log(courseFromApi);
-        setCourse(courseFromApi);
-
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(true);
-      }
-    };
-
-    const getSubjects = async () => {
-      try {
-        setLoading(true);
-        const response = await Api.get(linkToSubjects);
-        const subjectsFromApi = response.data;
-        setSubjects(subjectsFromApi);
-      } catch (error) {
-        console.log(error);
-        setLoading(true);
-      }
-      setLoading(false);
-    };
-
-    getSchool();
-    getCourse();
-    getSubjects(); */
   }, [linkToSchool, linkToCourse, linkToSubjects]);
 
   if (loading) {
@@ -139,7 +87,7 @@ const UpdateCoursePage = () => {
                   text: "Your course was updated",
                   icon: "success",
                 }).then(function () {
-                  window.location = `/schools/${schoolId}/courses`;
+                  window.location = `/schools/${schoolId}`;
                 });
                 console.log("success");
               }
