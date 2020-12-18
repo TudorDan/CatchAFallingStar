@@ -37,10 +37,10 @@ const AddSchoolPage = () => {
               BirthDate: "",
               AccessRights: 2,
             },
-            MentorsList: [],
-            StudentsList: [],
-            CoursesList: [],
-            CataloguesList: [],
+            Mentors: [],
+            Students: [],
+            Courses: [],
+            Catalogues: [],
             Subjects: [],
           }}
           onSubmit={async (schoolData) => {
