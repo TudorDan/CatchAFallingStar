@@ -74,7 +74,7 @@ const CoursePage = (props) => {
         <GiDiamonds className="bullets" />
         &nbsp;
         <small className="text-break">Subject:&nbsp;&nbsp;</small>
-        <span>{course?.subject?.subjectName}</span>
+        <span>{course?.subject?.name}</span>
       </h3>
       <h3 className=" mb-5">
         <GiDiamonds className="bullets" />

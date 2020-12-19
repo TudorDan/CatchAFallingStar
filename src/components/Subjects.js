@@ -51,7 +51,7 @@ const Subjects = (school) => {
 
       <ul className="mt-5 mr-5">
         {subjects.map((subject) => {
-          const { id, subjectName } = subject;
+          const { id, name } = subject;
 
           return (
             <li key={id}>
@@ -60,7 +60,7 @@ const Subjects = (school) => {
                   <div className="col-6">
                     <div className="d-block">
                       <small className="text-break">Name:</small>
-                      &nbsp;&nbsp;{subjectName}
+                      &nbsp;&nbsp;{name}
                     </div>
                   </div>
 
@@ -70,7 +70,7 @@ const Subjects = (school) => {
                       onClick={() => {
                         swal2
                           .fire({
-                            title: `Are you sure you wish to delete ${subjectName}?`,
+                            title: `Are you sure you wish to delete ${name}?`,
                             text: "You won't be able to revert this!",
                             icon: "warning",
                             showCancelButton: true,

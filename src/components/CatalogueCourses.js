@@ -64,7 +64,7 @@ const CatalogueCourses = ({ schoolName }) => {
                       </div>
                       <div className="d-inline-block w-100">
                         <small className="text-break">Subject:</small>
-                        &nbsp;&nbsp;{subject.subjectName}
+                        &nbsp;&nbsp;{subject.name}
                       </div>
                       <div className="d-inline-block w-100">
                         <small className="text-break">Description:</small>{" "}

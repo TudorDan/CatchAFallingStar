@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
+import swal2 from "sweetalert2";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
 const AddCoursePage = (props) => {
+  const [school, setSchool] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [loading, setLoading] = useState(false);
-  const schoolID = useParams().id;
-  const schoolName = props.location.schoolData.schoolTitle;
-  const linkToSchool = `/schools/${schoolID}`;
-  const linkForPost = `/schools/${schoolID}/courses`;
+  const schoolId = window.location.href.split("/")[4];
+  const linkForSchool = `/schools/${schoolId}`;
+  const linkForPost = `/schools/${schoolId}/courses`;
+  const linkForSubjects = `/schools/${schoolId}/subjects`;
 
   useEffect(() => {
     const getSubjects = async () => {
       try {
-        const response = await Api.get(`/schools/${schoolID}/subjects`);
-        const subjectsFromApi = response.data;
-        setSubjects(subjectsFromApi);
+        const responseSchool = await Api.get(linkForSchool);
+        const responseCourse = await Api.get(linkForSubjects);
+
+        const schoolFromApi = responseSchool.data;
+        const subjectsFromApi = responseCourse.data;
+
+        setSchool(schoolFromApi);
+        setSubjects([
+          { id: null, name: "Please choose an option" },
+          ...subjectsFromApi,
+        ]);
 
         setLoading(false);
       } catch (error) {
@@ -28,7 +38,7 @@ const AddCoursePage = (props) => {
     };
 
     getSubjects();
-  }, [schoolID]);
+  }, [linkForSchool, linkForSubjects]);
 
   if (loading) {
     return <Loading key={0} />;
@@ -37,11 +47,11 @@ const AddCoursePage = (props) => {
   return (
     <div className="container school-list text-center">
       <h1 className="font-weight-bolder" id="school-title">
-        {schoolName}
+        {school.name}
       </h1>
       <div className="underline mb-3"></div>
       <h3 className="mt-4">Add new Course</h3>
-      <Link to={linkToSchool} className="btn custom-btn">
+      <Link to={linkForSchool} className="btn custom-btn">
         Back to school menu
       </Link>
 
@@ -55,6 +65,7 @@ const AddCoursePage = (props) => {
             Documents: [],
           }}
           onSubmit={async (courseData) => {
+            console.log(courseData);
             courseData.SubjectId = parseInt(courseData.SubjectId);
             console.log(courseData);
 
@@ -67,7 +78,7 @@ const AddCoursePage = (props) => {
                   text: "Your course was added",
                   icon: "success",
                 }).then(function () {
-                  window.location = `/schools/${schoolID}`;
+                  window.location = `/schools/${schoolId}`;
                 });
                 console.log("success");
               }
@@ -77,6 +88,19 @@ const AddCoursePage = (props) => {
               setLoading(false);
             } catch (error) {
               console.log(error.response);
+              const response = error.response;
+
+              if (response.status === 400) {
+                swal2
+                  .fire({
+                    title: `No subject was selected!`,
+                    text: "Please choose something!",
+                  })
+                  .then(function () {
+                    window.location = `/schools/${schoolId}/courses`;
+                  });
+              }
+
               setLoading(true);
             }
           }}
@@ -107,11 +131,11 @@ const AddCoursePage = (props) => {
                   id="subject"
                 >
                   {subjects.map((subject) => {
-                    const { id, subjectName } = subject;
+                    const { id, name } = subject;
 
                     return (
                       <option key={id} value={id}>
-                        {subjectName}
+                        {name}
                       </option>
                     );
                   })}

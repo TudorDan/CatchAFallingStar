@@ -31,7 +31,10 @@ const UpdateCoursePage = () => {
 
         setSchool(schoolFromApi);
         setCourse(courseFromApi);
-        setSubjects(subjectsFromApi);
+        setSubjects([
+          { id: null, name: "Please choose an option" },
+          ...subjectsFromApi,
+        ]);
 
         setLoading(false);
       } catch (error) {
@@ -129,9 +132,7 @@ const UpdateCoursePage = () => {
                   Current Course Subject:
                 </label>
                 &nbsp;&nbsp;
-                <span className="mt-1 text-muted">
-                  {course.subject.subjectName}
-                </span>
+                <span className="mt-1 text-muted">{course.subject.name}</span>
               </div>
               <div className="form-group row">
                 <label htmlFor="subject" className="col-sm-2 col-form-label">
@@ -142,13 +143,14 @@ const UpdateCoursePage = () => {
                   name="SubjectId"
                   className="col-sm-9 form-control mt-1"
                   id="subject"
+                  required
                 >
                   {subjects.map((subject) => {
-                    const { id, subjectName } = subject;
+                    const { id, name } = subject;
 
                     return (
                       <option key={id} value={id}>
-                        {subjectName}
+                        {name}
                       </option>
                     );
                   })}

@@ -100,7 +100,7 @@ const AddSubjectPage = (props) => {
 
               subjects.map((subject) => {
                 if (subject.subjectType === subjectData.SubjectType) {
-                  subjectName = subject.subjectName;
+                  subjectName = subject.name;
                 }
                 return "subject check finished";
               });
