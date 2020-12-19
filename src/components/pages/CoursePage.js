@@ -88,7 +88,7 @@ const CoursePage = (props) => {
         ) : (
           <div className="row d-flex">
             {course.documents.map((document) => {
-              const { id, documentation, link } = document;
+              const { id, name, link } = document;
 
               return (
                 <div className="col-sm-6" key={id}>
@@ -96,7 +96,7 @@ const CoursePage = (props) => {
                     <div className="card-body">
                       <div className="row">
                         <div className="col-8">
-                          <h3 className="card-title">{documentation}</h3>
+                          <h3 className="card-title">{name}</h3>
                           <a href="/">{link}</a>
                         </div>
                         <div className="col-4">
@@ -105,7 +105,7 @@ const CoursePage = (props) => {
                             onClick={() => {
                               swal2
                                 .fire({
-                                  title: `Are you sure you wish to delete ${documentation}?`,
+                                  title: `Are you sure you wish to delete ${name}?`,
                                   text: "You won't be able to revert this!",
                                   icon: "warning",
                                   showCancelButton: true,
