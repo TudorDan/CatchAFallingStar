@@ -51,7 +51,7 @@ const Catalogues = (school) => {
 
       <ul className="mt-5 mr-5">
         {catalogues.map((catalogue) => {
-          const { id, className } = catalogue;
+          const { id, name } = catalogue;
 
           return (
             <li key={id}>
@@ -68,7 +68,7 @@ const Catalogues = (school) => {
                           },
                         }}
                       >
-                        {className}
+                        {name}
                       </Link>
                     </div>
                   </div>
@@ -86,7 +86,7 @@ const Catalogues = (school) => {
                       onClick={() => {
                         swal
                           .fire({
-                            title: `Are you sure you wish to delete ${className}?`,
+                            title: `Are you sure you wish to delete ${name}?`,
                             text: "You won't be able to revert this!",
                             icon: "warning",
                             showCancelButton: true,

@@ -31,11 +31,11 @@ const AddCataloguePage = (props) => {
         <Formik
           className="mt-2"
           initialValues={{
-            ClassName: "",
-            ClassMentors: [],
-            ClassStudents: [],
-            ClassCourses: [],
-            ClassGrades: [],
+            Name: "",
+            Mentors: [],
+            Students: [],
+            Courses: [],
+            Grades: [],
           }}
           onSubmit={async (catalogueData) => {
             console.log(catalogueData);
@@ -71,7 +71,7 @@ const AddCataloguePage = (props) => {
                 </label>
                 <Field
                   type="text"
-                  name="ClassName"
+                  name="Name"
                   className="col-sm-9 form-control mt-1"
                   id="name"
                   placeholder="School Class name"

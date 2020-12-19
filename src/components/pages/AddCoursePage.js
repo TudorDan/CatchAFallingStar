@@ -50,11 +50,12 @@ const AddCoursePage = (props) => {
           className="mt-2"
           initialValues={{
             Name: "",
-            Subject: {},
+            SubjectId: "",
             Description: "",
-            CourseMaterials: [],
+            Documents: [],
           }}
           onSubmit={async (courseData) => {
+            courseData.SubjectId = parseInt(courseData.SubjectId);
             console.log(courseData);
 
             setLoading(true);
@@ -99,23 +100,22 @@ const AddCoursePage = (props) => {
                 <label htmlFor="subject" className="col-sm-2 col-form-label">
                   Course Subject:
                 </label>
-                <select
-                  name="Subject"
+                <Field
+                  component="select"
+                  name="SubjectId"
                   className="col-sm-9 form-control mt-1"
                   id="subject"
-                  defaultValue={undefined}
-                  required
                 >
                   {subjects.map((subject) => {
-                    const { id, subjectType, subjectName } = subject;
+                    const { id, subjectName } = subject;
 
                     return (
-                      <option key={id} value={subjectType}>
+                      <option key={id} value={id}>
                         {subjectName}
                       </option>
                     );
                   })}
-                </select>
+                </Field>
               </div>
 
               <div className="form-group row">

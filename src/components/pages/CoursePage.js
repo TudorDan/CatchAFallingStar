@@ -82,12 +82,12 @@ const CoursePage = (props) => {
         <small className="text-break">Description:&nbsp;&nbsp;</small>
         <span>{course.description}</span>
       </h3>
-      {course.courseMaterials ? (
-        course.courseMaterials.length === 0 ? (
+      {course.documents ? (
+        course.documents.length === 0 ? (
           <h3 className="mt-5 text-info">No documents in current course.</h3>
         ) : (
           <div className="row d-flex">
-            {course.courseMaterials.map((document) => {
+            {course.documents.map((document) => {
               const { id, documentation, link } = document;
 
               return (

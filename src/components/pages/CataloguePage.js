@@ -155,7 +155,7 @@ const CataloguePage = () => {
 
       <h3 className="mt-5">
         <small className="text-break">School Class Name:&nbsp;&nbsp;</small>
-        <span id="secondary-title">{catalogue.className}</span>
+        <span id="secondary-title">{catalogue.name}</span>
       </h3>
 
       <article className="container">

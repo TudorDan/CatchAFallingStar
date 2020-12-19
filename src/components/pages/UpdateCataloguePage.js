@@ -57,7 +57,7 @@ const UpdateCataloguePage = (props) => {
         <Formik
           className="mt-2"
           initialValues={{
-            ClassName: "",
+            Name: "",
           }}
           onSubmit={async (catalogueData) => {
             console.log(catalogueData);
@@ -93,10 +93,10 @@ const UpdateCataloguePage = (props) => {
                 </label>
                 <Field
                   type="text"
-                  name="ClassName"
+                  name="Name"
                   className="col-sm-9 form-control mt-1"
                   id="name"
-                  placeholder={catalogue.className}
+                  placeholder={catalogue.Name}
                   required
                 />
               </div>
