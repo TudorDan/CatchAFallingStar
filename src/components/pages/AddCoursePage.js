@@ -19,10 +19,10 @@ const AddCoursePage = (props) => {
     const getSubjects = async () => {
       try {
         const responseSchool = await Api.get(linkForSchool);
-        const responseCourse = await Api.get(linkForSubjects);
+        const responseSubjects = await Api.get(linkForSubjects);
 
         const schoolFromApi = responseSchool.data;
-        const subjectsFromApi = responseCourse.data;
+        const subjectsFromApi = responseSubjects.data;
 
         setSchool(schoolFromApi);
         setSubjects([
