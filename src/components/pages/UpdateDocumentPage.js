@@ -5,27 +5,28 @@ import swal from "sweetalert";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
-const AddDocumentPage = () => {
+const UpdateDocumentPage = () => {
   const [school, setSchool] = useState([]);
-  const [course, setCourse] = useState();
+  const [document, setDocument] = useState();
   const [loading, setLoading] = useState(true);
   const schoolId = window.location.href.split("/")[4];
   const courseId = window.location.href.split("/")[6];
+  const documentId = window.location.href.split("/")[8];
   const linkForSchool = `/schools/${schoolId}`;
   const linkForCourse = `/schools/${schoolId}/courses/${courseId}`;
-  const linkForPost = `/schools/${schoolId}/courses/${courseId}/documents`;
+  const linkForDocument = `/schools/${schoolId}/courses/${courseId}/documents/${documentId}`;
 
   useEffect(() => {
-    const getCourse = async () => {
+    const getDocument = async () => {
       try {
         const responseSchool = await Api.get(linkForSchool);
-        const responseCourse = await Api.get(linkForCourse);
+        const responseDocument = await Api.get(linkForDocument);
 
         const schoolFromApi = responseSchool.data;
-        const courseFromApi = responseCourse.data;
+        const documentFromApi = responseDocument.data;
 
         setSchool(schoolFromApi);
-        setCourse(courseFromApi);
+        setDocument(documentFromApi);
 
         setLoading(false);
       } catch (error) {
@@ -34,8 +35,8 @@ const AddDocumentPage = () => {
       }
     };
 
-    getCourse();
-  }, [linkForSchool, linkForCourse]);
+    getDocument();
+  }, [linkForSchool, linkForDocument]);
 
   if (loading) {
     return <Loading key={0} />;
@@ -43,11 +44,11 @@ const AddDocumentPage = () => {
 
   return (
     <div className="container school-list text-center">
-      <h1 className="font-weight-bolder" id="school-title">
+      <h1 className="font-weight-bold" id="school-title">
         {school.name}
       </h1>
       <div className="underline mb-3"></div>
-      <h3 className="mt-4">Add new Document for {course.name}</h3>
+      <h3 className="mt-4">Update Document</h3>
       <Link to={linkForCourse} className="btn custom-btn">
         Back to course menu
       </Link>
@@ -64,12 +65,12 @@ const AddDocumentPage = () => {
 
             setLoading(true);
             try {
-              const response = await Api.post(linkForPost, documentData);
+              const response = await Api.put(linkForDocument, documentData);
 
-              if (response.status === 201) {
+              if (response.status === 204) {
                 swal({
                   title: "Good job!",
-                  text: "Your document was added",
+                  text: "Your document was updated",
                   icon: "success",
                 }).then(function () {
                   window.location = linkForCourse;
@@ -88,7 +89,7 @@ const AddDocumentPage = () => {
           }}
         >
           {() => (
-            <Form className="mt-2">
+            <Form className="mt-2 ml-3">
               <div className="form-group row">
                 <label htmlFor="name" className="col-sm-2 col-form-label">
                   Name:
@@ -98,7 +99,7 @@ const AddDocumentPage = () => {
                   name="Name"
                   className="col-sm-9 form-control mt-1"
                   id="name"
-                  placeholder="Document name"
+                  placeholder={document.name}
                   required
                 />
               </div>
@@ -112,7 +113,7 @@ const AddDocumentPage = () => {
                   name="Link"
                   className="col-sm-9 form-control mt-1"
                   id="link"
-                  placeholder="Document link"
+                  placeholder={document.link}
                   required
                 />
               </div>
@@ -120,7 +121,7 @@ const AddDocumentPage = () => {
               <div className="form-group row">
                 <div className="col-sm-12">
                   <button type="submit" className="btn custom-btn">
-                    Add Document
+                    Update Document
                   </button>
                 </div>
               </div>
@@ -132,4 +133,4 @@ const AddDocumentPage = () => {
   );
 };
 
-export default AddDocumentPage;
+export default UpdateDocumentPage;

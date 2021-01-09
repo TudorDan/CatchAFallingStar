@@ -100,9 +100,17 @@ const CoursePage = (props) => {
                           <h3 className="card-title">{name}</h3>
                           <a href="/">{link}</a>
                         </div>
-                        <div className="col-4">
+                        <div className="col-4 flex-column">
+                          <Link
+                            to={{
+                              pathname: `/schools/${schoolId}/courses/${courseId}/documents/${id}`,
+                            }}
+                            className="btn custom-btn mt-0"
+                          >
+                            Update
+                          </Link>
                           <button
-                            className="btn custom-btn2 mt-3"
+                            className="btn custom-btn2"
                             onClick={() => {
                               swal2
                                 .fire({
