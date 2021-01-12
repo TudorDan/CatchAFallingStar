@@ -185,6 +185,10 @@ li .mentors {
   text-align: left;
 }
 
+.card {
+  border-radius: 0.625rem !important;
+}
+
 div.card.mb-3 {
   font-weight: bolder;
   background: rgba(255, 255, 255, 0.1);
@@ -199,7 +203,10 @@ section > img {
 
 .card-body {
   font-size: 1.1rem;
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: #04d2c8;
+  border-bottom-right-radius: 0.625rem !important;
+  border-bottom-left-radius: 0.625rem !important;
 }
 
 #loading {
@@ -208,11 +215,21 @@ section > img {
   left: 50%;
 }
 
+.card-title {
+  min-height: 5rem;
+}
+
 .card-title > a {
   font-size: 2rem;
   font-weight: bolder;
   font-style: italic;
-  color: #04d2c8;
+  /* color: #04d2c8; */
+  color: #fff;
+}
+
+.card-title > a:hover {
+  color: #42495b;
+  text-decoration: none;
 }
 
 #content-right h2 {
@@ -231,13 +248,15 @@ section > img {
 #content-right > section img {
   height: 50vh;
   object-fit: cover;
+  border-top-left-radius: 0.625rem !important;
+  border-top-right-radius: 0.625rem !important;
 }
 
 #secondary-title {
   font-size: 2.1rem;
-  color: red;
+  color: #04d2c8;
   font-weight: bolder;
-  border-bottom: 0.2rem dotted red;
+  border-bottom: 0.2rem dotted #04d2c8;
 }
 
 .bullets {
@@ -246,9 +265,10 @@ section > img {
 
 button.custom-btn,
 a.custom-btn {
-  border: 1px solid #444;
+  /* border: 1px solid #444; */
   border-radius: 30px;
-  color: #444;
+  background: #fff;
+  color: #42495b;
   cursor: pointer;
   display: inline-block;
   font-weight: bolder;
@@ -260,8 +280,8 @@ a.custom-btn {
 div#root main button.custom-btn:hover,
 a.custom-btn:hover {
   color: #fff;
-  background: #3ec1d5;
-  border: 1px solid #3ec1d5;
+  background: #42495b;
+  border: 1px solid #42495b;
   text-decoration: none;
 }
 
