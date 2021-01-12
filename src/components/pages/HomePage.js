@@ -51,7 +51,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <a
+      {/* <a
         className="carousel-control-prev"
         href="#carouselExampleCaptions"
         role="button"
@@ -59,8 +59,8 @@ const HomePage = () => {
       >
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         <span className="sr-only">Previous</span>
-      </a>
-      <a
+      </a> */}
+      {/* <a
         className="carousel-control-next"
         href="#carouselExampleCaptions"
         role="button"
@@ -68,7 +68,7 @@ const HomePage = () => {
       >
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="sr-only">Next</span>
-      </a>
+      </a> */}
     </div>
   );
 };

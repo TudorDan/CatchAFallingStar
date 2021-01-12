@@ -85,7 +85,7 @@ const SchoolsPage = () => {
                         Update School
                       </Link>
                       <button
-                        className="btn custom-btn2 mt-0"
+                        className="btn custom-btn mt-0"
                         onClick={() => {
                           swal2
                             .fire({

@@ -6,13 +6,13 @@ body {
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
   color: #444 !important;
-
-  background: url("http://localhost:3000/images/backgr1.jpg") no-repeat center
+  background: #e9eff4 !important;
+  /* background: url("http://localhost:3000/images/backgr1.jpg") no-repeat center
     center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
   height: 100vh;
 }
 
@@ -23,9 +23,13 @@ code {
 
 header.fixed-top {
   height: 3rem;
-  background: rgba(0, 0, 0, 0.5);
+  /*background: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 6px 6px 13px 2px #000000;
-  box-shadow: 6px 6px 13px 2px #000000;
+  box-shadow: 6px 6px 13px 2px #000000;*/
+}
+
+.shade {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 header h1 {
@@ -37,7 +41,7 @@ header h1 {
   color: white;
 }
 #logo-name {
-  color: red;
+  color: #04d2c8;
 }
 
 .container.d-flex {
@@ -66,7 +70,7 @@ nav {
 }
 
 .carousel-caption > h2 {
-  color: red;
+  color: #04d2c8;
   font-weight: bolder;
   font-size: 6rem;
 }
@@ -184,9 +188,9 @@ li .mentors {
 div.card.mb-3 {
   font-weight: bolder;
   background: rgba(255, 255, 255, 0.1);
-  -webkit-box-shadow: 6px 6px 13px 2px #000000;
+  /* -webkit-box-shadow: 6px 6px 13px 2px #000000;
   box-shadow: 6px 6px 13px 2px #000000;
-  border: 0.25rem solid #444;
+  border: 0.25rem solid #444;*/
 }
 
 section > img {
@@ -208,11 +212,11 @@ section > img {
   font-size: 2rem;
   font-weight: bolder;
   font-style: italic;
-  color: red;
+  color: #04d2c8;
 }
 
 #content-right h2 {
-  color: red;
+  color: #04d2c8;
 }
 
 .active-btn {

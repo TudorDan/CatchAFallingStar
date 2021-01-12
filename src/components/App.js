@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import Navbar from "./common/Navbar";
 import HomePage from "./pages/HomePage";
 import SchoolsPage from "./pages/SchoolsPage";
@@ -20,9 +20,13 @@ import AddDocumentPage from "./pages/AddDocumentPage";
 import UpdateDocumentPage from "./pages/UpdateDocumentPage";
 
 function App() {
+  const path = window.location.href.split("/")[3];
+  const location = useLocation();
+  console.log(`TEST ${location.pathname}`);
+
   return (
     <>
-      <header className="fixed-top">
+      <header className={path === "" ? "fixed-top" : "fixed-top shade"}>
         <Navbar />
       </header>
       <main>
