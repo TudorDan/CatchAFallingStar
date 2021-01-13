@@ -45,7 +45,7 @@ const Courses = (school) => {
             schoolTitle: school.name,
           },
         }}
-        className="btn mt-5 custom-btn"
+        className="btn mt-5 custom-btn2"
       >
         Add Course
       </Link>

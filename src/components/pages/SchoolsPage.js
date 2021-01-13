@@ -43,7 +43,7 @@ const SchoolsPage = () => {
         to={{
           pathname: linkToAddSchool,
         }}
-        className="btn mt-3 custom-btn mb-4"
+        className="btn mt-3 custom-btn2 mb-4"
       >
         Add School
       </Link>

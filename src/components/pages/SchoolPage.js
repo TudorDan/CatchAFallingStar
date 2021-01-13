@@ -38,80 +38,66 @@ const SchoolPage = () => {
   return (
     <>
       <div id="wrapper-sidebar">
-        <div className="border-right" id="sidebar-wrapper">
-          <div className="list-group list-group-flush">
-            <button
-              className={`list-group-item list-group-item-action bg-light ${
-                value === 0 && "active-btn"
-              }`}
-              onClick={() => {
-                setValue(0);
-              }}
-            >
-              School Details
-            </button>
+        <div className="row d-flex mt-3">
+          <button
+            className={`col-2 sidebar-btn ${value === 0 && "active-btn"}`}
+            onClick={() => {
+              setValue(0);
+            }}
+          >
+            School Details
+          </button>
 
-            <button
-              className={`list-group-item list-group-item-action bg-light ${
-                value === 1 && "active-btn"
-              }`}
-              onClick={() => {
-                setValue(1);
-              }}
-            >
-              Mentors
-            </button>
+          <button
+            className={`col-2 sidebar-btn ${value === 1 && "active-btn"}`}
+            onClick={() => {
+              setValue(1);
+            }}
+          >
+            Mentors
+          </button>
 
-            <button
-              className={`list-group-item list-group-item-action bg-light ${
-                value === 2 && "active-btn"
-              }`}
-              onClick={() => {
-                setValue(2);
-              }}
-            >
-              Students
-            </button>
+          <button
+            className={`col-2 sidebar-btn ${value === 2 && "active-btn"}`}
+            onClick={() => {
+              setValue(2);
+            }}
+          >
+            Students
+          </button>
 
-            <button
-              className={`list-group-item list-group-item-action bg-light ${
-                value === 3 && "active-btn"
-              }`}
-              onClick={() => {
-                setValue(3);
-              }}
-            >
-              Courses
-            </button>
+          <button
+            className={`col-2 sidebar-btn ${value === 3 && "active-btn"}`}
+            onClick={() => {
+              setValue(3);
+            }}
+          >
+            Courses
+          </button>
 
-            <button
-              className={`list-group-item list-group-item-action bg-light ${
-                value === 4 && "active-btn"
-              }`}
-              onClick={() => {
-                setValue(4);
-              }}
-            >
-              School Classes
-            </button>
+          <button
+            className={`col-2 sidebar-btn ${value === 4 && "active-btn"}`}
+            onClick={() => {
+              setValue(4);
+            }}
+          >
+            School Classes
+          </button>
 
-            <button
-              className={`list-group-item list-group-item-action bg-light ${
-                value === 5 && "active-btn"
-              }`}
-              onClick={() => {
-                setValue(5);
-              }}
-            >
-              School Subjects
-            </button>
-          </div>
+          <button
+            className={`col-2 sidebar-btn ${value === 5 && "active-btn"}`}
+            onClick={() => {
+              setValue(5);
+            }}
+          >
+            School Subjects
+          </button>
         </div>
       </div>
 
       <article id="content-right" className="text-center">
         <h1 className="font-weight-bolder">{school.name}</h1>
-        <div className="underline mb-3"></div>
+        {/* <div className="underline mb-3"></div> */}
         <section>
           {value === 1 ? (
             <Mentors key={schoolID} {...school} />
@@ -129,8 +115,11 @@ const SchoolPage = () => {
                 <h2 className="mt-5">
                   <span id="secondary-title">School Info</span>
                 </h2>
-                <h3 className="mt-5">Principal: {school.principal.name}</h3>
+                <h3 className="mt-5 mb-5">
+                  Principal: {school.principal.name}
+                </h3>
                 <img
+                  className="height50"
                   src={apiImgPath + school.principal.photo}
                   alt="principal"
                 />

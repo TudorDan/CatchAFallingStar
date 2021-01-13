@@ -6,7 +6,7 @@ body {
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
   color: #444 !important;
-  background: #e9eff4 !important;
+  background: #fff !important;
   /* background: url("http://localhost:3000/images/backgr1.jpg") no-repeat center
     center fixed;
   -webkit-background-size: cover;
@@ -21,12 +21,11 @@ code {
     monospace;
 }
 
-header.fixed-top {
-  height: 3rem;
-  /*background: rgba(0, 0, 0, 0.5);
+/* header.fixed-top {
+  background: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 6px 6px 13px 2px #000000;
-  box-shadow: 6px 6px 13px 2px #000000;*/
-}
+  box-shadow: 6px 6px 13px 2px #000000;
+} */
 
 .shade {
   background: rgba(0, 0, 0, 0.5);
@@ -81,37 +80,43 @@ nav {
 }
 
 #wrapper-sidebar {
-  margin-top: 4rem;
-  margin-left: 0.5rem;
-  max-width: 15rem;
-  height: 100vh;
+  margin-top: 3rem;
+  min-width: 100vw;
+  min-height: 3.5rem;
   position: fixed;
+  z-index: 1030;
+  padding-left: 25%;
+  padding-right: 25%;
+  background: #e9eff4;
+  /* background: rgba(233, 239, 244, 0.5); */
 }
 
-#sidebar-wrapper {
-  margin-left: -15rem;
-  -webkit-transition: margin 0.25s ease-out;
-  -moz-transition: margin 0.25s ease-out;
-  -o-transition: margin 0.25s ease-out;
-  transition: margin 0.25s ease-out;
-
-  box-shadow: 6px 6px 13px 2px #000000;
-  /* height: 100vh; */
+.sidebar-btn {
+  padding: 0 !important;
+  margin: 0;
+  border: none;
+  color: #595959;
+  font-weight: 700;
+  background: none !important;
 }
 
-#sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
+.sidebar-btn:hover,
+.sidebar-btn.active-btn:hover {
+  color: #038781;
 }
 
-#sidebar-wrapper .list-group {
-  width: 15rem;
+.sidebar-btn:not(:last-child) {
+  border-right: 2px solid #595959;
 }
 
-button.list-group-item.list-group-item-action {
+.sidebar-btn.active-btn {
+  color: #3ec1d5;
+}
+
+/* button {
   background: rgba(0, 0, 0, 0.5) !important;
   color: white;
-}
+} */
 button.list-group-item.list-group-item-action:hover {
   background-color: #3ec1d5 !important;
   border: 2px 0 0 0 solid #3ec1d5 !important;
@@ -146,8 +151,8 @@ button.list-group-item.list-group-item-action.active-btn {
 }
 
 #content-right {
-  margin-top: 5rem;
-  margin-left: 15rem;
+  margin-top: 10rem;
+  /* margin-left: 15rem; */
   width: 100vw;
 }
 
@@ -198,7 +203,8 @@ div.card.mb-3 {
 }
 
 section > img {
-  border: 0.25rem solid #444 !important;
+  /* border: 0.25rem solid #444 !important; */
+  border-radius: 0.625rem;
 }
 
 .card-body {
@@ -209,14 +215,14 @@ section > img {
   border-bottom-left-radius: 0.625rem !important;
 }
 
+#content-right .card-body-student.text-left {
+  font-size: 1.1rem;
+}
+
 #loading {
   position: fixed; /* or absolute */
   top: 50%;
   left: 50%;
-}
-
-.card-title {
-  min-height: 5rem;
 }
 
 .card-title > a {
@@ -232,6 +238,14 @@ section > img {
   text-decoration: none;
 }
 
+.card-body-student a.btn.custom-btn {
+  margin-left: -2rem;
+}
+
+.yellow {
+  color: #ff9900;
+}
+
 #content-right h2 {
   color: #04d2c8;
 }
@@ -244,9 +258,12 @@ section > img {
   margin: 0 auto;
 }
 
+#content-right .row img.card-img {
+  border-radius: 50% !important;
+}
+
 .card-img-top,
 #content-right > section img {
-  height: 50vh;
   object-fit: cover;
   border-top-left-radius: 0.625rem !important;
   border-top-right-radius: 0.625rem !important;
@@ -256,7 +273,11 @@ section > img {
   font-size: 2.1rem;
   color: #04d2c8;
   font-weight: bolder;
-  border-bottom: 0.2rem dotted #04d2c8;
+  /* border-bottom: 0.2rem dotted #04d2c8; */
+}
+
+.height50 {
+  height: 50vh;
 }
 
 .bullets {
@@ -287,9 +308,10 @@ a.custom-btn:hover {
 
 button.custom-btn2,
 a.custom-btn2 {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   border-radius: 30px;
-  color: red;
+  color: #fff;
+  background: #04d2c8;
   cursor: pointer;
   display: inline-block;
   font-weight: bolder;
@@ -301,8 +323,8 @@ a.custom-btn2 {
 button.custom-btn2:hover,
 a.custom-btn2:hover {
   color: #fff;
-  background: #3f000f;
-  border: 1px solid #3f000f;
+  background: #038781;
+  border: 1px solid #038781;
   text-decoration: none;
 }
 
