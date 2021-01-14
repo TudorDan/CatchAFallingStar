@@ -18,6 +18,7 @@ import UpdateCoursePage from "./pages/UpdateCoursePage";
 import UpdateCataloguePage from "./pages/UpdateCataloguePage";
 import AddDocumentPage from "./pages/AddDocumentPage";
 import UpdateDocumentPage from "./pages/UpdateDocumentPage";
+import Footer from "./common/Footer";
 
 function App() {
   const path = window.location.href.split("/")[3];
@@ -90,6 +91,7 @@ function App() {
           <Route path="/*" component={NotFoundPage} />
         </Switch>
       </main>
+      <Footer />
     </>
   );
 }

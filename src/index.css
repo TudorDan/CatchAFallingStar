@@ -390,3 +390,128 @@ table.table.table-bordered {
 table.table.table-bordered td {
   font-style: italic;
 }
+
+#footer {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  clear: both;
+  overflow: hidden;
+  padding: 91px 0 0 0;
+  font-size: 15px;
+  color: #fff;
+  line-height: 20px;
+  display: block;
+  background: #42495b url(./images/bg_white_arrow.png) no-repeat 50% 0;
+  margin-top: 5rem;
+  position: relative;
+  bottom: 0;
+  width: 100vw;
+}
+
+#footer .footer-container {
+  position: relative;
+}
+
+#footer ul {
+  list-style: none;
+}
+
+#footer article {
+  float: left;
+  width: 33.33%;
+  padding: 0 15px;
+}
+
+#footer h3 {
+  color: #fff;
+  font-size: 48px;
+  font-family: "BebasNeue";
+  line-height: 52px;
+  display: block;
+  padding-bottom: 37px;
+  font-weight: 300;
+}
+
+#footer .col-1 {
+  left: 11%;
+}
+
+#footer .col-1 li {
+  padding-top: 1px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+#footer .col-1 li a {
+  padding-left: 55px;
+  display: block;
+  position: relative;
+}
+
+#footer .col-1 li a:after {
+  background: url(./images/ico_contacts.png) no-repeat;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 4px;
+  left: 0;
+  content: "";
+}
+
+#footer .col-1 .email {
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+#footer .col-1 .email a:after {
+  background: url(./images/ico_contacts.png) no-repeat 0 -31px;
+  height: 22px;
+  top: -1px;
+}
+
+#footer .col-1 .phone a:after {
+  background: url(./images/ico_contacts.png) no-repeat 0 -55px;
+  height: 32px;
+  top: -6px;
+}
+
+#footer .last {
+  border: none !important;
+}
+
+#footer a {
+  color: #fff;
+}
+
+#footer .col-2 {
+  left: 31%;
+}
+
+#footer .col-2 li {
+  border-bottom: 1px solid #3c5177;
+  padding-bottom: 9px;
+  margin-bottom: 9px;
+}
+
+#footer .col-2 li a {
+  padding-left: 20px;
+  background: url(./images/bg_arrow_blue.png) no-repeat 0 50%;
+}
+
+#footer .col-3 {
+  left: 42%;
+}
+
+#footer .col-3 li {
+  border-bottom: 1px solid #3c5177;
+  padding-bottom: 9px;
+  margin-bottom: 9px;
+}
+
+#footer .copyright {
+  display: block;
+  text-align: center;
+  clear: both;
+  padding: 30px 0 20px 0;
+}
