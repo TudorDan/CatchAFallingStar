@@ -205,7 +205,15 @@ section > img {
   border: none !important;
 }
 
-.course-link a:hover {
+.subjects {
+  background: #04d2c8 !important;
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  text-align: left;
+  border: none !important;
+}
+
+.link a:hover {
   color: #42495b;
   text-decoration: none;
 }

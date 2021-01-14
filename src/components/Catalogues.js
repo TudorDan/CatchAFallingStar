@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal from "sweetalert2";
+import { SiGoogleclassroom } from "react-icons/si";
 
 const Catalogues = (school) => {
   const [catalogues, setCatalogues] = useState([]);
@@ -49,17 +50,20 @@ const Catalogues = (school) => {
         Add School Class
       </Link>
 
-      <ul className="mt-5 mr-5">
+      <ul className="mt-5 mr-5 ml-5">
         {catalogues.map((catalogue) => {
           const { id, name } = catalogue;
 
           return (
             <li key={id}>
-              <div className="card mb-3 mt-3 p-2">
+              <div className="card mb-3 mt-3 ml-5 mr-5 p-2">
                 <div className="row">
-                  <div className="col-6">
-                    <div className="d-inline">
-                      <small className="text-break">Name:</small>&nbsp;&nbsp;
+                  <div className="col-8 mt-1">
+                    <div className="d-inline link">
+                      <small className="text-break">
+                        <SiGoogleclassroom className="yellow" />
+                      </small>
+                      &nbsp;&nbsp;
                       <Link
                         to={{
                           pathname: linkToCatalogue + id,
@@ -72,14 +76,14 @@ const Catalogues = (school) => {
                       </Link>
                     </div>
                   </div>
-                  <div className="col-6">
+                  <div className="col-4">
                     <Link
                       to={{
                         pathname: `/schools/${schoolID}/catalogues/${id}/update`,
                       }}
-                      className="btn custom-btn mt-0 mr-3"
+                      className="btn custom-btn2 mt-0 mr-3"
                     >
-                      Update School Class
+                      Update
                     </Link>
                     <button
                       className="btn custom-btn2 mt-0"
@@ -114,7 +118,7 @@ const Catalogues = (school) => {
                           });
                       }}
                     >
-                      Delete School Class
+                      Delete
                     </button>
                   </div>
                 </div>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal2 from "sweetalert2";
+import { MdSubject } from "react-icons/md";
 
 const Subjects = (school) => {
   const [subjects, setSubjects] = useState([]);
@@ -49,64 +50,58 @@ const Subjects = (school) => {
         Add Subject
       </Link>
 
-      <ul className="mt-5 mr-5">
+      <div className="mt-5 mr-5 ml-5 row d-flex">
         {subjects.map((subject) => {
           const { id, name } = subject;
 
           return (
-            <li key={id}>
-              <div className="card mb-3 mt-3 p-2">
-                <div className="row">
-                  <div className="col-6">
-                    <div className="d-block">
-                      <small className="text-break">Name:</small>
-                      &nbsp;&nbsp;{name}
-                    </div>
-                  </div>
-
-                  <div className="col-6">
-                    <button
-                      className="btn custom-btn2 mt-0"
-                      onClick={() => {
-                        swal2
-                          .fire({
-                            title: `Are you sure you wish to delete ${name}?`,
-                            text: "You won't be able to revert this!",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3ec1d5",
-                            cancelButtonColor: "#3f000f",
-                            confirmButtonText: "Yes, delete subject!",
-                          })
-                          .then(async (result) => {
-                            if (result.isConfirmed) {
-                              const response = await Api.delete(
-                                `/schools/${schoolID}/subjects/${id}`
-                              );
-                              if (response.status === 204) {
-                                swal2
-                                  .fire(
-                                    "Deleted!",
-                                    "Your subject has been deleted.",
-                                    "success"
-                                  )
-                                  .then(function () {
-                                    window.location = `/schools/${schoolID}`;
-                                  });
-                              }
-                            }
-                          });
-                      }}
-                    >
-                      Delete Subject
-                    </button>
-                  </div>
-                </div>
+            <div key={id} className="card mb-3 mt-3 col-3 subjects">
+              <div className="d-block">
+                <small className="text-break">
+                  <MdSubject className="yellow" />
+                </small>
+                &nbsp;&nbsp;{name}
               </div>
-            </li>
+
+              <button
+                className="btn custom-btn mt-1 mb-1 w-50"
+                onClick={() => {
+                  swal2
+                    .fire({
+                      title: `Are you sure you wish to delete ${name}?`,
+                      text: "You won't be able to revert this!",
+                      icon: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "#3ec1d5",
+                      cancelButtonColor: "#3f000f",
+                      confirmButtonText: "Yes, delete subject!",
+                    })
+                    .then(async (result) => {
+                      if (result.isConfirmed) {
+                        const response = await Api.delete(
+                          `/schools/${schoolID}/subjects/${id}`
+                        );
+                        if (response.status === 204) {
+                          swal2
+                            .fire(
+                              "Deleted!",
+                              "Your subject has been deleted.",
+                              "success"
+                            )
+                            .then(function () {
+                              window.location = `/schools/${schoolID}`;
+                            });
+                        }
+                      }
+                    });
+                }}
+              >
+                Delete
+              </button>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </>
   );
 };

@@ -58,7 +58,7 @@ const Courses = (school) => {
 
           return (
             <div key={id} className="card mb-3 mt-3 col-4 courses">
-              <div className="d-block text-center course-link">
+              <div className="d-block text-center link">
                 <Link
                   to={{
                     pathname: linkToCourse + id,
