@@ -54,83 +54,89 @@ const Students = (school) => {
       </Link>
 
       <div className="mt-5 mr-5 ml-5 row d-flex">
-        {students.map((student) => {
-          const { id, name, birthDate, photo } = student;
+        {students.length === 0 ? (
+          <h3 className="mt-5 text-info">No students in current school!</h3>
+        ) : (
+          <>
+            {students.map((student) => {
+              const { id, name, birthDate, photo } = student;
 
-          return (
-            <div key={id} className="card mb-3 mt-3 col-lg-4 border-0">
-              <div className="row">
-                <div className="col-4">
-                  <img
-                    src={apiImgPath + photo}
-                    className="card-img"
-                    alt="student"
-                  />
-                </div>
+              return (
+                <div key={id} className="card mb-3 mt-3 col-lg-4 border-0">
+                  <div className="row">
+                    <div className="col-4">
+                      <img
+                        src={apiImgPath + photo}
+                        className="card-img"
+                        alt="student"
+                      />
+                    </div>
 
-                <div className="card-body-student col-8 text-left">
-                  <MdSchool className="yellow" />
-                  &nbsp;
-                  <h5 className="card-title text-left d-inline">{name}</h5>
-                  <p className="card-text mb-0 mt-1">
-                    <FaBirthdayCake className="yellow" /> &nbsp;
-                    <small className="text-muted mentors">
-                      {birthDate.substr(0, 10)}
-                    </small>
-                  </p>
-                  <Link
-                    to={{
-                      pathname: `/schools/${schoolID}/persons/${id}`,
-                      schoolData: {
-                        schoolTitle: school.name,
-                        accessRights: 1,
-                        personId: id,
-                      },
-                    }}
-                    className="btn mt-3 custom-btn mr-0"
-                  >
-                    Update
-                  </Link>
-                  <button
-                    className="btn mt-3 custom-btn"
-                    onClick={() => {
-                      swal
-                        .fire({
-                          title: `Are you sure you wish to delete ${name}?`,
-                          text: "You won't be able to revert this!",
-                          icon: "warning",
-                          showCancelButton: true,
-                          confirmButtonColor: "#3ec1d5",
-                          cancelButtonColor: "#3f000f",
-                          confirmButtonText: "Yes, delete student!",
-                        })
-                        .then(async (result) => {
-                          if (result.isConfirmed) {
-                            const response = await Api.delete(
-                              `/schools/${schoolID}/students/${id}`
-                            );
-                            if (response.status === 204) {
-                              swal
-                                .fire(
-                                  "Deleted!",
-                                  "Your student has been deleted.",
-                                  "success"
-                                )
-                                .then(function () {
-                                  window.location = `/schools/${schoolID}`;
-                                });
-                            }
-                          }
-                        });
-                    }}
-                  >
-                    Delete
-                  </button>
+                    <div className="card-body-student col-8 text-left">
+                      <MdSchool className="yellow" />
+                      &nbsp;
+                      <h5 className="card-title text-left d-inline">{name}</h5>
+                      <p className="card-text mb-0 mt-1">
+                        <FaBirthdayCake className="yellow" /> &nbsp;
+                        <small className="text-muted mentors">
+                          {birthDate.substr(0, 10)}
+                        </small>
+                      </p>
+                      <Link
+                        to={{
+                          pathname: `/schools/${schoolID}/persons/${id}`,
+                          schoolData: {
+                            schoolTitle: school.name,
+                            accessRights: 1,
+                            personId: id,
+                          },
+                        }}
+                        className="btn mt-3 custom-btn mr-0"
+                      >
+                        Update
+                      </Link>
+                      <button
+                        className="btn mt-3 custom-btn"
+                        onClick={() => {
+                          swal
+                            .fire({
+                              title: `Are you sure you wish to delete ${name}?`,
+                              text: "You won't be able to revert this!",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#3ec1d5",
+                              cancelButtonColor: "#3f000f",
+                              confirmButtonText: "Yes, delete student!",
+                            })
+                            .then(async (result) => {
+                              if (result.isConfirmed) {
+                                const response = await Api.delete(
+                                  `/schools/${schoolID}/students/${id}`
+                                );
+                                if (response.status === 204) {
+                                  swal
+                                    .fire(
+                                      "Deleted!",
+                                      "Your student has been deleted.",
+                                      "success"
+                                    )
+                                    .then(function () {
+                                      window.location = `/schools/${schoolID}`;
+                                    });
+                                }
+                              }
+                            });
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </>
+        )}
       </div>
     </>
   );

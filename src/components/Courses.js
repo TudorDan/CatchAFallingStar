@@ -53,90 +53,96 @@ const Courses = (school) => {
       </Link>
 
       <div className="mt-5 mr-5 ml-5 row d-flex">
-        {courses.map((course) => {
-          const { id, name, subject, description } = course;
+        {courses.length === 0 ? (
+          <h3 className="mt-5 text-info">No courses in current school!</h3>
+        ) : (
+          <>
+            {courses.map((course) => {
+              const { id, name, subject, description } = course;
 
-          return (
-            <div key={id} className="card mb-3 mt-3 col-4 courses">
-              <div className="d-block text-center link">
-                <Link
-                  to={{
-                    pathname: linkToCourse + id,
-                    schoolData: {
-                      schoolTitle: school.name,
-                    },
-                  }}
-                >
-                  {name}
-                </Link>
-              </div>
-              <div className="d-block">
-                <small className="text-break">
-                  <MdSubject className="yellow" />
-                </small>
-                &nbsp;&nbsp;{subject.name}
-              </div>
-              <div className="d-block">
-                <small className="text-break">
-                  <MdDescription className="yellow" />
-                </small>
-                &nbsp;&nbsp;
-                {description.length > 33
-                  ? description.substr(0, 33) + "..."
-                  : description}
-              </div>
+              return (
+                <div key={id} className="card mb-3 mt-3 col-4 courses">
+                  <div className="d-block text-center link">
+                    <Link
+                      to={{
+                        pathname: linkToCourse + id,
+                        schoolData: {
+                          schoolTitle: school.name,
+                        },
+                      }}
+                    >
+                      {name}
+                    </Link>
+                  </div>
+                  <div className="d-block">
+                    <small className="text-break">
+                      <MdSubject className="yellow" />
+                    </small>
+                    &nbsp;&nbsp;{subject.name}
+                  </div>
+                  <div className="d-block">
+                    <small className="text-break">
+                      <MdDescription className="yellow" />
+                    </small>
+                    &nbsp;&nbsp;
+                    {description.length > 33
+                      ? description.substr(0, 33) + "..."
+                      : description}
+                  </div>
 
-              <div className="row">
-                <Link
-                  to={{
-                    pathname: `/schools/${schoolID}/courses/${id}/update`,
-                    schoolData: {
-                      schoolTitle: school.name,
-                    },
-                  }}
-                  className="btn custom-btn mt-0 mr-5 ml-5"
-                >
-                  Update
-                </Link>
-                <button
-                  className="btn custom-btn mt-0 mr-5 ml-5"
-                  onClick={() => {
-                    swal
-                      .fire({
-                        title: `Are you sure you wish to delete "${name}"?`,
-                        text: "You won't be able to revert this!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3ec1d5",
-                        cancelButtonColor: "#3f000f",
-                        confirmButtonText: "Yes, delete course!",
-                      })
-                      .then(async (result) => {
-                        if (result.isConfirmed) {
-                          const response = await Api.delete(
-                            `/schools/${schoolID}/courses/${id}`
-                          );
-                          if (response.status === 204) {
-                            swal
-                              .fire(
-                                "Deleted!",
-                                "Your course has been deleted.",
-                                "success"
-                              )
-                              .then(function () {
-                                window.location = `/schools/${schoolID}`;
-                              });
-                          }
-                        }
-                      });
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          );
-        })}
+                  <div className="row">
+                    <Link
+                      to={{
+                        pathname: `/schools/${schoolID}/courses/${id}/update`,
+                        schoolData: {
+                          schoolTitle: school.name,
+                        },
+                      }}
+                      className="btn custom-btn mt-0 mr-5 ml-5"
+                    >
+                      Update
+                    </Link>
+                    <button
+                      className="btn custom-btn mt-0 mr-5 ml-5"
+                      onClick={() => {
+                        swal
+                          .fire({
+                            title: `Are you sure you wish to delete "${name}"?`,
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3ec1d5",
+                            cancelButtonColor: "#3f000f",
+                            confirmButtonText: "Yes, delete course!",
+                          })
+                          .then(async (result) => {
+                            if (result.isConfirmed) {
+                              const response = await Api.delete(
+                                `/schools/${schoolID}/courses/${id}`
+                              );
+                              if (response.status === 204) {
+                                swal
+                                  .fire(
+                                    "Deleted!",
+                                    "Your course has been deleted.",
+                                    "success"
+                                  )
+                                  .then(function () {
+                                    window.location = `/schools/${schoolID}`;
+                                  });
+                              }
+                            }
+                          });
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        )}
       </div>
     </>
   );

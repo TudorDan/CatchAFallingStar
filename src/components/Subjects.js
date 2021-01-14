@@ -51,56 +51,62 @@ const Subjects = (school) => {
       </Link>
 
       <div className="mt-5 mr-5 ml-5 row d-flex">
-        {subjects.map((subject) => {
-          const { id, name } = subject;
+        {subjects.length === 0 ? (
+          <h3 className="mt-5 text-info">No subjects in current school!</h3>
+        ) : (
+          <>
+            {subjects.map((subject) => {
+              const { id, name } = subject;
 
-          return (
-            <div key={id} className="card mb-3 mt-3 col-3 subjects">
-              <div className="d-block">
-                <small className="text-break">
-                  <MdSubject className="yellow" />
-                </small>
-                &nbsp;&nbsp;{name}
-              </div>
+              return (
+                <div key={id} className="card mb-3 mt-3 col-3 subjects">
+                  <div className="d-block">
+                    <small className="text-break">
+                      <MdSubject className="yellow" />
+                    </small>
+                    &nbsp;&nbsp;{name}
+                  </div>
 
-              <button
-                className="btn custom-btn mt-1 mb-1 w-50"
-                onClick={() => {
-                  swal2
-                    .fire({
-                      title: `Are you sure you wish to delete ${name}?`,
-                      text: "You won't be able to revert this!",
-                      icon: "warning",
-                      showCancelButton: true,
-                      confirmButtonColor: "#3ec1d5",
-                      cancelButtonColor: "#3f000f",
-                      confirmButtonText: "Yes, delete subject!",
-                    })
-                    .then(async (result) => {
-                      if (result.isConfirmed) {
-                        const response = await Api.delete(
-                          `/schools/${schoolID}/subjects/${id}`
-                        );
-                        if (response.status === 204) {
-                          swal2
-                            .fire(
-                              "Deleted!",
-                              "Your subject has been deleted.",
-                              "success"
-                            )
-                            .then(function () {
-                              window.location = `/schools/${schoolID}`;
-                            });
-                        }
-                      }
-                    });
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          );
-        })}
+                  <button
+                    className="btn custom-btn mt-1 mb-1 w-50"
+                    onClick={() => {
+                      swal2
+                        .fire({
+                          title: `Are you sure you wish to delete ${name}?`,
+                          text: "You won't be able to revert this!",
+                          icon: "warning",
+                          showCancelButton: true,
+                          confirmButtonColor: "#3ec1d5",
+                          cancelButtonColor: "#3f000f",
+                          confirmButtonText: "Yes, delete subject!",
+                        })
+                        .then(async (result) => {
+                          if (result.isConfirmed) {
+                            const response = await Api.delete(
+                              `/schools/${schoolID}/subjects/${id}`
+                            );
+                            if (response.status === 204) {
+                              swal2
+                                .fire(
+                                  "Deleted!",
+                                  "Your subject has been deleted.",
+                                  "success"
+                                )
+                                .then(function () {
+                                  window.location = `/schools/${schoolID}`;
+                                });
+                            }
+                          }
+                        });
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              );
+            })}
+          </>
+        )}
       </div>
     </>
   );

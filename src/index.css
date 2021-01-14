@@ -180,7 +180,7 @@ div.card.mb-3 {
 }
 
 .minimum-height {
-  height: 3rem;
+  height: 4rem;
 }
 
 section > img {
@@ -403,7 +403,7 @@ table.table.table-bordered td {
   line-height: 20px;
   display: block;
   background: #42495b url(./images/bg_white_arrow.png) no-repeat 50% 0;
-  margin-top: 5rem;
+  margin-top: 11rem;
   position: relative;
   bottom: 0;
   width: 100vw;

@@ -22,8 +22,7 @@ import Footer from "./common/Footer";
 
 function App() {
   const path = window.location.href.split("/")[3];
-  const location = useLocation();
-  console.log(`TEST ${location.pathname}`);
+  useLocation();
 
   return (
     <>
