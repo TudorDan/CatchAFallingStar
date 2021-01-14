@@ -4,7 +4,6 @@ import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal from "sweetalert2";
 import { FaBirthdayCake } from "react-icons/fa";
-import { MdSchool } from "react-icons/md";
 
 const Mentors = (school) => {
   const [mentors, setMentors] = useState([]);
