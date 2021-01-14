@@ -53,15 +53,15 @@ const SchoolsPage = () => {
           const { id, name, photo } = school;
 
           return (
-            <div key={id} className="col-lg-6">
+            <div key={id} className="col-lg-6 ">
               <div className="card mb-3 mt-3">
                 <img
                   src={apiImgPath + photo}
                   className="card-img-top"
                   alt="school"
                 />
-                <div className="card-body">
-                  <h5 className="card-title">
+                <div className="card-body ">
+                  <h5 className="card-title minimum-height">
                     <a href={linkToSchool + school.id}>{name}</a>
                   </h5>
                   <p className="card-text">
@@ -75,7 +75,7 @@ const SchoolsPage = () => {
                         }}
                         className="btn custom-btn mt-0 mr-3"
                       >
-                        Update School
+                        Update
                       </Link>
                     </div>
                     <div className="col-6">
@@ -112,7 +112,7 @@ const SchoolsPage = () => {
                             });
                         }}
                       >
-                        Delete School
+                        Delete
                       </button>
                     </div>
                   </div>

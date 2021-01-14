@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal from "sweetalert2";
+import { FaBirthdayCake } from "react-icons/fa";
+import { MdSchool } from "react-icons/md";
 
 const Mentors = (school) => {
   const [mentors, setMentors] = useState([]);
@@ -56,70 +58,66 @@ const Mentors = (school) => {
           const { id, name, birthDate, photo } = mentor;
 
           return (
-            <div key={id} className="card mb-3 mt-3 col-6">
-              <div className="row">
-                <img
-                  src={apiImgPath + photo}
-                  className="card-img col-4"
-                  alt="mentor"
-                />
-                <div className="card-body col-8 text-center">
-                  <h5 className="card-title mentors text-center">
-                    Name: {name}
-                  </h5>
-                  <p className="card-text">
-                    <small className="text-muted mentors">
-                      BirthDate: {birthDate.substr(0, 10)}
-                    </small>
-                  </p>
-                  <Link
-                    to={{
-                      pathname: `${linkToAddMentor}/${id}`,
-                      schoolData: {
-                        schoolTitle: school.name,
-                        accessRights: 0,
-                      },
-                    }}
-                    className="btn mt-5 custom-btn mr-5"
-                  >
-                    Update Mentor
-                  </Link>
-                  <button
-                    className="btn mt-5 custom-btn"
-                    onClick={() => {
-                      swal
-                        .fire({
-                          title: `Are you sure you wish to delete ${name}?`,
-                          text: "You won't be able to revert this!",
-                          icon: "warning",
-                          showCancelButton: true,
-                          confirmButtonColor: "#3ec1d5",
-                          cancelButtonColor: "#3f000f",
-                          confirmButtonText: "Yes, delete mentor!",
-                        })
-                        .then(async (result) => {
-                          if (result.isConfirmed) {
-                            const response = await Api.delete(
-                              `/schools/${schoolID}/mentors/${id}`
-                            );
-                            if (response.status === 204) {
-                              swal
-                                .fire(
-                                  "Deleted!",
-                                  "Your mentor has been deleted.",
-                                  "success"
-                                )
-                                .then(function () {
-                                  window.location = `/schools/${schoolID}`;
-                                });
-                            }
+            <div key={id} className="card mb-3 mt-3 col-4 mentors-card">
+              <img
+                src={apiImgPath + photo}
+                className="card-img-top"
+                alt="mentor"
+              />
+              <div className="card-body text-center">
+                <h4 className="card-title mentors d-inline white">{name}</h4>
+                <p className="card-text mt-2">
+                  <FaBirthdayCake className="white" />
+                  &nbsp;
+                  <span className="white">{birthDate.substr(0, 10)}</span>
+                </p>
+                <Link
+                  to={{
+                    pathname: `${linkToAddMentor}/${id}`,
+                    schoolData: {
+                      schoolTitle: school.name,
+                      accessRights: 0,
+                    },
+                  }}
+                  className="btn mt-1 custom-btn mr-5"
+                >
+                  Update
+                </Link>
+                <button
+                  className="btn mt-1 custom-btn"
+                  onClick={() => {
+                    swal
+                      .fire({
+                        title: `Are you sure you wish to delete ${name}?`,
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3ec1d5",
+                        cancelButtonColor: "#3f000f",
+                        confirmButtonText: "Yes, delete mentor!",
+                      })
+                      .then(async (result) => {
+                        if (result.isConfirmed) {
+                          const response = await Api.delete(
+                            `/schools/${schoolID}/mentors/${id}`
+                          );
+                          if (response.status === 204) {
+                            swal
+                              .fire(
+                                "Deleted!",
+                                "Your mentor has been deleted.",
+                                "success"
+                              )
+                              .then(function () {
+                                window.location = `/schools/${schoolID}`;
+                              });
                           }
-                        });
-                    }}
-                  >
-                    Delete Mentor
-                  </button>
-                </div>
+                        }
+                      });
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           );
