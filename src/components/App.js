@@ -18,6 +18,7 @@ import UpdateCoursePage from "./pages/UpdateCoursePage";
 import UpdateCataloguePage from "./pages/UpdateCataloguePage";
 import AddDocumentPage from "./pages/AddDocumentPage";
 import UpdateDocumentPage from "./pages/UpdateDocumentPage";
+import UpdateSubjectPage from "./pages/UpdateSubjectPage";
 import Footer from "./common/Footer";
 
 function App() {
@@ -59,6 +60,11 @@ function App() {
           />
           <Route
             exact
+            path="/schools/:schoolId/courses/:courseId/documents"
+            component={AddDocumentPage}
+          />
+          <Route
+            exact
             path="/schools/:schoolId/persons/:personId"
             component={UpdatePersonPage}
           />
@@ -79,13 +85,13 @@ function App() {
           />
           <Route
             exact
-            path="/schools/:schoolId/courses/:courseId/documents"
-            component={AddDocumentPage}
+            path="/schools/:schoolId/courses/:courseId/documents/:documentId"
+            component={UpdateDocumentPage}
           />
           <Route
             exact
-            path="/schools/:schoolId/courses/:courseId/documents/:documentId"
-            component={UpdateDocumentPage}
+            path="/schools/:schoolId/subjects/:subjectId"
+            component={UpdateSubjectPage}
           />
           <Route path="/*" component={NotFoundPage} />
         </Switch>

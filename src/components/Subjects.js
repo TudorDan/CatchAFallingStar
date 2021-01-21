@@ -67,41 +67,55 @@ const Subjects = (school) => {
                     &nbsp;&nbsp;{name}
                   </div>
 
-                  <button
-                    className="btn custom-btn mt-1 mb-1 w-50"
-                    onClick={() => {
-                      swal2
-                        .fire({
-                          title: `Are you sure you wish to delete ${name}?`,
-                          text: "You won't be able to revert this!",
-                          icon: "warning",
-                          showCancelButton: true,
-                          confirmButtonColor: "#3ec1d5",
-                          cancelButtonColor: "#3f000f",
-                          confirmButtonText: "Yes, delete subject!",
-                        })
-                        .then(async (result) => {
-                          if (result.isConfirmed) {
-                            const response = await Api.delete(
-                              `/schools/${schoolID}/subjects/${id}`
-                            );
-                            if (response.status === 204) {
-                              swal2
-                                .fire(
-                                  "Deleted!",
-                                  "Your subject has been deleted.",
-                                  "success"
-                                )
-                                .then(function () {
-                                  window.location = `/schools/${schoolID}`;
-                                });
+                  <div className="row justify-content-around mb-1">
+                    <Link
+                      to={{
+                        pathname: `/schools/${schoolID}/subjects/${id}/`,
+                        schoolData: {
+                          schoolTitle: school.name,
+                        },
+                      }}
+                      className="btn custom-btn mt-0"
+                    >
+                      Update
+                    </Link>
+
+                    <button
+                      className="btn custom-btn mt-0"
+                      onClick={() => {
+                        swal2
+                          .fire({
+                            title: `Are you sure you wish to delete ${name}?`,
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3ec1d5",
+                            cancelButtonColor: "#3f000f",
+                            confirmButtonText: "Yes, delete subject!",
+                          })
+                          .then(async (result) => {
+                            if (result.isConfirmed) {
+                              const response = await Api.delete(
+                                `/schools/${schoolID}/subjects/${id}`
+                              );
+                              if (response.status === 204) {
+                                swal2
+                                  .fire(
+                                    "Deleted!",
+                                    "Your subject has been deleted.",
+                                    "success"
+                                  )
+                                  .then(function () {
+                                    window.location = `/schools/${schoolID}`;
+                                  });
+                              }
                             }
-                          }
-                        });
-                    }}
-                  >
-                    Delete
-                  </button>
+                          });
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               );
             })}

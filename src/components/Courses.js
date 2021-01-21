@@ -102,6 +102,7 @@ const Courses = (school) => {
                     >
                       Update
                     </Link>
+
                     <button
                       className="btn custom-btn mt-0 mr-5 ml-5"
                       onClick={() => {

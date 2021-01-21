@@ -5,27 +5,27 @@ import swal from "sweetalert";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
-const UpdateCataloguePage = (props) => {
+const UpdateSubjectPage = () => {
   const [school, setSchool] = useState([]);
-  const [catalogue, setCatalogue] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [subject, setSubject] = useState([]);
+  const [loading, setLoading] = useState(false);
   const schoolId = window.location.href.split("/")[4];
-  const catalogueId = window.location.href.split("/")[6];
+  const subjectId = window.location.href.split("/")[6];
   const linkForSchool = `/schools/${schoolId}`;
-  const linkForCatalogue = `/schools/${schoolId}/catalogues/${catalogueId}`;
+  const linkForSubject = `/schools/${schoolId}/subjects/${subjectId}`;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
         const responseSchool = await Api.get(linkForSchool);
-        const responseCatalogue = await Api.get(linkForCatalogue);
+        const responseSubject = await Api.get(linkForSubject);
 
         const schoolFromApi = responseSchool.data;
-        const catalogueFromApi = responseCatalogue.data;
+        const subjectFromApi = responseSubject.data;
 
         setSchool(schoolFromApi);
-        setCatalogue(catalogueFromApi);
+        setSubject(subjectFromApi);
 
         setLoading(false);
       } catch (error) {
@@ -35,12 +35,11 @@ const UpdateCataloguePage = (props) => {
     };
 
     fetchData();
-  }, [linkForSchool, linkForCatalogue]);
+  }, [linkForSchool, linkForSubject]);
 
   if (loading) {
     return <Loading key={0} />;
   }
-  console.log(catalogue);
 
   return (
     <div className="container school-list text-center">
@@ -48,7 +47,7 @@ const UpdateCataloguePage = (props) => {
         {school.name}
       </h1>
       <div className="underline mb-3"></div>
-      <h3 className="mt-4">Update School Class</h3>
+      <h3 className="mt-4">Update School Subject</h3>
       <Link to={linkForSchool} className="btn custom-btn">
         Back to school menu
       </Link>
@@ -59,25 +58,26 @@ const UpdateCataloguePage = (props) => {
           initialValues={{
             Name: "",
           }}
-          onSubmit={async (catalogueData) => {
-            console.log(catalogueData);
-            debugger;
+          onSubmit={async (subjectData) => {
+            subjectData.Name = subjectData.Name.toUpperCase();
+            console.log(subjectData);
+
+            const response = await Api.put(linkForSubject, subjectData);
+            if (response.status === 204) {
+              swal({
+                title: "Good job!",
+                text: "Your school subject was updated",
+                icon: "success",
+              }).then(function () {
+                window.location = `/schools/${schoolId}`;
+              });
+              console.log("success");
+            }
+            const subjectFromApi = response.data;
+            console.log(subjectFromApi);
+
             setLoading(true);
             try {
-              const response = await Api.put(linkForCatalogue, catalogueData);
-              if (response.status === 204) {
-                swal({
-                  title: "Good job!",
-                  text: "Your school class was updated",
-                  icon: "success",
-                }).then(function () {
-                  window.location = `/schools/${schoolId}`;
-                });
-                console.log("success");
-              }
-              const catalogueFromApi = response.data;
-              console.log(catalogueFromApi);
-
               setLoading(false);
             } catch (error) {
               console.log(error.response);
@@ -96,7 +96,7 @@ const UpdateCataloguePage = (props) => {
                   name="Name"
                   className="col-sm-9 form-control mt-1"
                   id="name"
-                  placeholder={catalogue.Name}
+                  placeholder={subject.name}
                   required
                 />
               </div>
@@ -104,7 +104,7 @@ const UpdateCataloguePage = (props) => {
               <div className="form-group row">
                 <div className="col-sm-12">
                   <button type="submit" className="btn custom-btn">
-                    Update School Class
+                    Update Subject
                   </button>
                 </div>
               </div>
@@ -116,4 +116,4 @@ const UpdateCataloguePage = (props) => {
   );
 };
 
-export default UpdateCataloguePage;
+export default UpdateSubjectPage;
