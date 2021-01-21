@@ -94,6 +94,7 @@ const AddPersonPage = (props) => {
                   required
                 />
               </div>
+
               <div className="form-group row">
                 <label htmlFor="photo" className="col-sm-2 col-form-label">
                   Photo:
@@ -110,6 +111,7 @@ const AddPersonPage = (props) => {
                   required
                 />
               </div>
+
               <div className="form-group row">
                 <label htmlFor="birthDate" className="col-sm-2 col-form-label">
                   BirthDate:

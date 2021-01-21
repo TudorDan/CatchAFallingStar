@@ -7,37 +7,24 @@ import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
 const AddSubjectPage = (props) => {
-  const [types, setTypes] = useState([]);
+  const [school, setSchool] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolId = window.location.href.split("/")[4];
-  const schoolName = props.location.schoolData.schoolTitle;
   const linkToSchool = `/schools/${schoolId}`;
   const linkForPost = `/schools/${schoolId}/subjects`;
-  const linkGetSubjectsTypes = `/schools/${schoolId}/subjects/types`;
   const linkGetSubjects = `/schools/${schoolId}/subjects`;
 
   useEffect(() => {
-    const getSubjectTypes = async () => {
-      try {
-        const response = await Api.get(linkGetSubjectsTypes);
-        const subjectTypesFromAPI = response.data;
-        setTypes([
-          { id: null, name: "Please choose an option" },
-          ...subjectTypesFromAPI,
-        ]);
-
-        setLoading(false);
-      } catch (error) {
-        console.log(error.response);
-        setLoading(true);
-      }
-    };
-
     const getSubjects = async () => {
       try {
+        const responseSchool = await Api.get(linkToSchool);
         const response = await Api.get(linkGetSubjects);
+
+        const schoolFromApi = responseSchool.data;
         const subjectsFromAPI = response.data;
+
+        setSchool(schoolFromApi);
         setSubjects(subjectsFromAPI);
 
         setLoading(false);
@@ -47,9 +34,8 @@ const AddSubjectPage = (props) => {
       }
     };
 
-    getSubjectTypes();
     getSubjects();
-  }, [linkGetSubjectsTypes, linkGetSubjects]);
+  }, [linkToSchool, linkGetSubjects]);
 
   if (loading) {
     return <Loading key={0} />;
@@ -58,7 +44,7 @@ const AddSubjectPage = (props) => {
   return (
     <div className="container school-list text-center">
       <h1 className="font-weight-bolder" id="school-title">
-        {schoolName}
+        {school.name}
       </h1>
       <div className="underline mb-3"></div>
       <h3 className="mt-4">Add new Subject</h3>
@@ -70,10 +56,10 @@ const AddSubjectPage = (props) => {
         <Formik
           className="mt-2"
           initialValues={{
-            SubjectType: "",
+            Name: "",
           }}
           onSubmit={async (subjectData) => {
-            subjectData.SubjectType = parseInt(subjectData.SubjectType);
+            subjectData.Name = subjectData.Name.toUpperCase();
             console.log(subjectData);
 
             setLoading(true);
@@ -99,7 +85,7 @@ const AddSubjectPage = (props) => {
               let subjectName = "";
 
               subjects.map((subject) => {
-                if (subject.subjectType === subjectData.SubjectType) {
+                if (subject.name === subjectData.Name) {
                   subjectName = subject.name;
                 }
                 return "subject check finished";
@@ -111,7 +97,7 @@ const AddSubjectPage = (props) => {
                     text: "Choose something else!",
                   })
                   .then(function () {
-                    window.location = `/schools/${schoolId}`;
+                    window.location = `/schools/${schoolId}/subjects`;
                   });
               }
               if (response.status === 400) {
@@ -121,7 +107,7 @@ const AddSubjectPage = (props) => {
                     text: "Please choose something!",
                   })
                   .then(function () {
-                    window.location = `/schools/${schoolId}`;
+                    window.location = `/schools/${schoolId}/subjects`;
                   });
               }
 
@@ -136,21 +122,13 @@ const AddSubjectPage = (props) => {
                   Subject Name:
                 </label>
                 <Field
-                  component="select"
-                  name="SubjectType"
+                  type="text"
+                  name="Name"
                   className="col-sm-9 form-control mt-1"
+                  placeholder="New Subject"
+                  required
                   id="name"
-                >
-                  {types.map((type) => {
-                    const { id, name } = type;
-
-                    return (
-                      <option key={id} value={id}>
-                        {name}
-                      </option>
-                    );
-                  })}
-                </Field>
+                />
               </div>
 
               <div className="form-group row">
