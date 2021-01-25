@@ -490,7 +490,7 @@ table.table.table-bordered td {
 }
 
 #footer .col-2 li {
-  border-bottom: 1px solid #3c5177;
+  /* border-bottom: 1px solid #3c5177; */
   padding-bottom: 9px;
   margin-bottom: 9px;
 }
@@ -505,7 +505,6 @@ table.table.table-bordered td {
 }
 
 #footer .col-3 li {
-  border-bottom: 1px solid #3c5177;
   padding-bottom: 9px;
   margin-bottom: 9px;
 }
