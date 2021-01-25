@@ -20,7 +20,7 @@ const Footer = () => {
             </ul>
           </article>
           <article className="col-2">
-            <h3>Main Subjects</h3>
+            <h3><b>Main Subjects</b></h3>
             <ul>
               <li>
                 <a href="/">History</a>

@@ -432,7 +432,7 @@ table.table.table-bordered td {
   display: block;
   padding-bottom: 37px;
   padding-left: 30px;
-  font-weight: 300;
+  font-weight: bold;
 }
 
 #footer .col-1 {
