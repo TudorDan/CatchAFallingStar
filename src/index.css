@@ -426,7 +426,7 @@ table.table.table-bordered td {
 
 #footer h3 {
   color: #fff;
-  font-size: 48px;
+  font-size: 20px;
   font-family: "BebasNeue";
   line-height: 52px;
   display: block;
@@ -439,6 +439,7 @@ table.table.table-bordered td {
 }
 
 #footer .col-1 li {
+  font-size: 20px;
   padding-top: 1px;
   padding-bottom: 20px;
   margin-bottom: 20px;
@@ -490,7 +491,7 @@ table.table.table-bordered td {
 }
 
 #footer .col-2 li {
-  /* border-bottom: 1px solid #3c5177; */
+  font-size: 20px;
   padding-bottom: 9px;
   margin-bottom: 9px;
 }
@@ -505,6 +506,7 @@ table.table.table-bordered td {
 }
 
 #footer .col-3 li {
+  font-size: 20px;
   padding-bottom: 9px;
   margin-bottom: 9px;
 }
