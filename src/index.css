@@ -442,7 +442,7 @@ table.table.table-bordered td {
 
 #footer .col-1 li {
   font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   line-height: 16px;
   padding-top: 1px;
   padding-bottom: 10px;
@@ -498,8 +498,8 @@ table.table.table-bordered td {
 }
 
 #footer .col-2 li a {
-  padding-left: 20px;
-  background: url(./images/bg_arrow_blue.png) no-repeat 0 50%;
+  position: relative;
+  right: 10px;
 }
 
 #footer .col-3 {

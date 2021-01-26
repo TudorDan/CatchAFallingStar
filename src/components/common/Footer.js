@@ -1,10 +1,10 @@
 import React from "react";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFacebookF, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faMapPin, faEnvelope, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
+import { faMapPin, faEnvelope, faPhoneAlt, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-library.add(faFacebookF, faTwitter, faYoutube, faMapPin, faEnvelope, faPhoneAlt)
+library.add(faFacebookF, faTwitter, faYoutube, faMapPin, faEnvelope, faPhoneAlt, faArrowRight)
 
 const Footer = () => {
   return (
@@ -29,22 +29,22 @@ const Footer = () => {
             <h3>Main Subjects</h3>
             <ul>
               <li>
-                <a href="/">History</a>
+                <a href="/"><FontAwesomeIcon className="arrow-icon" icon={faArrowRight}/>History</a>
               </li>
               <li>
-                <a href="/">IT</a>
+                <a href="/"><FontAwesomeIcon className="arrow-icon" icon={faArrowRight}/>IT</a>
               </li>
               <li>
-                <a href="/">Mathematics</a>
+                <a href="/"><FontAwesomeIcon className="arrow-icon" icon={faArrowRight}/>Mathematics</a>
               </li>
               <li>
-                <a href="/">Astronomy</a>
+                <a href="/"><FontAwesomeIcon className="arrow-icon" icon={faArrowRight}/>Astronomy</a>
               </li>
               <li>
-                <a href="/">Geography</a>
+                <a href="/"><FontAwesomeIcon className="arrow-icon" icon={faArrowRight}/>Geography</a>
               </li>
               <li className="last">
-                <a href="/">Physics</a>
+                <a href="/"><FontAwesomeIcon className="arrow-icon" icon={faArrowRight}/>Physics</a>
               </li>
             </ul>
           </article>
