@@ -13,7 +13,7 @@ code {
 }
 
 .shade {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(66 73 91 / 81%);
 }
 
 header h1 {
@@ -426,7 +426,8 @@ table.table.table-bordered td {
 
 #footer h3 {
   color: #fff;
-  font-size: 20px;
+  font-size: 15px;
+  line-height: 20px;
   font-family: "BebasNeue";
   line-height: 52px;
   display: block;
@@ -440,7 +441,9 @@ table.table.table-bordered td {
 }
 
 #footer .col-1 li {
-  font-size: 20px;
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 16px;
   padding-top: 1px;
   padding-bottom: 20px;
   margin-bottom: 20px;
@@ -492,7 +495,9 @@ table.table.table-bordered td {
 }
 
 #footer .col-2 li {
-  font-size: 20px;
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 16px;
   padding-bottom: 9px;
   margin-bottom: 9px;
 }
@@ -507,9 +512,33 @@ table.table.table-bordered td {
 }
 
 #footer .col-3 li {
-  font-size: 20px;
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 16px;
   padding-bottom: 9px;
   margin-bottom: 9px;
+}
+
+
+#footer .col-3 li a:after {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: px;
+  left: 0;
+  content: "";
+}
+
+#footer .col-3 .facebook {
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+#footer .col-3 .facebook a:after {
+  background: url(./images/facebook_icon.png) no-repeat 0 -31px;
+  margin-top: 100px;
+  height: 22px;
+  top: -1px;
 }
 
 #footer .copyright {

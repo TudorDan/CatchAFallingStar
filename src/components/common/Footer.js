@@ -20,7 +20,7 @@ const Footer = () => {
             </ul>
           </article>
           <article className="col-2">
-            <h3><b>Main Subjects</b></h3>
+            <h3>Main Subjects</h3>
             <ul>
               <li>
                 <a href="/">History</a>
@@ -45,10 +45,9 @@ const Footer = () => {
           <article className="col-3">
             <h3>Social Media</h3>
             <ul>
-              <li>Facebook</li>
-              <li>Google</li>
-              <li>Twitter</li>
-              <li>YouTube</li>
+              <li className="facebook"><a href="/">Facebook</a></li>
+              <li className="twitter"><a href="/">Twitter</a></li>
+              <li className="youtube"><a href="/">YouTube</a></li>
             </ul>
           </article>
         </section>
