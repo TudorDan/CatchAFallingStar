@@ -529,16 +529,21 @@ table.table.table-bordered td {
   content: "";
 }
 
-#footer .col-3 .facebook {
-  padding-bottom: 25px;
-  margin-bottom: 25px;
+#footer .col-3 .facebook-icon {
+
+  position: relative;
+  right: 5px;
+
 }
 
-#footer .col-3 .facebook a:after {
-  background: url(./images/facebook_icon.png) no-repeat 0 -31px;
-  margin-top: 100px;
-  height: 22px;
-  top: -1px;
+#footer .col-3 .twitter-icon {
+  position: relative;
+  right: 5px;
+}
+
+#footer .col-3 .youtube-icon {
+  position: relative;
+  right: 5px;
 }
 
 #footer .copyright {

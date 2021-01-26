@@ -1,4 +1,9 @@
 import React from "react";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faFacebookF, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add(faFacebookF, faTwitter, faYoutube)
 
 const Footer = () => {
   return (
@@ -45,9 +50,9 @@ const Footer = () => {
           <article className="col-3">
             <h3>Social Media</h3>
             <ul>
-              <li className="facebook"><a href="/">Facebook</a></li>
-              <li className="twitter"><a href="/">Twitter</a></li>
-              <li className="youtube"><a href="/">YouTube</a></li>
+            <li className="facebook"><a href="/"><FontAwesomeIcon className="facebook-icon" icon={faFacebookF}/>Facebook</a></li>
+              <li className="twitter"><a href="/"><FontAwesomeIcon className="twitter-icon" icon={faTwitter}/>Twitter</a></li>
+              <li className="youtube"><a href="/"><FontAwesomeIcon className="youtube-icon" icon={faYoutube}/>YouTube</a></li>
             </ul>
           </article>
         </section>
