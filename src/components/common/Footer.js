@@ -1,9 +1,10 @@
 import React from "react";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFacebookF, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faMapPin, faEnvelope, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-library.add(faFacebookF, faTwitter, faYoutube)
+library.add(faFacebookF, faTwitter, faYoutube, faMapPin, faEnvelope, faPhoneAlt)
 
 const Footer = () => {
   return (
@@ -14,13 +15,13 @@ const Footer = () => {
             <h3>Contact</h3>
             <ul>
               <li className="address">
-                <a href="/">Orsova&nbsp;Street&nbsp;nr.&nbsp;104</a>
+                <a href="/"><FontAwesomeIcon className="map-icon" icon={faMapPin}/>Orsova&nbsp;Street&nbsp;nr.&nbsp;104</a>
               </li>
               <li className="email">
-                <a href="/">office@outlook.com</a>
+                <a href="/"><FontAwesomeIcon className="email-icon" icon={faEnvelope}/>office@outlook.com</a>
               </li>
               <li className="phone last">
-                <a href="/">0213210153</a>
+                <a href="/"><FontAwesomeIcon className="phone-icon" icon={faPhoneAlt}/>0213210153</a>
               </li>
             </ul>
           </article>
