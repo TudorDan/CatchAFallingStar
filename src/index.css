@@ -49,6 +49,11 @@ nav {
   margin-top: -0.5rem;
 }
 
+nav a.text-light:focus {
+  color: #4ac2d5!important;
+}
+
+
 .carousel-item > img {
   height: 100vh;
 }
