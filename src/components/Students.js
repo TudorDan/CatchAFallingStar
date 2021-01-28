@@ -53,7 +53,7 @@ const Students = (school) => {
         Add Student
       </Link>
 
-      <div className="mt-5 mr-5 ml-5 row d-flex">
+      <div className="mt-5 mr-5 ml-5 row d-flex student-cards">
         {students.length === 0 ? (
           <h3 className="mt-5 text-info">No students in current school!</h3>
         ) : (
@@ -62,21 +62,18 @@ const Students = (school) => {
               const { id, name, birthDate, photo } = student;
 
               return (
-                <div key={id} className="card mb-3 mt-3 col-lg-4 border-0">
-                  <div className="row">
-                    <div className="col-4">
+                <div key={id} className="card mb-3 mt-3 student-card">
+                    <span className="student-tag">Student</span>
                       <img
                         src={apiImgPath + photo}
-                        className="card-img"
+                        className="img-student"
                         alt="student"
                       />
-                    </div>
-
-                    <div className="card-body-student col-8 text-left">
+                    <div className="card-body-student text-center">
                       <MdSchool className="yellow" />
                       &nbsp;
                       <h5 className="card-title text-left d-inline">{name}</h5>
-                      <p className="card-text mb-0 mt-1">
+                      <p className="card-text mt-2">
                         <FaBirthdayCake className="yellow" /> &nbsp;
                         <small className="text-muted mentors">
                           {birthDate.substr(0, 10)}
@@ -91,12 +88,12 @@ const Students = (school) => {
                             personId: id,
                           },
                         }}
-                        className="btn mt-3 custom-btn mr-0"
+                        className="btn mt-1 custom-btn mr-5 mb-2"
                       >
                         Update
                       </Link>
                       <button
-                        className="btn mt-3 custom-btn"
+                        className="btn mt-1 custom-btn mb-2"
                         onClick={() => {
                           swal
                             .fire({
@@ -131,7 +128,6 @@ const Students = (school) => {
                         Delete
                       </button>
                     </div>
-                  </div>
                 </div>
               );
             })}

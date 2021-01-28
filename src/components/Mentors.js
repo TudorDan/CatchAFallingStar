@@ -52,7 +52,7 @@ const Mentors = (school) => {
         Add Mentor
       </Link>
 
-      <div className="mt-5 mr-5 ml-5 row d-flex card-tudor">
+      <div className="mt-5 mr-5 ml-5 row d-flex cards-container">
         {mentors.length === 0 ? (
           <h3 className="mt-5 text-info">No mentors in current school!</h3>
         ) : (
