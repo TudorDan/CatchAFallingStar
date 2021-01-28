@@ -52,7 +52,7 @@ const Mentors = (school) => {
         Add Mentor
       </Link>
 
-      <div className="mt-5 mr-5 ml-5 row d-flex">
+      <div className="mt-5 mr-5 ml-5 row d-flex card-tudor">
         {mentors.length === 0 ? (
           <h3 className="mt-5 text-info">No mentors in current school!</h3>
         ) : (
@@ -61,10 +61,10 @@ const Mentors = (school) => {
               const { id, name, birthDate, photo } = mentor;
 
               return (
-                <div key={id} className="card mb-3 mt-3 col-4 mentors-card">
+                <div key={id} className="card mb-3 mt-3 mentors-card">
                   <img
                     src={apiImgPath + photo}
-                    className="card-img-top"
+                    className="img-mentor"
                     alt="mentor"
                   />
                   <div className="card-body text-center">
