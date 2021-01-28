@@ -289,6 +289,18 @@ section > img {
   justify-content: space-between;
 }
 
+.mentor-tag {
+  color: #fff;
+  background-color: #04d2c8;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 7px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
 .img-mentor {
   width: 300px!important;
   margin: 0 auto;

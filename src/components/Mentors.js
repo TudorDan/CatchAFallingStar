@@ -62,6 +62,7 @@ const Mentors = (school) => {
 
               return (
                 <div key={id} className="card mb-3 mt-3 mentors-card">
+                  <span className="mentor-tag">Mentor</span>
                   <img
                     src={apiImgPath + photo}
                     className="img-mentor"
