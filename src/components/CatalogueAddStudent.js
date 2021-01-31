@@ -97,7 +97,7 @@ const CatalogueAddStudent = () => {
               if (response.status === 409) {
                 swal2
                   .fire({
-                    title: `Student ${studentName} already exists in this school class!`,
+                    title: `Student ${studentName} already assigned to a school class!`,
                     text: "Choose someone else!",
                   })
                   .then(function () {
