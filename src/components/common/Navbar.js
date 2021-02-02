@@ -21,13 +21,6 @@ function Navbar() {
           activeStyle={activeLink}
           className="text-light mr-5"
         >
-          About
-        </NavLink>
-        <NavLink
-          to="/schools"
-          activeStyle={activeLink}
-          className="text-light mr-5"
-        >
           Schools
         </NavLink>
         <NavLink
