@@ -3,37 +3,36 @@ import { NavLink } from "react-router-dom";
 import { GiBookmark } from "react-icons/gi";
 
 function Navbar() {
-  const activeLink = { color: "white" };
-
   return (
-    <div className="container d-flex">
-      <div className="mr-auto">
-        <h1>
-          <NavLink to="/" exact activeStyle={activeLink} className="text-light">
-            <GiBookmark className="logo" /> <span id="logo-name">e</span>
-            Learning
-          </NavLink>
-        </h1>
-      </div>
-      <nav className="navbar font-weight-bolder">
-        <NavLink
-          to="/schools"
-          activeStyle={activeLink}
-          className="text-light mr-5"
-        >
-          Schools
-        </NavLink>
-        <NavLink
-          to="/schools"
-          activeStyle={activeLink}
-          className="text-light mr-5"
-        >
-          Register
-        </NavLink>
-        <NavLink to="/schools" activeStyle={activeLink} className="text-light">
-          Login
-        </NavLink>
-      </nav>
+    <div className="menu">
+      <section className="sticky-menu sticky">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3">
+              <h1>
+                <NavLink to="/" exact className="link">
+                  <GiBookmark className="logo" /> <span id="logo-name">e</span>
+                  <span id="logo-text">Learning</span>
+                </NavLink>
+              </h1>
+            </div>
+            <div className="col-md-9">
+              <div className="menu-box d-flex justify-content-end">
+                <ul className="nav menu-nav">
+                  <li className="nav-item dropdown active">
+                    <NavLink to="/schools" className="mr-5">
+                      Register
+                    </NavLink>
+                  </li>
+                  <li className="nav-item dropdown">
+                    <NavLink to="/schools">Login</NavLink>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

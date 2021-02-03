@@ -20,14 +20,6 @@ header h1 {
   font-size: 2rem;
 }
 
-.logo {
-  max-height: 4rem;
-  color: white;
-}
-#logo-name {
-  color: #04d2c8;
-}
-
 .container.d-flex {
   @media (min-width: 1200px) {
     max-width: 1140px;
@@ -50,11 +42,11 @@ nav {
 }
 
 nav a.text-light:focus {
-  color: #4ac2d5!important;
+  color: #4ac2d5 !important;
 }
 
 nav a.text-light:hover {
-  color: #4ac2d5!important;
+  color: #4ac2d5 !important;
 }
 
 .carousel-item > img {
@@ -218,7 +210,6 @@ section > img {
   position: relative;
 }
 
-
 .courses {
   padding-left: 0;
   font-size: 1.4rem;
@@ -236,7 +227,7 @@ section > img {
 
 .link a:hover {
   color: #42495b;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 #loading {
@@ -273,8 +264,8 @@ section > img {
   text-align: center;
 }
 
-.img-student { 
-  width: 200px!important;
+.img-student {
+  width: 200px !important;
   margin: 0 auto;
   height: 200px;
   margin-bottom: 2em;
@@ -298,7 +289,6 @@ section > img {
 .student-cards {
   justify-content: space-between;
 }
-
 
 .yellow {
   color: #ff9900;
@@ -353,7 +343,7 @@ section > img {
 }
 
 .img-mentor {
-  width: 300px!important;
+  width: 300px !important;
   margin: 0 auto;
   height: 300px;
   margin-bottom: 2em;
@@ -534,7 +524,8 @@ table.table.table-bordered td {
 }
 
 #footer .col-1 li {
-  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
   font-size: 13px;
   line-height: 16px;
   padding-top: 1px;
@@ -584,7 +575,8 @@ table.table.table-bordered td {
 }
 
 #footer .col-2 li {
-  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
   font-size: 13px;
   line-height: 16px;
   padding-bottom: 9px;
@@ -601,13 +593,13 @@ table.table.table-bordered td {
 }
 
 #footer .col-3 li {
-  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
   font-size: 13px;
   line-height: 16px;
   padding-bottom: 9px;
   margin-bottom: 9px;
 }
-
 
 #footer .col-3 li a:after {
   width: 32px;
@@ -619,10 +611,8 @@ table.table.table-bordered td {
 }
 
 #footer .col-3 .facebook-icon {
-
   position: relative;
   right: 5px;
-
 }
 
 #footer .col-3 .twitter-icon {
@@ -640,4 +630,39 @@ table.table.table-bordered td {
   text-align: center;
   clear: both;
   padding: 30px 0 20px 0;
+}
+
+/*MENU*/
+.menu .sticky-menu.sticky {
+  display: block;
+}
+
+.menu .sticky-menu {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 11;
+  background: rgb(255, 255, 255);
+  height: 75px;
+  padding-top: 18px;
+  box-shadow: rgb(34 34 34) 0px 0px 20px -10px;
+}
+
+.logo {
+  max-height: 4rem;
+  color: #04d2c8;
+}
+#logo-name {
+  color: #007c76;
+}
+
+#logo-text {
+  color: #04d2c8;
+}
+
+#logo-name:hover,
+#logo-text:hover,
+.menu .link a {
+  text-decoration: none !important;
 }
