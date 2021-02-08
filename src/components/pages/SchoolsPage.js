@@ -119,16 +119,25 @@ const SchoolsPage = () => {
         </div>
       </div>
 
-      <div className="text-center">
-        <Link
-          to={{
-            pathname: linkToAddSchool,
-          }}
-          className="get-started-btn mt-3"
+      <section
+        id="submenu"
+        class="d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="container position-relative"
+          data-aos="zoom-in"
+          data-aos-delay="100"
         >
-          Add School
-        </Link>
-      </div>
+          <Link
+            to={{
+              pathname: linkToAddSchool,
+            }}
+            className="btn-get-started"
+          >
+            Add School
+          </Link>
+        </div>
+      </section>
     </section>
   );
 };
