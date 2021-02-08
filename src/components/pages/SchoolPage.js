@@ -127,20 +127,20 @@ const SchoolPage = () => {
             <div className="container" data-aos="fade-up">
               <div className="row">
                 <div
-                  class="col-lg-6 order-1 order-lg-2"
+                  className="col-lg-6 order-1 order-lg-2"
                   data-aos="fade-left"
                   data-aos-delay="100"
                 >
                   <img
                     src={apiImgPath + school.principal.photo}
-                    class="img-fluid"
+                    className="img-fluid"
                     alt="principal"
                   />
                 </div>
 
-                <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                <div className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
                   <h3>Principal: {school.principal.name}</h3>
-                  <p class="font-italic">
+                  <p className="font-italic">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua.
