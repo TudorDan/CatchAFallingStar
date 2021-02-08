@@ -1,5 +1,3 @@
-import loadingGif from "../../images/pyramidSpinning.gif";
-
 const Loading = () => {
   return (
     <section id="loading">

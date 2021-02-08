@@ -29,7 +29,7 @@ function App() {
       <header id="header" className="fixed-top">
         <Navbar />
       </header>
-      <main>
+      <main id="main">
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/schools" component={SchoolsPage} />

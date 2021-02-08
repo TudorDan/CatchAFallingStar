@@ -37,97 +37,120 @@ const SchoolPage = () => {
 
   return (
     <>
-      <div id="wrapper-sidebar">
-        <div className="row d-flex mt-3">
-          <button
-            className={`col-2 sidebar-btn ${value === 0 && "active-btn"}`}
-            onClick={() => {
-              setValue(0);
-            }}
-          >
-            School Details
-          </button>
-
-          <button
-            className={`col-2 sidebar-btn ${value === 1 && "active-btn"}`}
-            onClick={() => {
-              setValue(1);
-            }}
-          >
-            Mentors
-          </button>
-
-          <button
-            className={`col-2 sidebar-btn ${value === 2 && "active-btn"}`}
-            onClick={() => {
-              setValue(2);
-            }}
-          >
-            Students
-          </button>
-
-          <button
-            className={`col-2 sidebar-btn ${value === 3 && "active-btn"}`}
-            onClick={() => {
-              setValue(3);
-            }}
-          >
-            Courses
-          </button>
-
-          <button
-            className={`col-2 sidebar-btn ${value === 4 && "active-btn"}`}
-            onClick={() => {
-              setValue(4);
-            }}
-          >
-            School Classes
-          </button>
-
-          <button
-            className={`col-2 sidebar-btn ${value === 5 && "active-btn"}`}
-            onClick={() => {
-              setValue(5);
-            }}
-          >
-            School Subjects
-          </button>
+      <div className="breadcrumbs" data-aos="fade-in">
+        <div className="container">
+          <h2>{school.name}</h2>
+          <p>Motto: Audaces fortuna juvat</p>
         </div>
       </div>
 
-      <article id="content-right" className="text-center">
-        <h1 className="font-weight-bolder">{school.name}</h1>
-        {/* <div className="underline mb-3"></div> */}
-        <section>
-          {value === 1 ? (
-            <Mentors key={schoolID} {...school} />
-          ) : value === 2 ? (
-            <Students key={schoolID} {...school} />
-          ) : value === 3 ? (
-            <Courses key={schoolID} {...school} />
-          ) : value === 4 ? (
-            <Catalogues key={schoolID} {...school} />
-          ) : value === 5 ? (
-            <Subjects key={schoolID} {...school} />
-          ) : (
-            value === 0 && (
-              <>
-                <h2 className="mt-5">
-                  <span id="secondary-title">School Info</span>
-                </h2>
-                <h3 className="mt-5 mb-5">
-                  Principal: {school.principal.name}
-                </h3>
-                <img
-                  className="height50"
-                  src={apiImgPath + school.principal.photo}
-                  alt="principal"
-                />
-              </>
-            )
-          )}
-        </section>
-      </article>
+      <div className="row fix mt-3">
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <ul className="project-menu">
+            <li>
+              <button
+                className={`${value === 0 && "active"}`}
+                onClick={() => {
+                  setValue(0);
+                }}
+              >
+                Details
+              </button>
+            </li>
+            <li>
+              <button
+                className={`${value === 1 && "active"}`}
+                onClick={() => {
+                  setValue(1);
+                }}
+              >
+                Mentors
+              </button>
+            </li>
+            <li>
+              <button
+                className={`${value === 2 && "active"}`}
+                onClick={() => {
+                  setValue(2);
+                }}
+              >
+                Students
+              </button>
+            </li>
+            <li>
+              <button
+                className={`${value === 3 && "active"}`}
+                onClick={() => {
+                  setValue(3);
+                }}
+              >
+                Courses
+              </button>
+            </li>
+            <li>
+              <button
+                className={`${value === 4 && "active"}`}
+                onClick={() => {
+                  setValue(4);
+                }}
+              >
+                Classes
+              </button>
+            </li>
+            <li>
+              <button
+                className={`${value === 5 && "active"}`}
+                onClick={() => {
+                  setValue(5);
+                }}
+              >
+                Subjects
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {value === 1 ? (
+        <Mentors key={schoolID} {...school} />
+      ) : value === 2 ? (
+        <Students key={schoolID} {...school} />
+      ) : value === 3 ? (
+        <Courses key={schoolID} {...school} />
+      ) : value === 4 ? (
+        <Catalogues key={schoolID} {...school} />
+      ) : value === 5 ? (
+        <Subjects key={schoolID} {...school} />
+      ) : (
+        value === 0 && (
+          <section id="about" className="about">
+            <div className="container" data-aos="fade-up">
+              <div className="row">
+                <div
+                  class="col-lg-6 order-1 order-lg-2"
+                  data-aos="fade-left"
+                  data-aos-delay="100"
+                >
+                  <img
+                    src={apiImgPath + school.principal.photo}
+                    class="img-fluid"
+                    alt="principal"
+                  />
+                </div>
+
+                <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                  <h3>Principal: {school.principal.name}</h3>
+                  <p class="font-italic">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )
+      )}
     </>
   );
 };
