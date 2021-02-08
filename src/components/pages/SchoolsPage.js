@@ -34,95 +34,102 @@ const SchoolsPage = () => {
   }
 
   return (
-    <div className="container school-list text-center">
-      <h3 className="display-3 font-weight-bolder" id="school-title">
-        Schools
-      </h3>
-      {/* <div className="underline mb-3"></div> */}
-      <Link
-        to={{
-          pathname: linkToAddSchool,
-        }}
-        className="btn mt-3 custom-btn2 mb-4"
-      >
-        Add School
-      </Link>
+    <section id="popular-courses" className="courses">
+      <div className="container" data-aos="fade-up">
+        <div className="section-title">
+          <h2>Schools</h2>
+          <p>Manage your schools</p>
+        </div>
 
-      <div className="school-cards row d-flex">
-        {schools.map((school) => {
-          const { id, name, photo } = school;
+        <div className="row" data-aos="zoom-in" data-aos-delay="100">
+          {schools.map((school) => {
+            const { id, name, photo } = school;
 
-          return (
-            <div key={id} className="col-lg-6 ">
-              <div className="card mb-3 mt-3">
-                <img
-                  src={apiImgPath + photo}
-                  className="card-img-top"
-                  alt="school"
-                />
-                <div className="card-body ">
-                  <h5 className="card-title minimum-height">
-                    <a href={linkToSchool + school.id}>{name}</a>
-                  </h5>
-                  <p className="card-text">
-                    Principal: {school.principal.name}
-                  </p>
-                  <div className="row">
-                    <div className="col-6">
-                      <Link
-                        to={{
-                          pathname: `/schools/${id}/update`,
-                        }}
-                        className="btn custom-btn mt-0 mr-3"
-                      >
-                        Update
-                      </Link>
-                    </div>
-                    <div className="col-6">
-                      <button
-                        className="btn custom-btn mt-0"
-                        onClick={() => {
-                          swal2
-                            .fire({
-                              title: `Are you sure you wish to delete ${name}?`,
-                              text: "You won't be able to revert this!",
-                              icon: "warning",
-                              showCancelButton: true,
-                              confirmButtonColor: "#3ec1d5",
-                              cancelButtonColor: "#3f000f",
-                              confirmButtonText: "Yes, delete school!",
-                            })
-                            .then(async (result) => {
-                              if (result.isConfirmed) {
-                                const response = await Api.delete(
-                                  `/schools/${id}`
-                                );
-                                if (response.status === 204) {
-                                  swal2
-                                    .fire(
-                                      "Deleted!",
-                                      "Your school has been deleted.",
-                                      "success"
-                                    )
-                                    .then(function () {
-                                      window.location = `/schools`;
-                                    });
+            return (
+              <div
+                key={id}
+                className="col-lg-4 col-md-6 d-flex align-items-stretch mb-3"
+              >
+                <div className="course-item">
+                  <img
+                    src={apiImgPath + photo}
+                    className="card-img-top"
+                    alt="school"
+                  />
+                  <div className="course-content">
+                    <h3>
+                      <a href={linkToSchool + school.id}>{name}</a>
+                    </h3>
+                    <p>Principal {school.principal.name}</p>
+                    <div className="trainer d-flex justify-content-between align-items-center">
+                      <div className="trainer-profile d-flex align-items-center">
+                        <Link
+                          to={{
+                            pathname: `/schools/${id}/update`,
+                          }}
+                          className="get-started-btn"
+                        >
+                          Update
+                        </Link>
+                      </div>
+
+                      <div className="trainer-rank d-flex align-items-center">
+                        <button
+                          className="get-started-btn border-0"
+                          onClick={() => {
+                            swal2
+                              .fire({
+                                title: `Are you sure you wish to delete ${name}?`,
+                                text: "You won't be able to revert this!",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3ec1d5",
+                                cancelButtonColor: "#3f000f",
+                                confirmButtonText: "Yes, delete school!",
+                              })
+                              .then(async (result) => {
+                                if (result.isConfirmed) {
+                                  const response = await Api.delete(
+                                    `/schools/${id}`
+                                  );
+                                  if (response.status === 204) {
+                                    swal2
+                                      .fire(
+                                        "Deleted!",
+                                        "Your school has been deleted.",
+                                        "success"
+                                      )
+                                      .then(function () {
+                                        window.location = `/schools`;
+                                      });
+                                  }
                                 }
-                              }
-                            });
-                        }}
-                      >
-                        Delete
-                      </button>
+                              });
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+
+      <div className="text-center">
+        <Link
+          to={{
+            pathname: linkToAddSchool,
+          }}
+          className="get-started-btn mt-3"
+        >
+          Add School
+        </Link>
+      </div>
+    </section>
   );
 };
 
