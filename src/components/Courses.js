@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal from "sweetalert2";
-import { MdSubject } from "react-icons/md";
-import { MdDescription } from "react-icons/md";
 
 const Courses = (school) => {
   const [courses, setCourses] = useState([]);
@@ -36,114 +34,121 @@ const Courses = (school) => {
 
   return (
     <>
-      <h2 className="mt-5 text-center">
-        <span id="secondary-title">Courses</span>
-      </h2>
+      <section id="why-us" class="why-us">
+        <div class="container" data-aos="fade-up">
+          <div className="section-title">
+            <h2>Courses</h2>
+            <p>Popular Courses</p>
+          </div>
 
-      <Link
-        to={{
-          pathname: linkToAddCourse,
-          schoolData: {
-            schoolTitle: school.name,
-          },
-        }}
-        className="btn mt-5 custom-btn2"
-      >
-        Add Course
-      </Link>
+          <div class="row icon-boxes" data-aos="zoom-in" data-aos-delay="100">
+            {courses.length === 0 ? (
+              <h3 id="loading">No courses in current school!</h3>
+            ) : (
+              <>
+                {courses.map((course) => {
+                  const { id, name, subject, description } = course;
 
-      <div className="mt-5 mr-5 ml-5 row d-flex">
-        {courses.length === 0 ? (
-          <h3 className="mt-5 text-info">No courses in current school!</h3>
-        ) : (
-          <>
-            {courses.map((course) => {
-              const { id, name, subject, description } = course;
+                  return (
+                    <div key={id} class="col-xl-4 d-flex align-items-stretch">
+                      <div class="icon-box mt-4 mt-xl-0">
+                        <i class="bx bx-receipt"></i>
+                        <h3>
+                          <Link
+                            to={{
+                              pathname: linkToCourse + id,
+                              schoolData: {
+                                schoolTitle: school.name,
+                              },
+                            }}
+                            id="course-title"
+                          >
+                            {name}
+                          </Link>
+                        </h3>
+                        <span>{subject.name}</span>
+                        <p>
+                          {description.length > 33
+                            ? description.substr(0, 33) + "..."
+                            : description}
+                        </p>
 
-              return (
-                <div key={id} className="card mb-3 mt-3 col-4 courses">
-                  <div className="d-block text-center link">
-                    <Link
-                      to={{
-                        pathname: linkToCourse + id,
-                        schoolData: {
-                          schoolTitle: school.name,
-                        },
-                      }}
-                    >
-                      {name}
-                    </Link>
-                  </div>
-                  <div className="d-block">
-                    <small className="text-break">
-                      <MdSubject className="yellow" />
-                    </small>
-                    &nbsp;&nbsp;{subject.name}
-                  </div>
-                  <div className="d-block">
-                    <small className="text-break">
-                      <MdDescription className="yellow" />
-                    </small>
-                    &nbsp;&nbsp;
-                    {description.length > 33
-                      ? description.substr(0, 33) + "..."
-                      : description}
-                  </div>
+                        <div className="trainer d-flex justify-content-around align-items-center">
+                          <div className="trainer-profile d-flex align-items-center">
+                            <Link
+                              to={{
+                                pathname: `/schools/${schoolID}/courses/${id}/update`,
+                                schoolData: {
+                                  schoolTitle: school.name,
+                                },
+                              }}
+                              className="get-started-btn"
+                            >
+                              Update
+                            </Link>
+                          </div>
 
-                  <div className="row">
-                    <Link
-                      to={{
-                        pathname: `/schools/${schoolID}/courses/${id}/update`,
-                        schoolData: {
-                          schoolTitle: school.name,
-                        },
-                      }}
-                      className="btn custom-btn mt-0 mr-5 ml-5"
-                    >
-                      Update
-                    </Link>
-
-                    <button
-                      className="btn custom-btn mt-0 mr-5 ml-5"
-                      onClick={() => {
-                        swal
-                          .fire({
-                            title: `Are you sure you wish to delete "${name}"?`,
-                            text: "You won't be able to revert this!",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3ec1d5",
-                            cancelButtonColor: "#3f000f",
-                            confirmButtonText: "Yes, delete course!",
-                          })
-                          .then(async (result) => {
-                            if (result.isConfirmed) {
-                              const response = await Api.delete(
-                                `/schools/${schoolID}/courses/${id}`
-                              );
-                              if (response.status === 204) {
+                          <div className="trainer-rank d-flex align-items-center">
+                            <button
+                              className="get-started-btn border-0"
+                              onClick={() => {
                                 swal
-                                  .fire(
-                                    "Deleted!",
-                                    "Your course has been deleted.",
-                                    "success"
-                                  )
-                                  .then(function () {
-                                    window.location = `/schools/${schoolID}`;
+                                  .fire({
+                                    title: `Are you sure you wish to delete "${name}"?`,
+                                    text: "You won't be able to revert this!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3ec1d5",
+                                    cancelButtonColor: "#3f000f",
+                                    confirmButtonText: "Yes, delete course!",
+                                  })
+                                  .then(async (result) => {
+                                    if (result.isConfirmed) {
+                                      const response = await Api.delete(
+                                        `/schools/${schoolID}/courses/${id}`
+                                      );
+                                      if (response.status === 204) {
+                                        swal
+                                          .fire(
+                                            "Deleted!",
+                                            "Your course has been deleted.",
+                                            "success"
+                                          )
+                                          .then(function () {
+                                            window.location = `/schools/${schoolID}`;
+                                          });
+                                      }
+                                    }
                                   });
-                              }
-                            }
-                          });
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </>
-        )}
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+      <div className="why-us">
+        <div class="content text-center">
+          <Link
+            to={{
+              pathname: linkToAddCourse,
+              schoolData: {
+                schoolTitle: school.name,
+              },
+            }}
+            className="more-btn"
+          >
+            Add Course <i class="bx bx-chevron-right"></i>
+          </Link>
+        </div>
       </div>
     </>
   );

@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal from "sweetalert2";
-import { FaBirthdayCake } from "react-icons/fa";
-import { MdSchool } from "react-icons/md";
 
 const Students = (school) => {
   const [students, setStudents] = useState([]);
@@ -38,6 +36,11 @@ const Students = (school) => {
     <>
       <section id="trainers" className="trainers">
         <div className="container" data-aos="fade-up">
+          <div className="section-title">
+            <h2>Students</h2>
+            <p>Undergraduates Data</p>
+          </div>
+
           <div className="row" data-aos="zoom-in" data-aos-delay="100">
             {students.length === 0 ? (
               <h3 id="loading">No students in current school!</h3>

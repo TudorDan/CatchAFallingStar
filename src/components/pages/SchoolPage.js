@@ -125,6 +125,11 @@ const SchoolPage = () => {
         value === 0 && (
           <section id="about" className="about">
             <div className="container" data-aos="fade-up">
+              <div className="section-title">
+                <h2>Details</h2>
+                <p>School Info</p>
+              </div>
+
               <div className="row">
                 <div
                   className="col-lg-6 order-1 order-lg-2"

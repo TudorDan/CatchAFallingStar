@@ -808,6 +808,17 @@ section {
   color: #657a6d;
 }
 
+#course-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #37423b;
+  transition: 0.3s;
+}
+
+#course-title:hover {
+  color: #5fcf80;
+}
+
 /*--------------------------------------------------------------
 # Trainers
 --------------------------------------------------------------*/

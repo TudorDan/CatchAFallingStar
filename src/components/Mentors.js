@@ -36,6 +36,11 @@ const Mentors = (school) => {
     <>
       <section id="trainers" className="trainers">
         <div className="container" data-aos="fade-up">
+          <div className="section-title">
+            <h2>Mentors</h2>
+            <p>Trainers Data</p>
+          </div>
+
           <div className="row" data-aos="zoom-in" data-aos-delay="100">
             {mentors.length === 0 ? (
               <h3 id="loading">No mentors in current school!</h3>
