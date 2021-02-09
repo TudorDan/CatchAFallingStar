@@ -36,103 +36,121 @@ const Students = (school) => {
 
   return (
     <>
-      <h2 className="mt-5 text-center">
-        <span id="secondary-title">Students</span>
-      </h2>
+      <section id="trainers" className="trainers">
+        <div className="container" data-aos="fade-up">
+          <div className="row" data-aos="zoom-in" data-aos-delay="100">
+            {students.length === 0 ? (
+              <h3 id="loading">No students in current school!</h3>
+            ) : (
+              <>
+                {students.map((student) => {
+                  const { id, name, birthDate, photo } = student;
 
-      <Link
-        to={{
-          pathname: linkToAddStudent,
-          schoolData: {
-            schoolTitle: school.name,
-            accessRights: 1,
-          },
-        }}
-        className="btn mt-5 custom-btn2"
-      >
-        Add Student
-      </Link>
+                  return (
+                    <div
+                      key={id}
+                      className="col-lg-4 col-md-6 d-flex align-items-stretch"
+                    >
+                      <div className="member">
+                        <img
+                          src={apiImgPath + photo}
+                          className="img-fluid"
+                          alt="student"
+                        />
+                        <div className="member-content">
+                          <h4>{name}</h4>
+                          <span>
+                            <i class="icofont-student-alt iconfont"></i>
+                            STUDENT
+                          </span>
+                          <span>
+                            <i className="icofont-birthday-cake iconfont"></i>
+                            {birthDate.substr(0, 10)}
+                          </span>
+                          <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Temporibus cumque, perspiciatis velit fugiat
+                            suscipit delectus consectetur quam natus
+                            perferendis!
+                          </p>
+                        </div>
 
-      <div className="mt-5 mr-5 ml-5 row d-flex student-cards">
-        {students.length === 0 ? (
-          <h3 className="mt-5 text-info">No students in current school!</h3>
-        ) : (
-          <>
-            {students.map((student) => {
-              const { id, name, birthDate, photo } = student;
+                        <div className="trainer d-flex justify-content-around align-items-center">
+                          <div className="trainer-profile d-flex align-items-center">
+                            <Link
+                              to={{
+                                pathname: `${linkToAddStudent}/${id}`,
+                                schoolData: {
+                                  schoolTitle: school.name,
+                                  accessRights: 1,
+                                },
+                              }}
+                              className="get-started-btn"
+                            >
+                              Update
+                            </Link>
+                          </div>
 
-              return (
-                <div key={id} className="card mb-3 mt-3 student-card">
-                    <span className="student-tag">Student</span>
-                      <img
-                        src={apiImgPath + photo}
-                        className="img-student"
-                        alt="student"
-                      />
-                    <div className="card-body-student text-center">
-                      <MdSchool className="yellow" />
-                      &nbsp;
-                      <h5 className="card-title text-left d-inline">{name}</h5>
-                      <p className="card-text mt-2">
-                        <FaBirthdayCake className="yellow" /> &nbsp;
-                        <small className="text-muted mentors">
-                          {birthDate.substr(0, 10)}
-                        </small>
-                      </p>
-                      <Link
-                        to={{
-                          pathname: `/schools/${schoolID}/persons/${id}`,
-                          schoolData: {
-                            schoolTitle: school.name,
-                            accessRights: 1,
-                            personId: id,
-                          },
-                        }}
-                        className="btn mt-1 custom-btn mr-5 mb-2"
-                      >
-                        Update
-                      </Link>
-                      <button
-                        className="btn mt-1 custom-btn mb-2"
-                        onClick={() => {
-                          swal
-                            .fire({
-                              title: `Are you sure you wish to delete ${name}?`,
-                              text: "You won't be able to revert this!",
-                              icon: "warning",
-                              showCancelButton: true,
-                              confirmButtonColor: "#3ec1d5",
-                              cancelButtonColor: "#3f000f",
-                              confirmButtonText: "Yes, delete student!",
-                            })
-                            .then(async (result) => {
-                              if (result.isConfirmed) {
-                                const response = await Api.delete(
-                                  `/schools/${schoolID}/students/${id}`
-                                );
-                                if (response.status === 204) {
-                                  swal
-                                    .fire(
-                                      "Deleted!",
-                                      "Your student has been deleted.",
-                                      "success"
-                                    )
-                                    .then(function () {
-                                      window.location = `/schools/${schoolID}`;
-                                    });
-                                }
-                              }
-                            });
-                        }}
-                      >
-                        Delete
-                      </button>
+                          <div className="trainer-rank d-flex align-items-center">
+                            <button
+                              className="get-started-btn border-0"
+                              onClick={() => {
+                                swal
+                                  .fire({
+                                    title: `Are you sure you wish to delete ${name}?`,
+                                    text: "You won't be able to revert this!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3ec1d5",
+                                    cancelButtonColor: "#3f000f",
+                                    confirmButtonText: "Yes, delete student!",
+                                  })
+                                  .then(async (result) => {
+                                    if (result.isConfirmed) {
+                                      const response = await Api.delete(
+                                        `/schools/${schoolID}/students/${id}`
+                                      );
+                                      if (response.status === 204) {
+                                        swal
+                                          .fire(
+                                            "Deleted!",
+                                            "Your student has been deleted.",
+                                            "success"
+                                          )
+                                          .then(function () {
+                                            window.location = `/schools/${schoolID}`;
+                                          });
+                                      }
+                                    }
+                                  });
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                </div>
-              );
-            })}
-          </>
-        )}
+                  );
+                })}
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+      <div className="breadcrumbs">
+        <Link
+          to={{
+            pathname: linkToAddStudent,
+            schoolData: {
+              schoolTitle: school.name,
+              accessRights: 1,
+            },
+          }}
+          className="btn-add"
+        >
+          Add Student
+        </Link>
       </div>
     </>
   );

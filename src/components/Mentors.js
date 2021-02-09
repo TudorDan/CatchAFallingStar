@@ -58,12 +58,12 @@ const Mentors = (school) => {
                         <div className="member-content">
                           <h4>{name}</h4>
                           <span>
-                            <i className="icofont-teacher">&nbsp;MENTOR</i>
+                            <i className="icofont-teacher iconfont"></i>
+                            MENTOR
                           </span>
                           <span>
-                            <i className="icofont-birthday-cake">
-                              {birthDate.substr(0, 10)}
-                            </i>
+                            <i className="icofont-birthday-cake iconfont"></i>
+                            {birthDate.substr(0, 10)}
                           </span>
                           <p>
                             Lorem ipsum dolor, sit amet consectetur adipisicing
