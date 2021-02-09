@@ -50,7 +50,10 @@ const Courses = (school) => {
                   const { id, name, subject, description } = course;
 
                   return (
-                    <div key={id} class="col-xl-4 d-flex align-items-stretch">
+                    <div
+                      key={id}
+                      class="col-lg-4 col-md-6 d-flex align-items-stretch"
+                    >
                       <div class="icon-box mt-4 mt-xl-0">
                         <i class="bx bx-receipt"></i>
                         <h3>
@@ -69,7 +72,7 @@ const Courses = (school) => {
                         <span>{subject.name}</span>
                         <p>
                           {description.length > 33
-                            ? description.substr(0, 33) + "..."
+                            ? description.substr(0, 30) + "..."
                             : description}
                         </p>
 

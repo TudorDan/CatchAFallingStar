@@ -141,19 +141,21 @@ const Students = (school) => {
           </div>
         </div>
       </section>
-      <div className="breadcrumbs">
-        <Link
-          to={{
-            pathname: linkToAddStudent,
-            schoolData: {
-              schoolTitle: school.name,
-              accessRights: 1,
-            },
-          }}
-          className="btn-add"
-        >
-          Add Student
-        </Link>
+      <div className="why-us">
+        <div class="content text-center">
+          <Link
+            to={{
+              pathname: linkToAddStudent,
+              schoolData: {
+                schoolTitle: school.name,
+                accessRights: 1,
+              },
+            }}
+            className="more-btn"
+          >
+            Add Student <i class="bx bx-chevron-right"></i>
+          </Link>
+        </div>
       </div>
     </>
   );

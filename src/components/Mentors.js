@@ -141,19 +141,21 @@ const Mentors = (school) => {
           </div>
         </div>
       </section>
-      <div className="breadcrumbs">
-        <Link
-          to={{
-            pathname: linkToAddMentor,
-            schoolData: {
-              schoolTitle: school.name,
-              accessRights: 0,
-            },
-          }}
-          className="btn-add"
-        >
-          Add Mentor
-        </Link>
+      <div className="why-us">
+        <div class="content text-center">
+          <Link
+            to={{
+              pathname: linkToAddMentor,
+              schoolData: {
+                schoolTitle: school.name,
+                accessRights: 0,
+              },
+            }}
+            className="more-btn"
+          >
+            Add Mentor <i class="bx bx-chevron-right"></i>
+          </Link>
+        </div>
       </div>
     </>
   );
