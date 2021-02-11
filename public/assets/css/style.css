@@ -1734,3 +1734,9 @@ section {
   padding-right: 4px;
   color: #5fcf80;
 }
+
+button:focus,
+input:focus {
+  outline: none;
+  border: none;
+}
