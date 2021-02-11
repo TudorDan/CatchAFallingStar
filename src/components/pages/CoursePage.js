@@ -60,17 +60,17 @@ const CoursePage = (props) => {
         </div>
       </div>
 
-      <section id="course-details" class="course-details">
-        <div class="container" data-aos="fade-up">
+      <section id="course-details" className="course-details">
+        <div className="container" data-aos="fade-up">
           <h3>{course?.name}</h3>
           <p>{course?.subject?.name}</p>
         </div>
       </section>
 
-      <section id="cource-details-tabs" class="cource-details-tabs">
-        <div class="container" data-aos="fade-up">
-          <div class="row">
-            <div class="col-lg-3"></div>
+      <section id="cource-details-tabs" className="cource-details-tabs">
+        <div className="container" data-aos="fade-up">
+          <div className="row">
+            <div className="col-lg-3"></div>
           </div>
         </div>
       </section>

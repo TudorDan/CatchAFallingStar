@@ -34,14 +34,18 @@ const Courses = (school) => {
 
   return (
     <>
-      <section id="why-us" class="why-us">
-        <div class="container" data-aos="fade-up">
+      <section id="why-us" className="why-us">
+        <div className="container" data-aos="fade-up">
           <div className="section-title">
             <h2>Courses</h2>
             <p>Popular Courses</p>
           </div>
 
-          <div class="row icon-boxes" data-aos="zoom-in" data-aos-delay="100">
+          <div
+            className="row icon-boxes"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
             {courses.length === 0 ? (
               <h3 id="loading">No courses in current school!</h3>
             ) : (
@@ -52,10 +56,10 @@ const Courses = (school) => {
                   return (
                     <div
                       key={id}
-                      class="col-lg-4 col-md-6 d-flex align-items-stretch"
+                      className="col-lg-4 col-md-6 d-flex align-items-stretch"
                     >
-                      <div class="icon-box mt-4 mt-xl-0">
-                        <i class="bx bx-receipt"></i>
+                      <div className="icon-box mt-4 mt-xl-0">
+                        <i className="bx bx-receipt"></i>
                         <h3>
                           <Link
                             to={{
@@ -139,7 +143,7 @@ const Courses = (school) => {
         </div>
       </section>
       <div className="why-us">
-        <div class="content text-center">
+        <div className="content text-center">
           <Link
             to={{
               pathname: linkToAddCourse,
@@ -149,7 +153,7 @@ const Courses = (school) => {
             }}
             className="more-btn"
           >
-            Add Course <i class="bx bx-chevron-right"></i>
+            Add Course <i className="bx bx-chevron-right"></i>
           </Link>
         </div>
       </div>

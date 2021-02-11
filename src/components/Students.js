@@ -63,7 +63,7 @@ const Students = (school) => {
                         <div className="member-content">
                           <h4>{name}</h4>
                           <span>
-                            <i class="icofont-student-alt iconfont"></i>
+                            <i className="icofont-student-alt iconfont"></i>
                             STUDENT
                           </span>
                           <span>
@@ -142,7 +142,7 @@ const Students = (school) => {
         </div>
       </section>
       <div className="why-us">
-        <div class="content text-center">
+        <div className="content text-center">
           <Link
             to={{
               pathname: linkToAddStudent,
@@ -153,7 +153,7 @@ const Students = (school) => {
             }}
             className="more-btn"
           >
-            Add Student <i class="bx bx-chevron-right"></i>
+            Add Student <i className="bx bx-chevron-right"></i>
           </Link>
         </div>
       </div>

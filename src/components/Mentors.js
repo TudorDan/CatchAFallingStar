@@ -142,7 +142,7 @@ const Mentors = (school) => {
         </div>
       </section>
       <div className="why-us">
-        <div class="content text-center">
+        <div className="content text-center">
           <Link
             to={{
               pathname: linkToAddMentor,
@@ -153,7 +153,7 @@ const Mentors = (school) => {
             }}
             className="more-btn"
           >
-            Add Mentor <i class="bx bx-chevron-right"></i>
+            Add Mentor <i className="bx bx-chevron-right"></i>
           </Link>
         </div>
       </div>
