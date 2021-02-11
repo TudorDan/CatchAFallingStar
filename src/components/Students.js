@@ -141,6 +141,7 @@ const Students = (school) => {
           </div>
         </div>
       </section>
+
       <div className="why-us">
         <div className="content text-center">
           <Link

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GiDiamonds } from "react-icons/gi";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 import swal2 from "sweetalert2";
@@ -13,6 +12,7 @@ const CoursePage = (props) => {
   const courseId = window.location.href.split("/")[6];
   const linkToSchool = `/schools/${schoolId}`;
   const linkForAddDocument = `/schools/${schoolId}/courses/${courseId}/documents`;
+  const linkToMain = `/`;
 
   useEffect(() => {
     const getCourse = async () => {
@@ -70,71 +70,53 @@ const CoursePage = (props) => {
       <section id="cource-details-tabs" className="cource-details-tabs">
         <div className="container" data-aos="fade-up">
           <div className="row">
-            <div className="col-lg-3"></div>
-          </div>
-        </div>
-      </section>
+            <div className="col-lg-3">
+              <ul className="nav nav-tabs flex-column">
+                {course?.documents?.map((document) => {
+                  const { id, name } = document;
 
-      {/* OLD VERSION BELOW */}
-      <div className="container school-list text-left">
-        <h1 className="font-weight-bolder text-center" id="school-title">
-          {school?.name}
-        </h1>
-        <div className="underline mb-3"></div>
-        <div className="text-center mt-4">
-          <Link to={linkToSchool} className="btn custom-btn">
-            Back to school menu
-          </Link>
-          &nbsp;&nbsp;
-          <Link to={linkForAddDocument} className="btn custom-btn">
-            Add Document
-          </Link>
-        </div>
-        <h3 className="mt-5">
-          <small className="text-break">Course Name:&nbsp;&nbsp;</small>
-          <span id="secondary-title">{course?.name}</span>
-        </h3>
+                  return (
+                    <li key={id} className="nav-item">
+                      <a
+                        className="nav-link"
+                        data-bs-toggle="tab"
+                        href={"#tab_doc-" + id}
+                      >
+                        {name}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className="col-lg-9 mt-4 mt-lg-0">
+              <div className="tab-content">
+                {course?.documents?.map((document) => {
+                  const { id, name, link } = document;
 
-        <h3 className="mt-4">
-          <GiDiamonds className="bullets" />
-          &nbsp;
-          <small className="text-break">Subject:&nbsp;&nbsp;</small>
-          <span>{course?.subject?.name}</span>
-        </h3>
-        <h3 className=" mb-5">
-          <GiDiamonds className="bullets" />
-          &nbsp;
-          <small className="text-break">Description:&nbsp;&nbsp;</small>
-          <span>{course.description}</span>
-        </h3>
-        {course.documents ? (
-          course.documents.length === 0 ? (
-            <h3 className="mt-5 text-info">No documents in current course.</h3>
-          ) : (
-            <div className="row d-flex">
-              {course.documents.map((document) => {
-                const { id, name, link } = document;
-
-                return (
-                  <div className="col-sm-6" key={id}>
-                    <div className="card mb-3">
-                      <div className="card-body">
-                        <div className="row">
-                          <div className="col-8">
-                            <h3 className="card-title">{name}</h3>
-                            <a href="/">{link}</a>
-                          </div>
-                          <div className="col-4 flex-column">
+                  return (
+                    <div key={id} className="tab-pane" id={"tab_doc-" + id}>
+                      <div className="row">
+                        <div className="col-lg-8 details order-2 order-lg-1">
+                          <h3>{name}</h3>
+                          <p>
+                            <a href={link}>
+                              <i className="bx bx-chevron-right"></i>&nbsp;
+                              {link}
+                            </a>
+                          </p>
+                          <p>
                             <Link
                               to={{
                                 pathname: `/schools/${schoolId}/courses/${courseId}/documents/${id}`,
                               }}
-                              className="btn custom-btn mt-0"
+                              className="get-started-btn"
                             >
                               Update
                             </Link>
+                            &nbsp;
                             <button
-                              className="btn custom-btn2"
+                              className="get-started-btn border-0"
                               onClick={() => {
                                 swal2
                                   .fire({
@@ -168,16 +150,40 @@ const CoursePage = (props) => {
                             >
                               Remove
                             </button>
-                          </div>
+                          </p>
+                        </div>
+                        <div className="col-lg-4 text-center order-1 order-lg-2">
+                          <img
+                            src={
+                              linkToMain +
+                              `assets/img/course-details-tab-${
+                                (id % 5) + 1
+                              }.png`
+                            }
+                            alt=""
+                            className="img-fluid"
+                          />
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          )
-        ) : null}
+          </div>
+        </div>
+      </section>
+
+      <div className="why-us">
+        <div className="content text-center">
+          <Link to={linkToSchool} className="more-btn">
+            Back
+          </Link>
+          &nbsp;
+          <Link to={linkForAddDocument} className="more-btn">
+            Add
+          </Link>
+        </div>
       </div>
     </>
   );

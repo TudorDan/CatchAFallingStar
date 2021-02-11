@@ -121,10 +121,10 @@ const SchoolsPage = () => {
 
       <section
         id="submenu"
-        class="d-flex justify-content-center align-items-center"
+        className="d-flex justify-content-center align-items-center"
       >
         <div
-          class="container position-relative"
+          className="container position-relative"
           data-aos="zoom-in"
           data-aos-delay="100"
         >
