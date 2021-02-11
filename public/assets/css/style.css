@@ -1736,7 +1736,8 @@ section {
 }
 
 button:focus,
-input:focus {
+input:focus,
+.btn:focus {
   outline: none;
   border: none;
 }
