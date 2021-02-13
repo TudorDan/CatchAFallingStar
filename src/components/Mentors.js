@@ -7,7 +7,7 @@ import swal from "sweetalert2";
 const Mentors = (school) => {
   const [mentors, setMentors] = useState([]);
   const [loading, setLoading] = useState(true);
-  const schoolID = window.location.href.split("/")[4];
+  const schoolID = window.location.href.split("/")[4].split("#")[0];
   const linkToAddMentor = `/schools/${schoolID}/persons`;
   const apiImgPath = "http://localhost:54719/images/";
 

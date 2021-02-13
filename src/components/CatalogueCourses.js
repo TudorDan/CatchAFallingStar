@@ -6,7 +6,7 @@ import swal2 from "sweetalert2";
 
 const CatalogueCourses = ({ schoolName }) => {
   const schoolId = window.location.href.split("/")[4];
-  const catalogueId = window.location.href.split("/")[6];
+  const catalogueId = window.location.href.split("/")[6].split("#")[0];
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const linkToCourse = `/schools/${schoolId}/courses/`;

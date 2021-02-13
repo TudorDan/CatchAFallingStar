@@ -5,7 +5,7 @@ import swal2 from "sweetalert2";
 
 const CatalogueStudents = () => {
   const schoolId = window.location.href.split("/")[4];
-  const catalogueId = window.location.href.split("/")[6];
+  const catalogueId = window.location.href.split("/")[6].split("#")[0];
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const apiImgPath = "http://localhost:54719/images/";

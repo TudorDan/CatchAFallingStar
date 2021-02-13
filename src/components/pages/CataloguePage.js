@@ -16,7 +16,7 @@ const CataloguePage = () => {
   const [loading, setLoading] = useState(true);
   const [school, setSchool] = useState([]);
   const schoolId = window.location.href.split("/")[4];
-  const catalogueId = window.location.href.split("/")[6];
+  const catalogueId = window.location.href.split("/")[6].split("#")[0];
   const linkToSchool = `/schools/${schoolId}`;
   const [value, setValue] = useState(0);
 

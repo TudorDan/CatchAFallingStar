@@ -8,7 +8,7 @@ import { MdSubject } from "react-icons/md";
 const Subjects = (school) => {
   const [subjects, setSubjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const schoolID = window.location.href.split("/")[4];
+  const schoolID = window.location.href.split("/")[4].split("#")[0];
   const linkToAddSubject = `/schools/${schoolID}/subjects`;
 
   useEffect(() => {

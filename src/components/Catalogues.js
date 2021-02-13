@@ -8,7 +8,7 @@ import { SiGoogleclassroom } from "react-icons/si";
 const Catalogues = (school) => {
   const [catalogues, setCatalogues] = useState([]);
   const [loading, setLoading] = useState(true);
-  const schoolID = window.location.href.split("/")[4];
+  const schoolID = window.location.href.split("/")[4].split("#")[0];
   const linkToCatalogue = `/schools/${schoolID}/catalogues/`;
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import swal from "sweetalert2";
 const Courses = (school) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
-  const schoolID = window.location.href.split("/")[4];
+  const schoolID = window.location.href.split("/")[4].split("#")[0];
   const linkToCourse = `/schools/${schoolID}/courses/`;
   const linkToAddCourse = `/schools/${schoolID}/courses`;
 
