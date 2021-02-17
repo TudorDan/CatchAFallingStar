@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal from "sweetalert2";
+import { FaBirthdayCake } from "react-icons/fa";
+import { FaChalkboardTeacher } from "react-icons/fa";
 
 const Students = (school) => {
   const [students, setStudents] = useState([]);
@@ -63,11 +65,11 @@ const Students = (school) => {
                         <div className="member-content">
                           <h4>{name}</h4>
                           <span>
-                            <i className="icofont-student-alt iconfont"></i>
+                            <FaChalkboardTeacher className="iconfont teach" />
                             STUDENT
                           </span>
                           <span>
-                            <i className="icofont-birthday-cake iconfont"></i>
+                            <FaBirthdayCake className="iconfont" />
                             {birthDate.substr(0, 10)}
                           </span>
                           <p>

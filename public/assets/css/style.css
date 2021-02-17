@@ -23,7 +23,12 @@ a:hover {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Raleway", sans-serif;
 }
 
@@ -149,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 * Get Startet Button
 */
 .get-started-btn {
-  margin-left: 22px;/*comentat*/
+  /*margin-left: 22px;*/
   background: #5fcf80;
   color: #fff;
   border-radius: 50px;
@@ -213,7 +218,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 
-.navbar a:hover, .navbar .active, .navbar li:hover > a {
+.navbar a:hover,
+.navbar .active,
+.navbar li:hover > a {
   color: #5fcf80;
 }
 
@@ -248,7 +255,9 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-.navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+.navbar .dropdown ul a:hover,
+.navbar .dropdown ul .active:hover,
+.navbar .dropdown ul li:hover > a {
   color: #5fcf80;
 }
 
@@ -343,7 +352,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #37423b;
 }
 
-.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
+.navbar-mobile a:hover,
+.navbar-mobile .active,
+.navbar-mobile li:hover > a {
   color: #5fcf80;
 }
 
@@ -375,7 +386,9 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-.navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
+.navbar-mobile .dropdown ul a:hover,
+.navbar-mobile .dropdown ul .active:hover,
+.navbar-mobile .dropdown ul li:hover > a {
   color: #5fcf80;
 }
 
@@ -785,7 +798,8 @@ section {
   color: #657a6d;
 }
 
-#course-title { /*codul nostru*/
+#course-title {
+  /*codul nostru*/
   font-weight: 700;
   font-size: 20px;
   color: #37423b;
@@ -794,7 +808,7 @@ section {
 
 #course-title:hover {
   color: #5fcf80;
-}               /*final codul nostru*/
+} /*final codul nostru*/
 
 /*--------------------------------------------------------------
 # Trainers
@@ -1700,6 +1714,10 @@ section {
   font-size: 20px;
   padding-right: 4px;
   color: #5fcf80;
+}
+
+.teach {
+  margin-left: -14px;
 }
 
 button:focus,

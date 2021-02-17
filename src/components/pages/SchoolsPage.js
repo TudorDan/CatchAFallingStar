@@ -53,7 +53,7 @@ const SchoolsPage = () => {
                 <div className="course-item">
                   <img
                     src={apiImgPath + photo}
-                    className="card-img-top"
+                    className="img-fluid"
                     alt="school"
                   />
                   <div className="course-content">
