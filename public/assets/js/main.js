@@ -55,13 +55,14 @@
   }
 
   /**
-   * Mobile nav toggle
+   * Mobile nav toggle - not working
    */
-  on("click", ".mobile-nav-toggle", function (e) {
+  /*   on("click", ".mobile-nav-toggle", function (e) {
+    console.log("TEST");
     select("#navbar").classList.toggle("navbar-mobile");
     this.classList.toggle("bi-list");
     this.classList.toggle("bi-x");
-  });
+  }); */
 
   /**
    * Mobile nav dropdowns activate
@@ -91,8 +92,7 @@
   /**
    * Testimonials slider - not used
    */
-  /*
-  new Swiper('.testimonials-slider', {
+  /* new Swiper('.testimonials-slider', {
     speed: 600,
     loop: true,
     autoplay: {
@@ -116,8 +116,7 @@
         spaceBetween: 20
       }
     }
-  });
-*/
+  }); */
 
   /**
    * Animation on scroll - works
