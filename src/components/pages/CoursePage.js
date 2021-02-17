@@ -177,11 +177,11 @@ const CoursePage = (props) => {
       <div className="why-us">
         <div className="content text-center">
           <Link to={linkToSchool} className="more-btn">
-            Back
+            <i className="bx bx-chevron-left"></i> Back
           </Link>
-          &nbsp;
+          &nbsp;&nbsp;
           <Link to={linkForAddDocument} className="more-btn">
-            Add
+            Add <i className="bx bx-chevron-right"></i>
           </Link>
         </div>
       </div>
