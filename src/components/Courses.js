@@ -60,6 +60,7 @@ const Courses = (school) => {
                     >
                       <div className="icon-box mt-4 mt-xl-0">
                         <i className="bx bx-receipt"></i>
+
                         <h3>
                           <Link
                             to={{
@@ -73,7 +74,9 @@ const Courses = (school) => {
                             {name}
                           </Link>
                         </h3>
+
                         <span>{subject.name}</span>
+
                         <p>
                           {description.length > 33
                             ? description.substr(0, 30) + "..."
