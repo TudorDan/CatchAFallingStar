@@ -65,9 +65,9 @@
   }); */
 
   /**
-   * Mobile nav dropdowns activate
+   * Mobile nav dropdowns activate - not used
    */
-  on(
+  /* on(
     "click",
     ".navbar .dropdown > a",
     function (e) {
@@ -77,7 +77,7 @@
       }
     },
     true
-  );
+  ); */
 
   /**
    * Preloader - works

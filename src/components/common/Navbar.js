@@ -28,10 +28,10 @@ function Navbar() {
       >
         <ul>
           <li>
-            <NavLink to="/schools">Register</NavLink>
+            <NavLink to="/register">Register</NavLink>
           </li>
           <li>
-            <NavLink to="/schools">Login</NavLink>
+            <NavLink to="/login">Login</NavLink>
           </li>
         </ul>
         <i
