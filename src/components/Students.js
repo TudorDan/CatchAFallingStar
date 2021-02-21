@@ -62,16 +62,20 @@ const Students = (school) => {
                           className="img-fluid"
                           alt="student"
                         />
+
                         <div className="member-content">
                           <h4>{name}</h4>
+
                           <span>
                             <FaChalkboardTeacher className="iconfont teach" />
                             STUDENT
                           </span>
+
                           <span>
                             <FaBirthdayCake className="iconfont" />
                             {birthDate.substr(0, 10)}
                           </span>
+
                           <p>
                             Lorem ipsum dolor, sit amet consectetur adipisicing
                             elit. Temporibus cumque, perspiciatis velit fugiat
