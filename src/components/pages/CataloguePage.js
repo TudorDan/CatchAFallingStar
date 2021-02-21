@@ -114,13 +114,13 @@ const CataloguePage = () => {
       </div>
 
       {value === 1 ? (
-        <CatalogueMentors key={catalogueId} />
+        <CatalogueMentors key={catalogueId} catalogueName={catalogue.name} />
       ) : value === 2 ? (
         <CatalogueStudents key={catalogueId} />
       ) : value === 3 ? (
         <CatalogueGrades key={catalogueId} {...catalogue} />
       ) : value === 4 ? (
-        <CatalogueAddMentor key={catalogueId} />
+        <CatalogueAddMentor key={catalogueId} catalogueName={catalogue.name} />
       ) : value === 5 ? (
         <CatalogueAddStudent key={catalogueId} />
       ) : value === 6 ? (

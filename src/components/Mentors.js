@@ -62,16 +62,20 @@ const Mentors = (school) => {
                           className="img-fluid"
                           alt="mentor"
                         />
+
                         <div className="member-content">
                           <h4>{name}</h4>
+
                           <span>
                             <MdSchool className="iconfont teach" />
                             MENTOR
                           </span>
+
                           <span>
                             <FaBirthdayCake className="iconfont" />
                             {birthDate.substr(0, 10)}
                           </span>
+
                           <p>
                             Lorem ipsum dolor, sit amet consectetur adipisicing
                             elit. Temporibus cumque, perspiciatis velit fugiat
