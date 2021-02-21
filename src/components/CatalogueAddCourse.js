@@ -5,7 +5,7 @@ import Api from "./utils/Api";
 import swal from "sweetalert";
 import swal2 from "sweetalert2";
 
-const CatalogueAddCourse = () => {
+const CatalogueAddCourse = ({ catalogueName }) => {
   const [loading, setLoading] = useState(false);
   const schoolID = window.location.href.split("/")[4];
   const catalogueId = window.location.href.split("/")[6];
@@ -55,99 +55,103 @@ const CatalogueAddCourse = () => {
 
   return (
     <>
-      <h3 className="mt-4">Add new Course</h3>
-      <div className="card mb-3 mt-5">
-        <Formik
-          className="mt-2"
-          initialValues={{
-            Id: "",
-          }}
-          onSubmit={async (courseData) => {
-            courseData.Id = parseInt(courseData.Id);
+      <section id="contact" className="contact">
+        <div className="container" data-aos="fade-up">
+          <div className="section-title">
+            <h2>Add new course</h2>
+            <p>{catalogueName}</p>
+          </div>
 
-            setLoading(true);
-            try {
-              const response = await Api.post(linkForPost, courseData);
-              if (response.status === 201) {
-                swal({
-                  title: "Good job!",
-                  text: "Course was added to the school class",
-                  icon: "success",
-                }).then(function () {
-                  window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
-                });
-                console.log("success");
-              }
-              const catalogueCourseFromApi = response.data;
-              console.log(catalogueCourseFromApi);
-
-              setLoading(false);
-            } catch (error) {
-              console.log(error.response);
-              const response = error.response;
-              let courseName = "";
-
-              catalogueCourses.map((course) => {
-                if (course.id === courseData.Id) {
-                  courseName = course.name;
-                }
-                return "course check finished";
-              });
-              if (response.status === 409) {
-                swal2
-                  .fire({
-                    title: `Course ${courseName} already exists in this school class!`,
-                    text: "Choose something else!",
-                  })
-                  .then(function () {
-                    window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
-                  });
-              }
-              if (response.status === 400) {
-                swal2
-                  .fire({
-                    title: `No course was selected!`,
-                    text: "Please choose something!",
-                  })
-                  .then(function () {
-                    window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
-                  });
-              }
+          <Formik
+            className="mt-5 mt-lg-0"
+            initialValues={{
+              Id: "",
+            }}
+            onSubmit={async (courseData) => {
+              courseData.Id = parseInt(courseData.Id);
 
               setLoading(true);
-            }
-          }}
-        >
-          {(values) => (
-            <Form className="mt-2">
-              <div className="form-group-row">
-                <label htmlFor="courseId" className="col-sm-2 col-form-label">
-                  Choose Course:
-                </label>
-                <Field component="select" name="Id" id="courseId">
-                  {courses.map((course) => {
-                    const { id, name } = course;
-                    console.log(id, name);
-                    return (
-                      <option key={id} value={id}>
-                        {name}
-                      </option>
-                    );
-                  })}
-                </Field>
-              </div>
-              {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-              <div className="form-group row">
-                <div className="col-sm-12 text-center">
-                  <button type="submit" className="btn custom-btn">
+              try {
+                const response = await Api.post(linkForPost, courseData);
+                if (response.status === 201) {
+                  swal({
+                    title: "Good job!",
+                    text: "Course was added to the school class",
+                    icon: "success",
+                  }).then(function () {
+                    window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
+                  });
+                  console.log("success");
+                }
+                const catalogueCourseFromApi = response.data;
+                console.log(catalogueCourseFromApi);
+
+                setLoading(false);
+              } catch (error) {
+                console.log(error.response);
+                const response = error.response;
+                let courseName = "";
+
+                catalogueCourses.map((course) => {
+                  if (course.id === courseData.Id) {
+                    courseName = course.name;
+                  }
+                  return "course check finished";
+                });
+                if (response.status === 409) {
+                  swal2
+                    .fire({
+                      title: `Course ${courseName} already exists in this school class!`,
+                      text: "Choose something else!",
+                    })
+                    .then(function () {
+                      window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
+                    });
+                }
+                if (response.status === 400) {
+                  swal2
+                    .fire({
+                      title: `No course was selected!`,
+                      text: "Please choose something!",
+                    })
+                    .then(function () {
+                      window.location = `/schools/${schoolID}/catalogues/${catalogueId}`;
+                    });
+                }
+
+                setLoading(true);
+              }
+            }}
+          >
+            {(values) => (
+              <Form className="php-email-form">
+                <div className="form-group d-flex flex-row">
+                  <label htmlFor="courseId" className="col-sm-2 col-form-label">
+                    Choose Course:
+                  </label>
+                  <Field component="select" name="Id" id="courseId">
+                    {courses.map((course) => {
+                      const { id, name } = course;
+                      console.log(id, name);
+                      return (
+                        <option key={id} value={id}>
+                          {name}
+                        </option>
+                      );
+                    })}
+                  </Field>
+                </div>
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                <div className="text-center">
+                  <button type="submit" className="btn-add">
                     Add Course
                   </button>
                 </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
-      </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </section>
     </>
   );
 };
