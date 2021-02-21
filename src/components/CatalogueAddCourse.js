@@ -124,7 +124,7 @@ const CatalogueAddCourse = ({ catalogueName }) => {
             }}
           >
             {(values) => (
-              <Form className="php-email-form">
+              <Form className="php-email-form mt-5 mb-4">
                 <div className="form-group d-flex flex-row">
                   <label htmlFor="courseId" className="col-sm-2 col-form-label">
                     Choose Course:
