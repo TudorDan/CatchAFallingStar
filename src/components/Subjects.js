@@ -49,8 +49,8 @@ const Subjects = (school) => {
                   const { id, name } = subject;
 
                   return (
-                    <div key={id} class="col-lg-3 col-md-4 mt-4">
-                      <div class="icon-box d-flex flex-column">
+                    <div key={id} className="col-lg-3 col-md-4 mt-4">
+                      <div className="icon-box d-flex flex-column">
                         <div className="d-flex flex-row mb-3">
                           <i
                             className="ri-calendar-todo-line"
