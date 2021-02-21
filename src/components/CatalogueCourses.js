@@ -49,7 +49,7 @@ const CatalogueCourses = ({ schoolName, catalogueName }) => {
             data-aos-delay="100"
           >
             {courses.length === 0 ? (
-              <h3 id="loading" className="text-info">
+              <h3 id="loading" className="mt-5 text-info mb-5">
                 No courses in current school class.
               </h3>
             ) : (
