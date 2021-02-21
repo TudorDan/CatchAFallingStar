@@ -124,7 +124,7 @@ const CataloguePage = () => {
       ) : value === 5 ? (
         <CatalogueAddStudent key={catalogueId} catalogueName={catalogue.name} />
       ) : value === 6 ? (
-        <CatalogueAddGrade key={catalogueId} />
+        <CatalogueAddGrade key={catalogueId} catalogueName={catalogue.name} />
       ) : value === 7 ? (
         <CatalogueAddCourse key={catalogueId} catalogueName={catalogue.name} />
       ) : (

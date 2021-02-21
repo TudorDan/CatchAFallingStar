@@ -32,37 +32,49 @@ const CatalogueGrades = (catalogue) => {
 
   return (
     <>
-      <h2 className="mt-5 text-left mb-5">School Class Grades:</h2>
-      {grades.length === 0 ? (
-        <h3 className="mt-5 text-info">No grades in current school class.</h3>
-      ) : (
-        <table className="table table-striped table-bordered table-hover text-center">
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>Course</th>
-              <th>Date</th>
-              <th>Mark</th>
-              <th>Mentor</th>
-            </tr>
-          </thead>
-          <tbody>
-            {grades.map((grade) => {
-              const { id, student, mark, course, mentor, date } = grade;
+      <section id="why-us" className="why-us">
+        <div className="container" data-aos="fade-up">
+          <div className="section-title">
+            <h2>Grades</h2>
+            <p>{catalogue.name}</p>
+          </div>
 
-              return (
-                <tr key={id}>
-                  <td>{student.name}</td>
-                  <td>{course.name}</td>
-                  <td>{date.substr(0, 10)}</td>
-                  <td>{mark}</td>
-                  <td>{mentor.name}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      )}
+          <div className="row" data-aos="zoom-in" data-aos-delay="100">
+            {grades.length === 0 ? (
+              <h3 className="mt-5 text-info mb-5">
+                No grades in current school class.
+              </h3>
+            ) : (
+              <table className="table table-striped table-bordered table-hover text-center">
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Date</th>
+                    <th>Mark</th>
+                    <th>Mentor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {grades.map((grade) => {
+                    const { id, student, mark, course, mentor, date } = grade;
+
+                    return (
+                      <tr key={id}>
+                        <td>{student.name}</td>
+                        <td>{course.name}</td>
+                        <td>{date.substr(0, 10)}</td>
+                        <td>{mark}</td>
+                        <td>{mentor.name}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+      </section>
     </>
   );
 };
