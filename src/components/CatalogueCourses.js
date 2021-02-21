@@ -4,7 +4,7 @@ import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal2 from "sweetalert2";
 
-const CatalogueCourses = ({ schoolName }) => {
+const CatalogueCourses = ({ schoolName, catalogueName }) => {
   const schoolId = window.location.href.split("/")[4];
   const catalogueId = window.location.href.split("/")[6].split("#")[0];
   const [courses, setCourses] = useState([]);
@@ -36,87 +36,100 @@ const CatalogueCourses = ({ schoolName }) => {
 
   return (
     <>
-      <h2 className="mt-5 text-left">School Class Courses:</h2>
-      {courses.length === 0 ? (
-        <h3 className="mt-5 text-info">No courses in current school class.</h3>
-      ) : (
-        <ul>
-          {courses.map((course) => {
-            const { id, name, subject, description } = course;
+      <section id="why-us" className="why-us">
+        <div className="container" data-aos="fade-up">
+          <div className="section-title">
+            <h2>Courses</h2>
+            <p>{catalogueName}</p>
+          </div>
 
-            return (
-              <li key={id}>
-                <div className="card mb-3 mt-3 p-2">
-                  <div className="row">
-                    <div className="col-9">
-                      <div className="d-inline-block w-100">
-                        <small className="text-break">Name:</small>&nbsp;&nbsp;
-                        <Link
-                          to={{
-                            pathname: linkToCourse + id,
-                            schoolData: {
-                              schoolTitle: schoolName,
-                            },
+          <div
+            className="row icon-boxes"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+          >
+            {courses.length === 0 ? (
+              <h3 id="loading" className="text-info">
+                No courses in current school class.
+              </h3>
+            ) : (
+              <>
+                {courses.map((course) => {
+                  const { id, name, subject, description } = course;
+
+                  return (
+                    <div
+                      key={id}
+                      className="col-lg-4 col-md-6 d-flex align-items-stretch"
+                    >
+                      <div className="icon-box mt-4 mt-xl-0">
+                        <i className="bx bx-receipt"></i>
+
+                        <h3>
+                          <Link
+                            to={{
+                              pathname: linkToCourse + id,
+                              schoolData: {
+                                schoolTitle: schoolName,
+                              },
+                            }}
+                          >
+                            {name}
+                          </Link>
+                        </h3>
+
+                        <span>{subject.name}</span>
+
+                        <p>
+                          {description.length > 33
+                            ? description.substr(0, 30) + "..."
+                            : description}
+                        </p>
+
+                        <button
+                          className="get-started-btn border-0"
+                          onClick={() => {
+                            swal2
+                              .fire({
+                                title: `Are you sure you wish to delete "${name}" from this class?`,
+                                text: "You won't be able to revert this!",
+                                icon: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3ec1d5",
+                                cancelButtonColor: "#3f000f",
+                                confirmButtonText: "Yes, delete course!",
+                              })
+                              .then(async (result) => {
+                                if (result.isConfirmed) {
+                                  const response = await Api.delete(
+                                    `/schools/${schoolId}/catalogues/${catalogueId}/courses/${id}`
+                                  );
+                                  if (response.status === 204) {
+                                    swal2
+                                      .fire(
+                                        "Deleted!",
+                                        "Your course has been deleted.",
+                                        "success"
+                                      )
+                                      .then(function () {
+                                        window.location = `/schools/${schoolId}/catalogues/${catalogueId}`;
+                                      });
+                                  }
+                                }
+                              });
                           }}
                         >
-                          {name}
-                        </Link>
-                      </div>
-                      <div className="d-inline-block w-100">
-                        <small className="text-break">Subject:</small>
-                        &nbsp;&nbsp;{subject.name}
-                      </div>
-                      <div className="d-inline-block w-100">
-                        <small className="text-break">Description:</small>{" "}
-                        &nbsp;&nbsp;
-                        {description}
+                          Delete Course
+                        </button>
                       </div>
                     </div>
-
-                    <div className="col-3 ">
-                      <button
-                        className="btn custom-btn2 mt-4"
-                        onClick={() => {
-                          swal2
-                            .fire({
-                              title: `Are you sure you wish to delete "${name}" from this class?`,
-                              text: "You won't be able to revert this!",
-                              icon: "warning",
-                              showCancelButton: true,
-                              confirmButtonColor: "#3ec1d5",
-                              cancelButtonColor: "#3f000f",
-                              confirmButtonText: "Yes, delete course!",
-                            })
-                            .then(async (result) => {
-                              if (result.isConfirmed) {
-                                const response = await Api.delete(
-                                  `/schools/${schoolId}/catalogues/${catalogueId}/courses/${id}`
-                                );
-                                if (response.status === 204) {
-                                  swal2
-                                    .fire(
-                                      "Deleted!",
-                                      "Your course has been deleted.",
-                                      "success"
-                                    )
-                                    .then(function () {
-                                      window.location = `/schools/${schoolId}/catalogues/${catalogueId}`;
-                                    });
-                                }
-                              }
-                            });
-                        }}
-                      >
-                        Delete Course
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+                  );
+                })}
+              </>
+            )}
+          </div>
+        </div>
+      </section>
     </>
   );
 };
