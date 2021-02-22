@@ -9,7 +9,7 @@ const CoursePage = (props) => {
   const [school, setSchool] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolId = window.location.href.split("/")[4];
-  const courseId = window.location.href.split("/")[6];
+  const courseId = window.location.href.split("/")[6].split("#")[0];
   const linkToSchool = `/schools/${schoolId}`;
   const linkForAddDocument = `/schools/${schoolId}/courses/${courseId}/documents`;
   const linkToMain = `/`;
@@ -74,7 +74,9 @@ const CoursePage = (props) => {
             ? "mt-5 mb-5"
             : course?.documents?.length === 2
             ? "mt-4 mb-5"
-            : "mb-5"
+            : course?.documents?.length === 0
+            ? "mb-5"
+            : ""
         }`}
       >
         <div className="container" data-aos="fade-up">
