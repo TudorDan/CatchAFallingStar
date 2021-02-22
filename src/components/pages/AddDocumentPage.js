@@ -42,93 +42,106 @@ const AddDocumentPage = () => {
   }
 
   return (
-    <div className="container school-list text-center">
-      <h1 className="font-weight-bolder" id="school-title">
-        {school.name}
-      </h1>
-      <div className="underline mb-3"></div>
-      <h3 className="mt-4">Add new Document for {course.name}</h3>
-      <Link to={linkForCourse} className="btn custom-btn">
-        Back to course menu
-      </Link>
+    <>
+      <div className="breadcrumbs" data-aos="fade-in">
+        <div className="container">
+          <h2>{school.name}</h2>
+          <p>Motto: Audaces fortuna juvat</p>
+        </div>
+      </div>
 
-      <div className="card mb-3 mt-5">
-        <Formik
-          className="mt-2"
-          initialValues={{
-            Name: "",
-            Link: "",
-          }}
-          onSubmit={async (documentData) => {
-            console.log(documentData);
+      <section id="contact" className="contact">
+        <div className="container" data-aos="fade-up">
+          <div className="section-title mt-5">
+            <h2>{course.name}</h2>
+            <p>Add new document</p>
+          </div>
 
-            setLoading(true);
-            try {
-              const response = await Api.post(linkForPost, documentData);
+          <Formik
+            className="mt-5 mt-lg-0"
+            initialValues={{
+              Name: "",
+              Link: "",
+            }}
+            onSubmit={async (documentData) => {
+              console.log(documentData);
 
-              if (response.status === 201) {
-                swal({
-                  title: "Good job!",
-                  text: "Your document was added",
-                  icon: "success",
-                }).then(function () {
-                  window.location = linkForCourse;
-                });
-                console.log("success");
-              }
-
-              const documentFromApi = response.data;
-              console.log(documentFromApi);
-
-              setLoading(false);
-            } catch (error) {
-              console.log(error.response);
               setLoading(true);
-            }
-          }}
-        >
-          {() => (
-            <Form className="mt-2">
-              <div className="form-group row">
-                <label htmlFor="name" className="col-sm-2 col-form-label">
-                  Name:
-                </label>
-                <Field
-                  type="text"
-                  name="Name"
-                  className="col-sm-9 form-control mt-1"
-                  id="name"
-                  placeholder="Document name"
-                  required
-                />
-              </div>
+              try {
+                const response = await Api.post(linkForPost, documentData);
 
-              <div className="form-group row">
-                <label htmlFor="link" className="col-sm-2 col-form-label">
-                  Link:
-                </label>
-                <Field
-                  type="text"
-                  name="Link"
-                  className="col-sm-9 form-control mt-1"
-                  id="link"
-                  placeholder="Document link"
-                  required
-                />
-              </div>
+                if (response.status === 201) {
+                  swal({
+                    title: "Good job!",
+                    text: "Your document was added",
+                    icon: "success",
+                  }).then(function () {
+                    window.location = linkForCourse;
+                  });
+                  console.log("success");
+                }
 
-              <div className="form-group row">
-                <div className="col-sm-12">
-                  <button type="submit" className="btn custom-btn">
+                const documentFromApi = response.data;
+                console.log(documentFromApi);
+
+                setLoading(false);
+              } catch (error) {
+                console.log(error.response);
+                setLoading(true);
+              }
+            }}
+          >
+            {() => (
+              <Form className="php-email-form">
+                <div className="form-group d-flex flex-row mt-1">
+                  <label htmlFor="name" className="col-sm-2 col-form-label">
+                    Name:
+                  </label>
+
+                  <Field
+                    type="text"
+                    name="Name"
+                    className="w-100 form-control"
+                    id="name"
+                    placeholder="Document name"
+                    required
+                  />
+                </div>
+
+                <div className="form-group d-flex flex-row mt-4">
+                  <label htmlFor="link" className="col-sm-2 col-form-label">
+                    Link:
+                  </label>
+
+                  <Field
+                    type="text"
+                    name="Link"
+                    className="w-100 form-control"
+                    id="link"
+                    placeholder="Document link"
+                    required
+                  />
+                </div>
+
+                <div className="text-center mb-5">
+                  <button type="submit" className="btn-add">
                     Add Document
                   </button>
                 </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </section>
+
+      <div className="why-us">
+        <div className="content text-center">
+          <Link to={linkForSchool} className="more-btn">
+            <i className="bx bx-chevron-left"></i> Cancel
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
