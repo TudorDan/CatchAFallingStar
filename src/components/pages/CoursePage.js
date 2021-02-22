@@ -67,7 +67,7 @@ const CoursePage = (props) => {
         </div>
       </section>
 
-      <section id="cource-details-tabs" className="cource-details-tabs">
+      <section id="cource-details-tabs" className="cource-details-tabs mb-5">
         <div className="container" data-aos="fade-up">
           <div className="row">
             <div className="col-lg-3">
@@ -91,83 +91,95 @@ const CoursePage = (props) => {
             </div>
             <div className="col-lg-9 mt-4 mt-lg-0">
               <div className="tab-content">
-                {course?.documents?.map((document) => {
-                  const { id, name, link } = document;
+                {course?.documents?.length === 0 ? (
+                  <>
+                    <h3 className="mt-5 text-info mb-5">
+                      No documents in current course!
+                    </h3>
+                  </>
+                ) : (
+                  <>
+                    {course?.documents?.map((document) => {
+                      const { id, name, link } = document;
 
-                  return (
-                    <div key={id} className="tab-pane" id={"tab_doc-" + id}>
-                      <div className="row">
-                        <div className="col-lg-8 details order-2 order-lg-1">
-                          <h3>{name}</h3>
-                          <p>
-                            <a href={link}>
-                              <i className="bx bx-chevron-right"></i>&nbsp;
-                              {link}
-                            </a>
-                          </p>
-                          <p>
-                            <Link
-                              to={{
-                                pathname: `/schools/${schoolId}/courses/${courseId}/documents/${id}`,
-                              }}
-                              className="get-started-btn"
-                            >
-                              Update
-                            </Link>
-                            &nbsp;
-                            <button
-                              className="get-started-btn border-0"
-                              onClick={() => {
-                                swal2
-                                  .fire({
-                                    title: `Are you sure you wish to delete ${name}?`,
-                                    text: "You won't be able to revert this!",
-                                    icon: "warning",
-                                    showCancelButton: true,
-                                    confirmButtonColor: "#3ec1d5",
-                                    cancelButtonColor: "#3f000f",
-                                    confirmButtonText: "Yes, delete document!",
-                                  })
-                                  .then(async (result) => {
-                                    if (result.isConfirmed) {
-                                      const response = await Api.delete(
-                                        `/schools/${schoolId}/courses/${courseId}/documents/${id}`
-                                      );
-                                      if (response.status === 204) {
-                                        swal2
-                                          .fire(
-                                            "Deleted!",
-                                            "Your mentor has been deleted.",
-                                            "success"
-                                          )
-                                          .then(function () {
-                                            window.location = `/schools/${schoolId}/courses/${courseId}`;
-                                          });
-                                      }
-                                    }
-                                  });
-                              }}
-                            >
-                              Remove
-                            </button>
-                          </p>
+                      return (
+                        <div key={id} className="tab-pane" id={"tab_doc-" + id}>
+                          <div className="row">
+                            <div className="col-lg-8 details order-2 order-lg-1">
+                              <h3>{name}</h3>
+                              <p>
+                                <a href={link}>
+                                  <i className="bx bx-chevron-right"></i>&nbsp;
+                                  {link}
+                                </a>
+                              </p>
+                              <p>
+                                <Link
+                                  to={{
+                                    pathname: `/schools/${schoolId}/courses/${courseId}/documents/${id}`,
+                                  }}
+                                  className="get-started-btn"
+                                >
+                                  Update
+                                </Link>
+                                &nbsp;
+                                <button
+                                  className="get-started-btn border-0"
+                                  onClick={() => {
+                                    swal2
+                                      .fire({
+                                        title: `Are you sure you wish to delete ${name}?`,
+                                        text:
+                                          "You won't be able to revert this!",
+                                        icon: "warning",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#3ec1d5",
+                                        cancelButtonColor: "#3f000f",
+                                        confirmButtonText:
+                                          "Yes, delete document!",
+                                      })
+                                      .then(async (result) => {
+                                        if (result.isConfirmed) {
+                                          const response = await Api.delete(
+                                            `/schools/${schoolId}/courses/${courseId}/documents/${id}`
+                                          );
+                                          if (response.status === 204) {
+                                            swal2
+                                              .fire(
+                                                "Deleted!",
+                                                "Your mentor has been deleted.",
+                                                "success"
+                                              )
+                                              .then(function () {
+                                                window.location = `/schools/${schoolId}/courses/${courseId}`;
+                                              });
+                                          }
+                                        }
+                                      });
+                                  }}
+                                >
+                                  Remove
+                                </button>
+                              </p>
+                            </div>
+                            <div className="col-lg-4 text-center order-1 order-lg-2">
+                              <img
+                                src={
+                                  linkToMain +
+                                  `assets/img/course-details-tab-${
+                                    (id % 5) + 1
+                                  }.png`
+                                }
+                                alt=""
+                                className="img-fluid"
+                              />
+                            </div>
+                          </div>
                         </div>
-                        <div className="col-lg-4 text-center order-1 order-lg-2">
-                          <img
-                            src={
-                              linkToMain +
-                              `assets/img/course-details-tab-${
-                                (id % 5) + 1
-                              }.png`
-                            }
-                            alt=""
-                            className="img-fluid"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                      );
+                    })}
+                  </>
+                )}
               </div>
             </div>
           </div>
