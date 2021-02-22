@@ -43,142 +43,151 @@ const UpdatePersonPage = (props) => {
   }
 
   return (
-    <div className="container school-list text-center">
-      <h1 className="font-weight-bolder" id="school-title">
-        {schoolName}
-      </h1>
-      <div className="underline mb-3"></div>
-
-      <h3 className="mt-4">
-        <span id="form-subtitle">
-          Update{" "}
-          {personType === 0
-            ? "Mentor"
-            : personType === 1
-            ? "Student"
-            : "Principal"}
-        </span>
-      </h3>
-      <div className="text-center">
-        <Link to={linkToSchool} className="btn custom-btn">
-          Back to school menu
-        </Link>
+    <>
+      <div className="breadcrumbs" data-aos="fade-in">
+        <div className="container">
+          <h2>{schoolName}</h2>
+          <p>Motto: Audaces fortuna juvat</p>
+        </div>
       </div>
-      <div className="card mb-3 mt-5">
-        <Formik
-          className="mt-2"
-          initialValues={{
-            Name: "",
-            Photo: "",
-            BirthDate: "",
-            AccessRights: personType,
-          }}
-          onSubmit={async (personData) => {
-            console.log(personData);
-            setLoading(true);
-            try {
-              const response = await Api.put(linkForPut, personData);
-              if (response.status === 204) {
-                swal({
-                  title: "Good job!",
-                  text: "Your person was updated",
-                  icon: "success",
-                }).then(function () {
-                  window.location = `/schools/${schoolId}`;
-                });
-                console.log("success");
-              }
-              const personFromApi = response.data;
-              console.log(personFromApi);
 
-              setLoading(false);
-            } catch (error) {
-              console.log(error.response);
-              const response = error.response;
+      <section id="contact" className="contact">
+        <div className="container" data-aos="fade-up">
+          <div className="section-title mt-5">
+            <h2>Persons</h2>
+            <p>
+              Update{" "}
+              {personType === 0
+                ? "mentor"
+                : personType === 1
+                ? "student"
+                : "principal"}
+            </p>
+          </div>
 
-              if (response.status === 400) {
-                swal2
-                  .fire({
-                    title: `One or more form fields was not completed!`,
-                    text: "Please fill out all fields!",
-                  })
-                  .then(function () {
+          <Formik
+            className="mt-5 mt-lg-0"
+            initialValues={{
+              Name: "",
+              Photo: "",
+              BirthDate: "",
+              AccessRights: personType,
+            }}
+            onSubmit={async (personData) => {
+              console.log(personData);
+              setLoading(true);
+              try {
+                const response = await Api.put(linkForPut, personData);
+                if (response.status === 204) {
+                  swal({
+                    title: "Good job!",
+                    text: "Your person was updated",
+                    icon: "success",
+                  }).then(function () {
                     window.location = `/schools/${schoolId}`;
                   });
+                  console.log("success");
+                }
+                const personFromApi = response.data;
+                console.log(personFromApi);
+
+                setLoading(false);
+              } catch (error) {
+                console.log(error.response);
+                const response = error.response;
+
+                if (response.status === 400) {
+                  swal2
+                    .fire({
+                      title: `One or more form fields was not completed!`,
+                      text: "Please fill out all fields!",
+                    })
+                    .then(function () {
+                      window.location = `/schools/${schoolId}`;
+                    });
+                }
+
+                setLoading(true);
               }
+            }}
+          >
+            {({ setFieldValue }) => (
+              <Form className="php-email-form">
+                <div className="form-group d-flex flex-row">
+                  <label htmlFor="name" className="col-sm-2 col-form-label">
+                    Name:
+                  </label>
 
-              setLoading(true);
-            }
-          }}
-        >
-          {({ setFieldValue }) => (
-            <Form className="mt-2">
-              <div className="form-group row">
-                <label htmlFor="name" className="col-sm-2 col-form-label">
-                  Name:
-                </label>
-                <Field
-                  type="text"
-                  name="Name"
-                  className="col-sm-9 form-control mt-1"
-                  id="name"
-                  placeholder={person.name}
-                  required
-                />
-              </div>
-              <div className="form-group row">
-                <label className="col-sm-2 col-form-label">
-                  Current Photo:
-                </label>
-                &nbsp;&nbsp;
-                <span className="mt-1 text-muted">{person.photo}</span>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="photo" className="col-sm-2 col-form-label">
-                  New Photo:
-                </label>
-                <input
-                  type="file"
-                  name="Photo"
-                  onChange={(event) => {
-                    if (event.target.files[0]) {
-                      setFieldValue("Photo", event.target.files[0].name);
-                    } else {
-                      setFieldValue("Photo", "");
-                    }
-                  }}
-                  className="col-sm-9 form-control mt-1"
-                  id="photo"
-                  required
-                />
-              </div>
-              <div className="form-group row">
-                <label className="col-sm-2 col-form-label">
-                  Current BirthDate:
-                </label>
-                &nbsp;&nbsp;
-                <span className="mt-1 text-muted">
-                  {person.birthDate ? person.birthDate.substr(0, 10) : null}
-                </span>
-              </div>
-              <div className="form-group row">
-                <label htmlFor="birthDate" className="col-sm-2 col-form-label">
-                  New BirthDate:
-                </label>
-                <Field
-                  type="date"
-                  name="BirthDate"
-                  min="1901-01-01"
-                  max="2014-01-01"
-                  className="col-sm-9 form-control mt-1"
-                  id="birthDate"
-                  required
-                />
-              </div>
+                  <Field
+                    type="text"
+                    name="Name"
+                    className="w-100 form-control"
+                    id="name"
+                    placeholder={person.name}
+                    required
+                  />
+                </div>
 
-              <div className="form-group row">
-                <div className="col-sm-12">
-                  <button type="submit" className="btn custom-btn">
+                <div className="form-group d-flex flex-row mt-3">
+                  <label className="col-sm-2 col-form-label">
+                    Current Photo:
+                  </label>
+                  &nbsp;&nbsp;
+                  <span className="w-100 text-muted">{person.photo}</span>
+                </div>
+
+                <div className="form-group d-flex flex-row mt-3">
+                  <label htmlFor="photo" className="col-sm-2 col-form-label">
+                    New Photo:
+                  </label>
+
+                  <input
+                    type="file"
+                    name="Photo"
+                    onChange={(event) => {
+                      if (event.target.files[0]) {
+                        setFieldValue("Photo", event.target.files[0].name);
+                      } else {
+                        setFieldValue("Photo", "");
+                      }
+                    }}
+                    className="w-100 form-control form-control-lg"
+                    id="photo"
+                    required
+                  />
+                </div>
+
+                <div className="form-group d-flex flex-row mt-3">
+                  <label className="col-sm-2 col-form-label">
+                    Current BirthDate:
+                  </label>
+                  &nbsp;&nbsp;
+                  <span className="w-100 text-muted">
+                    {person.birthDate ? person.birthDate.substr(0, 10) : null}
+                  </span>
+                </div>
+
+                <div className="form-group d-flex flex-row mt-3">
+                  <label
+                    htmlFor="birthDate"
+                    className="col-sm-2 col-form-label"
+                  >
+                    New BirthDate:
+                  </label>
+
+                  <Field
+                    type="date"
+                    name="BirthDate"
+                    min="1901-01-01"
+                    max="2014-01-01"
+                    className="w-100 form-control"
+                    id="birthDate"
+                    required
+                  />
+                </div>
+
+                <div className="text-center">
+                  <button type="submit" className="btn-add">
                     Update{" "}
                     {personType === 0
                       ? "Mentor"
@@ -187,12 +196,20 @@ const UpdatePersonPage = (props) => {
                       : "Principal"}
                   </button>
                 </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </section>
+
+      <div className="why-us">
+        <div className="content text-center">
+          <Link to={linkToSchool} className="more-btn">
+            <i className="bx bx-chevron-left"></i> Cancel
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
