@@ -7,7 +7,7 @@ import { MdSchool } from "react-icons/md";
 
 const CatalogueMentors = ({ catalogueName }) => {
   const schoolId = window.location.href.split("/")[4];
-  const catalogueId = window.location.href.split("/")[6];
+  const catalogueId = window.location.href.split("/")[6].split("#")[0];
   const [mentors, setMentors] = useState([]);
   const [loading, setLoading] = useState(true);
   const apiImgPath = "http://localhost:54719/images/";
