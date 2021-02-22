@@ -168,6 +168,7 @@ const AddSchoolPage = () => {
                   >
                     Principal BirthDate:
                   </label>
+
                   <Field
                     type="date"
                     name="Principal.BirthDate"
