@@ -67,7 +67,16 @@ const CoursePage = (props) => {
         </div>
       </section>
 
-      <section id="cource-details-tabs" className="cource-details-tabs mb-5">
+      <section
+        id="cource-details-tabs"
+        className={`cource-details-tabs ${
+          course?.documents?.length === 1
+            ? "mt-5 mb-5"
+            : course?.documents?.length === 2
+            ? "mt-4 mb-5"
+            : "mb-5"
+        }`}
+      >
         <div className="container" data-aos="fade-up">
           <div className="row">
             <div className="col-lg-3">
