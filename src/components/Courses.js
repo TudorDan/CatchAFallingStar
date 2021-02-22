@@ -76,7 +76,9 @@ const Courses = (school) => {
                             }}
                             id="course-title"
                           >
-                            {name}
+                            {name.length > 33
+                              ? name.substr(0, 33) + "..."
+                              : name}
                           </Link>
                         </h3>
 
@@ -84,7 +86,7 @@ const Courses = (school) => {
 
                         <p>
                           {description.length > 33
-                            ? description.substr(0, 30) + "..."
+                            ? description.substr(0, 33) + "..."
                             : description}
                         </p>
 
