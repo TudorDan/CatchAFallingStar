@@ -42,14 +42,24 @@ const Subjects = (school) => {
 
           <div className="row" data-aos="zoom-in" data-aos-delay="100">
             {subjects.length === 0 ? (
-              <h3 className="loading">No subjects in current school!</h3>
+              <>
+                <h3 className="mt-5 text-info mb-5">
+                  No subjects in current school!
+                </h3>
+                <p className="mt-4 mb-5"></p>
+              </>
             ) : (
               <>
                 {subjects.map((subject) => {
                   const { id, name } = subject;
 
                   return (
-                    <div key={id} className="col-lg-3 col-md-4 mt-4">
+                    <div
+                      key={id}
+                      className={`col-lg-3 col-md-4 ${
+                        subjects.length < 4 ? "mt-5 mb-5" : "mt-4"
+                      }`}
+                    >
                       <div className="icon-box d-flex flex-column">
                         <div className="d-flex flex-row mb-3">
                           <i

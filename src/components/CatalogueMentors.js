@@ -46,9 +46,12 @@ const CatalogueMentors = ({ catalogueName }) => {
 
           <div className="row" data-aos="zoom-in" data-aos-delay="100">
             {mentors.length === 0 ? (
-              <h3 className="mt-5 text-info mb-5">
-                No mentors in current school class.
-              </h3>
+              <>
+                <h3 className="mt-5 text-info mb-5">
+                  No mentors in current school class.
+                </h3>
+                <p className="mb-3"></p>
+              </>
             ) : (
               <>
                 {mentors.map((mentor) => {

@@ -45,7 +45,12 @@ const Students = (school) => {
 
           <div className="row" data-aos="zoom-in" data-aos-delay="100">
             {students.length === 0 ? (
-              <h3 id="loading">No students in current school!</h3>
+              <>
+                <h3 className="mt-5 text-info mb-5">
+                  No students in current school!
+                </h3>
+                <p className="mb-3"></p>
+              </>
             ) : (
               <>
                 {students.map((student) => {
