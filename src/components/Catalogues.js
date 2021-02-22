@@ -62,7 +62,7 @@ const Catalogues = (school) => {
                     >
                       <div
                         className={`icon-box mt-2 ${
-                          catalogues.length < 3 ? "mb-3" : ""
+                          catalogues.length < 3 ? "mb-4" : ""
                         }`}
                       >
                         <i

@@ -42,107 +42,119 @@ const AddSubjectPage = (props) => {
   }
 
   return (
-    <div className="container school-list text-center">
-      <h1 className="font-weight-bolder" id="school-title">
-        {school.name}
-      </h1>
-      <div className="underline mb-3"></div>
-      <h3 className="mt-4">Add new Subject</h3>
-      <Link to={linkToSchool} className="btn custom-btn">
-        Back to school menu
-      </Link>
+    <>
+      <div className="breadcrumbs" data-aos="fade-in">
+        <div className="container">
+          <h2>{school.name}</h2>
+          <p>Motto: Audaces fortuna juvat</p>
+        </div>
+      </div>
 
-      <div className="card mb-3 mt-5">
-        <Formik
-          className="mt-2"
-          initialValues={{
-            Name: "",
-          }}
-          onSubmit={async (subjectData) => {
-            subjectData.Name = subjectData.Name.toUpperCase();
-            console.log(subjectData);
+      <section id="contact" className="contact">
+        <div className="container" data-aos="fade-up">
+          <div className="section-title mt-5 mb-5">
+            <h2>Subjects</h2>
+            <p>Add new subject</p>
+          </div>
 
-            setLoading(true);
-            try {
-              const response = await Api.post(linkForPost, subjectData);
-              if (response.status === 201) {
-                swal({
-                  title: "Good job!",
-                  text: "Your subject was added",
-                  icon: "success",
-                }).then(function () {
-                  window.location = `/schools/${schoolId}`;
-                });
-                console.log("success");
-              }
-              const subjectFromApi = response.data;
-              console.log(subjectFromApi);
-
-              setLoading(false);
-            } catch (error) {
-              console.log(error.response);
-              const response = error.response;
-              let subjectName = "";
-
-              subjects.map((subject) => {
-                if (subject.name === subjectData.Name) {
-                  subjectName = subject.name;
-                }
-                return "subject check finished";
-              });
-              if (response.status === 409) {
-                swal2
-                  .fire({
-                    title: `Subject ${subjectName} already exists in this school!`,
-                    text: "Choose something else!",
-                  })
-                  .then(function () {
-                    window.location = `/schools/${schoolId}/subjects`;
-                  });
-              }
-              if (response.status === 400) {
-                swal2
-                  .fire({
-                    title: `No subject was selected!`,
-                    text: "Please choose something!",
-                  })
-                  .then(function () {
-                    window.location = `/schools/${schoolId}/subjects`;
-                  });
-              }
+          <Formik
+            className="mt-5 mt-lg-0"
+            initialValues={{
+              Name: "",
+            }}
+            onSubmit={async (subjectData) => {
+              subjectData.Name = subjectData.Name.toUpperCase();
+              console.log(subjectData);
 
               setLoading(true);
-            }
-          }}
-        >
-          {() => (
-            <Form className="mt-2">
-              <div className="form-group row">
-                <label htmlFor="name" className="col-sm-2 col-form-label">
-                  Subject Name:
-                </label>
-                <Field
-                  type="text"
-                  name="Name"
-                  className="col-sm-9 form-control mt-1"
-                  placeholder="New Subject"
-                  required
-                  id="name"
-                />
-              </div>
+              try {
+                const response = await Api.post(linkForPost, subjectData);
+                if (response.status === 201) {
+                  swal({
+                    title: "Good job!",
+                    text: "Your subject was added",
+                    icon: "success",
+                  }).then(function () {
+                    window.location = `/schools/${schoolId}`;
+                  });
+                  console.log("success");
+                }
+                const subjectFromApi = response.data;
+                console.log(subjectFromApi);
 
-              <div className="form-group row">
-                <div className="col-sm-12">
-                  <button type="submit" className="btn custom-btn">
-                    Add School Subject
+                setLoading(false);
+              } catch (error) {
+                console.log(error.response);
+                const response = error.response;
+                let subjectName = "";
+
+                subjects.map((subject) => {
+                  if (subject.name === subjectData.Name) {
+                    subjectName = subject.name;
+                  }
+                  return "subject check finished";
+                });
+                if (response.status === 409) {
+                  swal2
+                    .fire({
+                      title: `Subject ${subjectName} already exists in this school!`,
+                      text: "Choose something else!",
+                    })
+                    .then(function () {
+                      window.location = `/schools/${schoolId}/subjects`;
+                    });
+                }
+                if (response.status === 400) {
+                  swal2
+                    .fire({
+                      title: `No subject was selected!`,
+                      text: "Please choose something!",
+                    })
+                    .then(function () {
+                      window.location = `/schools/${schoolId}/subjects`;
+                    });
+                }
+
+                setLoading(true);
+              }
+            }}
+          >
+            {() => (
+              <Form className="php-email-form">
+                <div className="form-group d-flex flex-row">
+                  <label htmlFor="name" className="col-sm-2 col-form-label">
+                    Name:
+                  </label>
+
+                  <Field
+                    type="text"
+                    name="Name"
+                    className="w-100 form-control"
+                    placeholder="New Subject"
+                    required
+                    id="name"
+                  />
+                </div>
+
+                <div className="text-center mt-5 mb-4">
+                  <button type="submit" className="btn-add">
+                    Add Subject
                   </button>
                 </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </section>
+
+      <div className="why-us">
+        <div className="content text-center">
+          <Link to={linkToSchool} className="more-btn">
+            <i className="bx bx-chevron-left"></i> Cancel
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
