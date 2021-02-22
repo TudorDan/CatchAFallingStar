@@ -42,77 +42,89 @@ const UpdateSubjectPage = () => {
   }
 
   return (
-    <div className="container school-list text-center">
-      <h1 className="font-weight-bolder" id="school-title">
-        {school.name}
-      </h1>
-      <div className="underline mb-3"></div>
-      <h3 className="mt-4">Update School Subject</h3>
-      <Link to={linkForSchool} className="btn custom-btn">
-        Back to school menu
-      </Link>
+    <>
+      <div className="breadcrumbs" data-aos="fade-in">
+        <div className="container">
+          <h2>{school.name}</h2>
+          <p>Motto: Audaces fortuna juvat</p>
+        </div>
+      </div>
 
-      <div className="card mb-3 mt-5">
-        <Formik
-          className="mt-2"
-          initialValues={{
-            Name: "",
-          }}
-          onSubmit={async (subjectData) => {
-            subjectData.Name = subjectData.Name.toUpperCase();
-            console.log(subjectData);
+      <section id="contact" className="contact">
+        <div className="container" data-aos="fade-up">
+          <div className="section-title mt-5 mb-5">
+            <h2>Subjects</h2>
+            <p>Update subject</p>
+          </div>
 
-            const response = await Api.put(linkForSubject, subjectData);
-            if (response.status === 204) {
-              swal({
-                title: "Good job!",
-                text: "Your school subject was updated",
-                icon: "success",
-              }).then(function () {
-                window.location = `/schools/${schoolId}`;
-              });
-              console.log("success");
-            }
-            const subjectFromApi = response.data;
-            console.log(subjectFromApi);
+          <Formik
+            className="mt-5 mt-lg-0"
+            initialValues={{
+              Name: "",
+            }}
+            onSubmit={async (subjectData) => {
+              subjectData.Name = subjectData.Name.toUpperCase();
+              console.log(subjectData);
 
-            setLoading(true);
-            try {
-              setLoading(false);
-            } catch (error) {
-              console.log(error.response);
+              const response = await Api.put(linkForSubject, subjectData);
+              if (response.status === 204) {
+                swal({
+                  title: "Good job!",
+                  text: "Your school subject was updated",
+                  icon: "success",
+                }).then(function () {
+                  window.location = `/schools/${schoolId}`;
+                });
+                console.log("success");
+              }
+              const subjectFromApi = response.data;
+              console.log(subjectFromApi);
+
               setLoading(true);
-            }
-          }}
-        >
-          {() => (
-            <Form className="mt-2">
-              <div className="form-group row">
-                <label htmlFor="name" className="col-sm-2 col-form-label">
-                  Name:
-                </label>
-                <Field
-                  type="text"
-                  name="Name"
-                  className="col-sm-9 form-control mt-1"
-                  id="name"
-                  placeholder={subject.name}
-                  required
-                />
-              </div>
+              try {
+                setLoading(false);
+              } catch (error) {
+                console.log(error.response);
+                setLoading(true);
+              }
+            }}
+          >
+            {() => (
+              <Form className="php-email-form">
+                <div className="form-group d-flex flex-row">
+                  <label htmlFor="name" className="col-sm-2 col-form-label">
+                    Name:
+                  </label>
 
-              <div className="form-group row">
-                <div className="col-sm-12">
-                  <button type="submit" className="btn custom-btn">
+                  <Field
+                    type="text"
+                    name="Name"
+                    className="w-100 form-control"
+                    id="name"
+                    placeholder={subject.name}
+                    required
+                  />
+                </div>
+
+                <div className="text-center mt-5 mb-4">
+                  <button type="submit" className="btn-add">
                     Update Subject
                   </button>
                 </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </section>
+
+      <div className="why-us">
+        <div className="content text-center">
+          <Link to={linkForSchool} className="more-btn">
+            <i className="bx bx-chevron-left"></i> Cancel
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
