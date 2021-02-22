@@ -54,8 +54,17 @@ const Catalogues = (school) => {
                   const { id, name } = catalogue;
 
                   return (
-                    <div key={id} className="col-10 mt-4">
-                      <div className="icon-box">
+                    <div
+                      key={id}
+                      className={`col-10 ${
+                        catalogues.length < 2 ? "mt-5 mb-5" : ""
+                      }`}
+                    >
+                      <div
+                        className={`icon-box mt-2 ${
+                          catalogues.length < 3 ? "mb-3" : ""
+                        }`}
+                      >
                         <i
                           className="ri-price-tag-2-line"
                           style={{ color: "#4233ff" }}
