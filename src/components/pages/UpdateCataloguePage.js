@@ -40,7 +40,6 @@ const UpdateCataloguePage = (props) => {
   if (loading) {
     return <Loading key={0} />;
   }
-  console.log(catalogue);
 
   return (
     <>
@@ -64,8 +63,6 @@ const UpdateCataloguePage = (props) => {
               Name: "",
             }}
             onSubmit={async (catalogueData) => {
-              console.log(catalogueData);
-              debugger;
               setLoading(true);
               try {
                 const response = await Api.put(linkForCatalogue, catalogueData);

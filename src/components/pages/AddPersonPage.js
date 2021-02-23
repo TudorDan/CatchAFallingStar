@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
-const AddPersonPage = (props) => {
+const AddPersonPage = () => {
   const [school, setSchool] = useState([]);
   const schoolID = window.location.href.split("/")[4];
   const personType = parseInt(window.location.href.split("/")[6].split("#")[0]);
