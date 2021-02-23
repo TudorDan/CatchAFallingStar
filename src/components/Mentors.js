@@ -10,7 +10,7 @@ const Mentors = (school) => {
   const [mentors, setMentors] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4].split("#")[0];
-  const linkToAddMentor = `/schools/${schoolID}/persons`;
+  const linkToAddMentor = `/schools/${schoolID}/persons/0`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -155,16 +155,7 @@ const Mentors = (school) => {
 
       <div className="why-us">
         <div className="content text-center">
-          <Link
-            to={{
-              pathname: linkToAddMentor,
-              schoolData: {
-                schoolTitle: school.name,
-                accessRights: 0,
-              },
-            }}
-            className="more-btn"
-          >
+          <Link to={linkToAddMentor} className="more-btn">
             Add Mentor <i className="bx bx-chevron-right"></i>
           </Link>
         </div>

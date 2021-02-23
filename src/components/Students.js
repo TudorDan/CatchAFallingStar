@@ -10,7 +10,7 @@ const Students = (school) => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4].split("#")[0];
-  const linkToAddStudent = `/schools/${schoolID}/persons`;
+  const linkToAddStudent = `/schools/${schoolID}/persons/1`;
   const apiImgPath = "http://localhost:54719/images/";
 
   useEffect(() => {
@@ -155,16 +155,7 @@ const Students = (school) => {
 
       <div className="why-us">
         <div className="content text-center">
-          <Link
-            to={{
-              pathname: linkToAddStudent,
-              schoolData: {
-                schoolTitle: school.name,
-                accessRights: 1,
-              },
-            }}
-            className="more-btn"
-          >
+          <Link to={linkToAddStudent} className="more-btn">
             Add Student <i className="bx bx-chevron-right"></i>
           </Link>
         </div>

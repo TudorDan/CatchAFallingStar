@@ -45,7 +45,11 @@ function App() {
             component={CataloguePage}
           />
           <Route exact path="/addschool" component={AddSchoolPage} />
-          <Route exact path="/schools/:id/persons" component={AddPersonPage} />
+          <Route
+            exact
+            path="/schools/:id/persons/:accessRights"
+            component={AddPersonPage}
+          />
           <Route exact path="/schools/:id/courses" component={AddCoursePage} />
           <Route
             exact
