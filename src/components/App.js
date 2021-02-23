@@ -20,6 +20,8 @@ import AddDocumentPage from "./pages/AddDocumentPage";
 import UpdateDocumentPage from "./pages/UpdateDocumentPage";
 import UpdateSubjectPage from "./pages/UpdateSubjectPage";
 import Footer from "./common/Footer";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   useLocation();
@@ -32,6 +34,8 @@ function App() {
       <main id="main">
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route exact path="/schools" component={SchoolsPage} />
           <Route exact path="/schools/:id" component={SchoolPage} />
           <Route
