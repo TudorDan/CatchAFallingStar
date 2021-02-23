@@ -1,16 +1,33 @@
-import React, { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import swal from "sweetalert";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 
 const AddCataloguePage = (props) => {
+  const [school, setSchool] = useState([]);
   const [loading, setLoading] = useState(false);
-  const schoolID = useParams().id;
-  const schoolName = props.location.schoolData.schoolTitle;
+  const schoolID = window.location.href.split("/")[4].split("#")[0];
   const linkToSchool = `/schools/${schoolID}`;
   const linkForPost = `/schools/${schoolID}/catalogues`;
+
+  useEffect(() => {
+    const getSchool = async () => {
+      try {
+        const response = await Api.get(`/schools/${schoolID}`);
+        const schoolFromAPI = response.data;
+        setSchool(schoolFromAPI);
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(true);
+      }
+    };
+
+    getSchool();
+  }, [schoolID]);
 
   if (loading) {
     return <Loading key={0} />;
@@ -20,7 +37,7 @@ const AddCataloguePage = (props) => {
     <>
       <div className="breadcrumbs" data-aos="fade-in">
         <div className="container">
-          <h2>{schoolName}</h2>
+          <h2>{school.name}</h2>
           <p>Motto: Audaces fortuna juvat</p>
         </div>
       </div>

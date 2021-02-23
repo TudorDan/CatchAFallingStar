@@ -142,15 +142,7 @@ const Catalogues = (school) => {
 
       <div className="why-us">
         <div className="content text-center">
-          <Link
-            to={{
-              pathname: linkToCatalogue,
-              schoolData: {
-                schoolTitle: school.name,
-              },
-            }}
-            className="more-btn"
-          >
+          <Link to={linkToCatalogue} className="more-btn">
             Add Class <i className="bx bx-chevron-right"></i>
           </Link>
         </div>
