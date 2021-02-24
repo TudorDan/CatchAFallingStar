@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import Api from "../utils/Api";
 import { Link } from "react-router-dom";
-import swal from "sweetalert2";
 import swal2 from "sweetalert2";
 
 const LoginPage = () => {
@@ -38,8 +37,8 @@ const LoginPage = () => {
               setLoading(true);
               try {
                 const response = await Api.post(linkForPost, userData);
-                if (response.status === 201) {
-                  swal({
+                if (response.status === 200) {
+                  swal2.fire({
                     title: "Good job!",
                     text: "Your user was logged in",
                     icon: "success",
@@ -55,7 +54,6 @@ const LoginPage = () => {
               } catch (error) {
                 console.log(error.response);
                 const response = error.response;
-                let userEmail = ""
 
                 setLoading(true);
               }

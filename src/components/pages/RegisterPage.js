@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
 import Api from "../utils/Api";
 import { Link } from "react-router-dom";
-import swal from "sweetalert2";
 import swal2 from "sweetalert2";
 
 
@@ -34,14 +33,12 @@ const RegisterPage = () => {
               Password: "",
             }}
             onSubmit={async (userData) => {
-            //   userData.Name = userData.Name.toUpperCase();
-              console.log(userData);
-
               setLoading(true);
               try {
                 const response = await Api.post(linkForPost, userData);
-                if (response.status === 201) {
-                  swal({
+                console.log(response.status);
+                if (response.status === 200) {
+                  swal2.fire({
                     title: "Good job!",
                     text: "Your user was registered",
                     icon: "success",
@@ -51,28 +48,24 @@ const RegisterPage = () => {
                   console.log("success");
                 }
                 const userFromApi = response.data;
-                console.log(userFromApi);
-
                 setLoading(false);
               } catch (error) {
-                console.log(error.response);
                 const response = error.response;
-                let userEmail = "";
 
                 if (response.status === 409) {
                   swal2
                     .fire({
-                      title: `Email ${userEmail} already exists in this school!`,
+                      title: `${response.data.message} in database `,
                       text: "Choose something else!",
                     })
                     .then(function () {
-                      window.location = `/`;
+                      window.location = `/register`;
                     });
                 }
                 if (response.status === 500) {
                   swal2
                     .fire({
-                      title: `Error!`,
+                      title: `${response.data.message}`,
                       text: "User creation Failed!",
                     })
                     .then(function () {
