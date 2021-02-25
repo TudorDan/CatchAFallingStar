@@ -6,7 +6,7 @@ import swal2 from "sweetalert2";
 import Loading from "../utils/Loading";
 
 const RegisterPage = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const linkToHome = `/`;
   const linkForPost = `/authentication/register`;
 
