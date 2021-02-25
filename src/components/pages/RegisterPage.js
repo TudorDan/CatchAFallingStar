@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import Api from "../utils/Api";
 import { Link } from "react-router-dom";
+import Api from "../utils/Api";
 import swal2 from "sweetalert2";
-
+import Loading from "../utils/Loading";
 
 const RegisterPage = () => {
-    const [loading, setLoading] = useState(true);
-    const linkToSchool = `/`;
-    const linkForPost = `/authentication/register`;
+  const [loading, setLoading] = useState(true);
+  const linkToHome = `/`;
+  const linkForPost = `/authentication/register`;
 
-    return(<>
-    <div className="breadcrumbs" data-aos="fade-in">
+  if (loading) {
+    return <Loading key={0} />;
+  }
+
+  return (
+    <>
+      <div className="breadcrumbs" data-aos="fade-in">
         <div className="container">
           <h2>Register</h2>
           <p>E-learning App Registration</p>
@@ -20,12 +25,12 @@ const RegisterPage = () => {
 
       <section id="contact" className="contact">
         <div className="container" data-aos="fade-up">
-            <div className="section-title mt-5 mb-5">
-                <h2>User</h2>
-                <p>Add new User</p>
-            </div>
+          <div className="section-title mt-5 mb-5">
+            <h2>User</h2>
+            <p>Add new User</p>
+          </div>
 
-            <Formik
+          <Formik
             className="mt-5 mt-lg-0"
             initialValues={{
               Username: "",
@@ -36,18 +41,22 @@ const RegisterPage = () => {
               setLoading(true);
               try {
                 const response = await Api.post(linkForPost, userData);
+
                 console.log(response.status);
+
                 if (response.status === 200) {
-                  swal2.fire({
-                    title: "Good job!",
-                    text: "Your user was registered",
-                    icon: "success",
-                  }).then(function () {
-                    window.location = `/`;
-                  });
+                  swal2
+                    .fire({
+                      title: "Good job!",
+                      text: "Your user was registered",
+                      icon: "success",
+                    })
+                    .then(function () {
+                      window.location = `/`;
+                    });
                   console.log("success");
                 }
-                const userFromApi = response.data;
+
                 setLoading(false);
               } catch (error) {
                 const response = error.response;
@@ -132,21 +141,18 @@ const RegisterPage = () => {
               </Form>
             )}
           </Formik>
-        
-
-            </div>
+        </div>
       </section>
-
-
 
       <div className="why-us">
         <div className="content text-center">
-          <Link to={linkToSchool} className="more-btn">
+          <Link to={linkToHome} className="more-btn">
             <i className="bx bx-chevron-left"></i> Cancel
           </Link>
         </div>
       </div>
-    </>)
+    </>
+  );
 };
 
 export default RegisterPage;
