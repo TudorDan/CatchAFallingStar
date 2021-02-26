@@ -53,13 +53,9 @@ const LoginPage = () => {
                       icon: "success",
                     })
                     .then(function () {
-                      console.log("lin55" + userData.Username);
                       login(userData.Username);
-                      console.log(user);
 
                       history.push("/");
-
-                      //window.location = `/`;
                     });
                   console.log("success");
                 }

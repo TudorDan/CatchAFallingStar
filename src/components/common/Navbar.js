@@ -11,8 +11,6 @@ function Navbar() {
     setActive(!isActive);
   };
 
-  console.log(user);
-
   return (
     <div className="container d-flex align-items-center">
       <NavLink to="/" exact className="logo me-auto">
