@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const linkToHome = `/`;
   const linkForPost = `/authentication/login`;
-  const { user, login } = useGlobalUser();
+  const { login } = useGlobalUser();
   const history = useHistory();
 
   if (loading) {
