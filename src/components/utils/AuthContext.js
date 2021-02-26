@@ -1,12 +1,22 @@
-import React, { createContext, useState } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 
-const UserContext = createContext();
+const UserContext = React.createContext();
+let reducer = (userInfo, newInfo) => {
+  return {
+    ...userInfo,
+    ...newInfo,
+  };
+};
+const initialState = { name: "", auth: false, roles: ["guest"] };
+const localState = JSON.parse(localStorage.getItem("user"));
 
 const UserProvider = ({ children }) => {
-  // User is the name of the "data" that gets stored in context
-  const [user, setUser] = useState({ name: "", auth: false, roles: ["guest"] });
+  const [user, setUser] = useReducer(reducer, localState || initialState);
 
-  // Login updates the user data with a name parameter
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
   const login = (name) => {
     setUser({
       name: name,
@@ -15,7 +25,6 @@ const UserProvider = ({ children }) => {
     });
   };
 
-  // Logout updates the user data to default
   const logout = () => {
     setUser({
       name: "",
@@ -31,4 +40,8 @@ const UserProvider = ({ children }) => {
   );
 };
 
-export { UserProvider, UserContext };
+export const useGlobalUser = () => {
+  return useContext(UserContext);
+};
+
+export { UserContext, UserProvider };

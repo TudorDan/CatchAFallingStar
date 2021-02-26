@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { GiBookmark } from "react-icons/gi";
-import { UserContext } from "../utils/AuthContext";
+import { useGlobalUser } from "../utils/AuthContext";
 
 function Navbar() {
   const [isActive, setActive] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user } = useGlobalUser();
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -29,7 +29,7 @@ function Navbar() {
       >
         {user.auth ? (
           <ul>
-            <li>Hello, {user.name}!</li>
+            <li>Hello, {user.name}!</li>&nbsp;&nbsp;
             <li>Logout</li>
           </ul>
         ) : (

@@ -1,16 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Api from "../utils/Api";
 import swal2 from "sweetalert2";
 import Loading from "../utils/Loading";
-import { UserContext } from "../utils/AuthContext";
+import { useGlobalUser } from "../utils/AuthContext";
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const linkToHome = `/`;
   const linkForPost = `/authentication/login`;
-  const { login } = useContext(UserContext);
+  const { user, login } = useGlobalUser();
+  const history = useHistory();
 
   if (loading) {
     return <Loading key={0} />;
@@ -52,9 +53,13 @@ const LoginPage = () => {
                       icon: "success",
                     })
                     .then(function () {
+                      console.log("lin55" + userData.Username);
                       login(userData.Username);
+                      console.log(user);
 
-                      window.location = `/`;
+                      history.push("/");
+
+                      //window.location = `/`;
                     });
                   console.log("success");
                 }
