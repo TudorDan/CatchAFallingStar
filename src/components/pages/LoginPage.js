@@ -49,7 +49,7 @@ const LoginPage = () => {
                   swal2
                     .fire({
                       title: "Sign in!",
-                      text: "Your user was logged in",
+                      text: "User has logged in",
                       icon: "success",
                     })
                     .then(function () {

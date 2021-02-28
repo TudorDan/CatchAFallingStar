@@ -35,7 +35,11 @@ function Navbar() {
                 onClick={() => {
                   logout();
                   swal2
-                    .fire("Sign out!", "User has logged out.", "success")
+                    .fire({
+                      title: "Sign out!",
+                      text: "User has logged out",
+                      icon: "success",
+                    })
                     .then(function () {
                       window.location = `/`;
                     });
