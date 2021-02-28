@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { GiBookmark } from "react-icons/gi";
 import { useGlobalUser } from "../utils/AuthContext";
 import swal2 from "sweetalert2";
+import { cookies } from "../utils/CookieService";
 
 function Navbar() {
   const [isActive, setActive] = useState(false);
@@ -11,6 +12,8 @@ function Navbar() {
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+  console.log(`userName: ${cookies.get("userName")}`);
 
   return (
     <div className="container d-flex align-items-center">

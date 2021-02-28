@@ -5,6 +5,7 @@ import Api from "../utils/Api";
 import swal2 from "sweetalert2";
 import Loading from "../utils/Loading";
 import { useGlobalUser } from "../utils/AuthContext";
+import { signIn } from "../utils/CookieService";
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
@@ -54,6 +55,7 @@ const LoginPage = () => {
                     })
                     .then(function () {
                       login(userData.Username);
+                      signIn(userData.Username);
 
                       history.push("/");
                     });

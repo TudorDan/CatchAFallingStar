@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 
 const UserContext = createContext();
+
 let reducer = (userInfo, newInfo) => {
   return {
     ...userInfo,
