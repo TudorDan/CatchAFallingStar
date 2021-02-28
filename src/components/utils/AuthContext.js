@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 
-const UserContext = React.createContext();
+const UserContext = createContext();
 let reducer = (userInfo, newInfo) => {
   return {
     ...userInfo,

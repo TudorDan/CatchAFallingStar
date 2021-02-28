@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { GiBookmark } from "react-icons/gi";
 import { useGlobalUser } from "../utils/AuthContext";
+import swal2 from "sweetalert2";
 
 function Navbar() {
   const [isActive, setActive] = useState(false);
-  const { user } = useGlobalUser();
+  const { user, logout } = useGlobalUser();
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -28,7 +29,21 @@ function Navbar() {
         {user.auth ? (
           <ul>
             <li>Hello, {user.name}!</li>&nbsp;&nbsp;
-            <li>Logout</li>
+            <li>
+              <NavLink
+                to="/schools"
+                onClick={() => {
+                  logout();
+                  swal2
+                    .fire("Sign out!", "User has logged out.", "success")
+                    .then(function () {
+                      window.location = `/`;
+                    });
+                }}
+              >
+                Logout
+              </NavLink>
+            </li>
           </ul>
         ) : (
           <ul>

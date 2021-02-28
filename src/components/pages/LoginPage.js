@@ -48,7 +48,7 @@ const LoginPage = () => {
                 if (response.status === 200) {
                   swal2
                     .fire({
-                      title: "Good job!",
+                      title: "Sign in!",
                       text: "Your user was logged in",
                       icon: "success",
                     })
