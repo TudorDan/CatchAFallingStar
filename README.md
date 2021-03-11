@@ -34,5 +34,8 @@ You will also see any lint errors in the console.
 
 ## Implementation
 
+Home page:
 ![Home page](homePage.png)
+
+Teachers page:
 ![Mentors page](mentorsPage.png)
