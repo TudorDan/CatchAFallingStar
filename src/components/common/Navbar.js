@@ -5,7 +5,7 @@ import { useGlobalUser } from "../utils/AuthContext";
 
 function Navbar() {
   const [isActive, setActive] = useState(false);
-  const { user } = useGlobalUser();
+  const { user, logout } = useGlobalUser();
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -27,8 +27,12 @@ function Navbar() {
       >
         {user.auth ? (
           <ul>
-            <li>Hello, {user.name}!</li>&nbsp;&nbsp;
-            <li>Logout</li>
+            <li>Welcome, {user.name}</li>&nbsp;&nbsp;
+            <li>
+              <NavLink to="/schools" onClick={logout}>
+                Logout
+              </NavLink>
+            </li>
           </ul>
         ) : (
           <ul>
