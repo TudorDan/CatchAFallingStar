@@ -11,6 +11,7 @@ const initialState = { name: "", auth: false, roles: ["guest"] };
 const localState = JSON.parse(localStorage.getItem("user"));
 
 const UserProvider = ({ children }) => {
+  // does not work without reducer
   const [user, setUser] = useReducer(reducer, localState || initialState);
 
   useEffect(() => {
