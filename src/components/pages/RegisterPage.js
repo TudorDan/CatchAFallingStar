@@ -36,10 +36,10 @@ const RegisterPage = () => {
               Username: "",
               Email: "",
               Password: "",
-              Confirmpassword: "",
+              ConfirmPassword: "",
             }}
             onSubmit={async (userData) => {
-              if (userData.Password !== userData.Confirmpassword) {
+              if (userData.Password !== userData.ConfirmPassword) {
                 swal2
                   .fire({
                     title: "Password and Confirm Password do not match!",
@@ -48,6 +48,7 @@ const RegisterPage = () => {
                   .then(function () {
                     window.location = `/register`;
                   });
+                  return;
               }
 
               setLoading(true);
