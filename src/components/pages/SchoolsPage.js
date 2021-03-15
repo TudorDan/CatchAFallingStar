@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 import swal2 from "sweetalert2";
+import { useGlobalUser } from "../utils/AuthContext";
 
 const SchoolsPage = () => {
   const [schools, setSchools] = useState([]);
@@ -10,6 +11,7 @@ const SchoolsPage = () => {
   const linkToSchool = `/schools/`;
   const apiImgPath = "http://localhost:54719/images/";
   const linkToAddSchool = `/addschool`;
+  const { user } = useGlobalUser();
 
   const getSchools = async () => {
     try {
@@ -38,7 +40,7 @@ const SchoolsPage = () => {
       <div className="container" data-aos="fade-up">
         <div className="section-title">
           <h2>Schools</h2>
-          <p>Manage your schools</p>
+          {user.auth ? <p>Manage your schools</p> : ""}
         </div>
 
         <div className="row" data-aos="zoom-in" data-aos-delay="100">
@@ -57,60 +59,69 @@ const SchoolsPage = () => {
                     alt="school"
                   />
                   <div className="course-content">
-                    <h3>
-                      <a href={linkToSchool + school.id}>{name}</a>
-                    </h3>
+                    {user.auth ? (
+                      <h3>
+                        <a href={linkToSchool + school.id}>{name}</a>
+                      </h3>
+                    ) : (
+                      <h3>{name}</h3>
+                    )}
                     <p>Principal {school.principal.name}</p>
-                    <div className="trainer d-flex justify-content-between align-items-center">
-                      <div className="trainer-profile d-flex align-items-center">
-                        <Link
-                          to={{
-                            pathname: `/schools/${id}/update`,
-                          }}
-                          className="get-started-btn"
-                        >
-                          Update
-                        </Link>
-                      </div>
 
-                      <div className="trainer-rank d-flex align-items-center">
-                        <button
-                          className="get-started-btn border-0"
-                          onClick={() => {
-                            swal2
-                              .fire({
-                                title: `Are you sure you wish to delete ${name}?`,
-                                text: "You won't be able to revert this!",
-                                icon: "warning",
-                                showCancelButton: true,
-                                confirmButtonColor: "#3ec1d5",
-                                cancelButtonColor: "#3f000f",
-                                confirmButtonText: "Yes, delete school!",
-                              })
-                              .then(async (result) => {
-                                if (result.isConfirmed) {
-                                  const response = await Api.delete(
-                                    `/schools/${id}`
-                                  );
-                                  if (response.status === 204) {
-                                    swal2
-                                      .fire(
-                                        "Deleted!",
-                                        "Your school has been deleted.",
-                                        "success"
-                                      )
-                                      .then(function () {
-                                        window.location = `/schools`;
-                                      });
+                    {user.auth ? (
+                      <div className="trainer d-flex justify-content-between align-items-center">
+                        <div className="trainer-profile d-flex align-items-center">
+                          <Link
+                            to={{
+                              pathname: `/schools/${id}/update`,
+                            }}
+                            className="get-started-btn"
+                          >
+                            Update
+                          </Link>
+                        </div>
+
+                        <div className="trainer-rank d-flex align-items-center">
+                          <button
+                            className="get-started-btn border-0"
+                            onClick={() => {
+                              swal2
+                                .fire({
+                                  title: `Are you sure you wish to delete ${name}?`,
+                                  text: "You won't be able to revert this!",
+                                  icon: "warning",
+                                  showCancelButton: true,
+                                  confirmButtonColor: "#3ec1d5",
+                                  cancelButtonColor: "#3f000f",
+                                  confirmButtonText: "Yes, delete school!",
+                                })
+                                .then(async (result) => {
+                                  if (result.isConfirmed) {
+                                    const response = await Api.delete(
+                                      `/schools/${id}`
+                                    );
+                                    if (response.status === 204) {
+                                      swal2
+                                        .fire(
+                                          "Deleted!",
+                                          "Your school has been deleted.",
+                                          "success"
+                                        )
+                                        .then(function () {
+                                          window.location = `/schools`;
+                                        });
+                                    }
                                   }
-                                }
-                              });
-                          }}
-                        >
-                          Delete
-                        </button>
+                                });
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
               </div>
@@ -123,20 +134,24 @@ const SchoolsPage = () => {
         id="submenu"
         className="d-flex justify-content-center align-items-center"
       >
-        <div
-          className="container position-relative"
-          data-aos="zoom-in"
-          data-aos-delay="100"
-        >
-          <Link
-            to={{
-              pathname: linkToAddSchool,
-            }}
-            className="btn-get-started"
+        {user.auth ? (
+          <div
+            className="container position-relative"
+            data-aos="zoom-in"
+            data-aos-delay="100"
           >
-            Add School
-          </Link>
-        </div>
+            <Link
+              to={{
+                pathname: linkToAddSchool,
+              }}
+              className="btn-get-started"
+            >
+              Add School
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
       </section>
     </section>
   );
