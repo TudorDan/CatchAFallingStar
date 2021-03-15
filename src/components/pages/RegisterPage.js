@@ -36,8 +36,20 @@ const RegisterPage = () => {
               Username: "",
               Email: "",
               Password: "",
+              Confirmpassword: "",
             }}
             onSubmit={async (userData) => {
+              if (userData.Password !== userData.Confirmpassword) {
+                swal2
+                  .fire({
+                    title: "Password and Confirm Password do not match!",
+                    text: "Choose something else!",
+                  })
+                  .then(function () {
+                    window.location = `/register`;
+                  });
+              }
+
               setLoading(true);
               try {
                 const response = await Api.post(linkForPost, userData);
@@ -124,12 +136,30 @@ const RegisterPage = () => {
                   </label>
 
                   <Field
-                    type="text"
+                    type="password"
                     name="Password"
                     className="w-100 form-control"
                     placeholder="New Password"
                     required
                     id="password"
+                  />
+                </div>
+
+                <div className="form-group d-flex flex-row">
+                  <label
+                    htmlFor="confirmPassword"
+                    className="col-sm-2 col-form-label"
+                  >
+                    Confirm Password:
+                  </label>
+
+                  <Field
+                    type="password"
+                    name="ConfirmPassword"
+                    className="w-100 form-control"
+                    placeholder="New Password"
+                    required
+                    id="confirmPassword"
                   />
                 </div>
 
