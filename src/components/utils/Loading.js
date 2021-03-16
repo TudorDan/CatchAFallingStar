@@ -1,7 +1,7 @@
 const Loading = () => {
   return (
-    <section id="loading">
-      <h1>Loading...</h1>
+    <section id="preloader">
+      {/* <h1 className="d-flex justify-content-center">Processing request...</h1> */}
     </section>
   );
 };
