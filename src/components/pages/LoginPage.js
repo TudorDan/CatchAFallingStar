@@ -40,7 +40,7 @@ const LoginPage = () => {
               Password: "",
             }}
             onSubmit={async (userData) => {
-              console.log(userData);
+              console.log(`userData: ${JSON.stringify(userData)}`);
 
               setLoading(true);
               try {
@@ -53,14 +53,15 @@ const LoginPage = () => {
                       icon: "success",
                     })
                     .then(function () {
-                      login(userData.Username);
+                      const roles = response.data.roles;
+                      login(userData.Username, roles);
 
                       history.push("/");
                     });
                   console.log("success");
                 }
                 const userFromApi = response.data;
-                console.log(userFromApi);
+                console.log(`userFromApi: ${JSON.stringify(userFromApi)}`);
 
                 setLoading(false);
               } catch (error) {

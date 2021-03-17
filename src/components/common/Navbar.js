@@ -7,6 +7,8 @@ function Navbar() {
   const [isActive, setActive] = useState(false);
   const { user, logout } = useGlobalUser();
 
+  console.log(user);
+
   const handleToggle = () => {
     setActive(!isActive);
   };

@@ -17,11 +17,11 @@ const UserProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  const login = (name) => {
+  const login = (userName, userRoles) => {
     setUser({
-      name: name,
+      name: userName,
       auth: true,
-      roles: ["guest"],
+      roles: userRoles,
     });
   };
 
