@@ -10,6 +10,7 @@ import CatalogueAddMentor from "../CatalogueAddMentor";
 import CatalogueAddStudent from "../CatalogueAddStudent";
 import CatalogueAddCourse from "../CatalogueAddCourse";
 import CatalogueAddGrade from "../CatalogueAddGrade";
+import { useGlobalUser } from "../utils/AuthContext";
 
 const CataloguePage = () => {
   const [catalogue, setCataloge] = useState([]);
@@ -19,6 +20,7 @@ const CataloguePage = () => {
   const catalogueId = window.location.href.split("/")[6].split("#")[0];
   const linkToSchool = `/schools/${schoolId}`;
   const [value, setValue] = useState(0);
+  const { user } = useGlobalUser();
 
   useEffect(() => {
     const getSchool = async () => {
@@ -143,44 +145,53 @@ const CataloguePage = () => {
             <i className="bx bx-chevron-left"></i> Back
           </Link>
           &nbsp;&nbsp;
-          {value === 1 ? (
-            <button
-              className="more-btn border-0"
-              onClick={() => {
-                setValue(4);
-              }}
-            >
-              Add Mentor <i className="bx bx-chevron-right"></i>
-            </button>
-          ) : value === 2 ? (
-            <button
-              className="more-btn border-0"
-              onClick={() => {
-                setValue(5);
-              }}
-            >
-              Add Student <i className="bx bx-chevron-right"></i>
-            </button>
-          ) : value === 3 ? (
-            <button
-              className="more-btn border-0"
-              onClick={() => {
-                setValue(6);
-              }}
-            >
-              Add Grade <i className="bx bx-chevron-right"></i>
-            </button>
+          {user.auth &&
+          (user.roles.includes("admin") ||
+            user.roles.includes("principal") ||
+            (user.roles.includes("mentor") && value === 3)) ? (
+            <>
+              {value === 1 ? (
+                <button
+                  className="more-btn border-0"
+                  onClick={() => {
+                    setValue(4);
+                  }}
+                >
+                  Add Mentor <i className="bx bx-chevron-right"></i>
+                </button>
+              ) : value === 2 ? (
+                <button
+                  className="more-btn border-0"
+                  onClick={() => {
+                    setValue(5);
+                  }}
+                >
+                  Add Student <i className="bx bx-chevron-right"></i>
+                </button>
+              ) : value === 3 ? (
+                <button
+                  className="more-btn border-0"
+                  onClick={() => {
+                    setValue(6);
+                  }}
+                >
+                  Add Grade <i className="bx bx-chevron-right"></i>
+                </button>
+              ) : (
+                value === 0 && (
+                  <button
+                    className="more-btn border-0"
+                    onClick={() => {
+                      setValue(7);
+                    }}
+                  >
+                    Add Course <i className="bx bx-chevron-right"></i>
+                  </button>
+                )
+              )}
+            </>
           ) : (
-            value === 0 && (
-              <button
-                className="more-btn border-0"
-                onClick={() => {
-                  setValue(7);
-                }}
-              >
-                Add Course <i className="bx bx-chevron-right"></i>
-              </button>
-            )
+            ""
           )}
         </div>
       </div>
