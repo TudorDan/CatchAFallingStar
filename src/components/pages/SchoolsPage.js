@@ -69,8 +69,8 @@ const SchoolsPage = () => {
                     <p>Principal {school.principal.name}</p>
 
                     {user.auth &&
-                    user.roles.includes("admin") &&
-                    user.roles.includes("principal") ? (
+                    (user.roles.includes("admin") ||
+                    user.roles.includes("principal")) ? (
                       <div className="trainer d-flex justify-content-between align-items-center">
                         <div className="trainer-profile d-flex align-items-center">
                           <Link
