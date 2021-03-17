@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Api from "../utils/Api";
 import Loading from "../utils/Loading";
 import swal2 from "sweetalert2";
+import { useGlobalUser } from "../utils/AuthContext";
 
 const CoursePage = (props) => {
   const [course, setCourse] = useState([]);
@@ -13,6 +14,7 @@ const CoursePage = (props) => {
   const linkToSchool = `/schools/${schoolId}`;
   const linkForAddDocument = `/schools/${schoolId}/courses/${courseId}/documents`;
   const linkToMain = `/`;
+  const { user } = useGlobalUser();
 
   useEffect(() => {
     const getCourse = async () => {
@@ -203,9 +205,14 @@ const CoursePage = (props) => {
             <i className="bx bx-chevron-left"></i> Back
           </Link>
           &nbsp;&nbsp;
-          <Link to={linkForAddDocument} className="more-btn">
-            Add <i className="bx bx-chevron-right"></i>
-          </Link>
+          {user.auth &&
+          (user.roles.includes("admin") || user.roles.includes("mentor")) ? (
+            <Link to={linkForAddDocument} className="more-btn">
+              Add <i className="bx bx-chevron-right"></i>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>
