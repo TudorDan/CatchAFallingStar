@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal from "sweetalert2";
+import { useGlobalUser } from "./utils/AuthContext";
 
 const Catalogues = (school) => {
   const [catalogues, setCatalogues] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4].split("#")[0];
   const linkToCatalogue = `/schools/${schoolID}/catalogues/`;
+  const { user } = useGlobalUser();
 
   useEffect(() => {
     const getCatalogues = async () => {
@@ -83,53 +85,59 @@ const Catalogues = (school) => {
                           </Link>
                         </h3>
 
-                        <div className="ms-auto">
-                          <Link
-                            to={{
-                              pathname: `/schools/${schoolID}/catalogues/${id}/update`,
-                            }}
-                            className="get-started-btn"
-                          >
-                            Update
-                          </Link>
-                          &nbsp;&nbsp;
-                          <button
-                            className="get-started-btn border-0"
-                            onClick={() => {
-                              swal
-                                .fire({
-                                  title: `Are you sure you wish to delete ${name}?`,
-                                  text: "You won't be able to revert this!",
-                                  icon: "warning",
-                                  showCancelButton: true,
-                                  confirmButtonColor: "#3ec1d5",
-                                  cancelButtonColor: "#3f000f",
-                                  confirmButtonText:
-                                    "Yes, delete school class!",
-                                })
-                                .then(async (result) => {
-                                  if (result.isConfirmed) {
-                                    const response = await Api.delete(
-                                      `/schools/${schoolID}/catalogues/${id}`
-                                    );
-                                    if (response.status === 204) {
-                                      swal
-                                        .fire(
-                                          "Deleted!",
-                                          "Your school class has been deleted.",
-                                          "success"
-                                        )
-                                        .then(function () {
-                                          window.location = `/schools/${schoolID}`;
-                                        });
+                        {user.auth &&
+                        (user.roles.includes("admin") ||
+                          user.roles.includes("principal")) ? (
+                          <div className="ms-auto">
+                            <Link
+                              to={{
+                                pathname: `/schools/${schoolID}/catalogues/${id}/update`,
+                              }}
+                              className="get-started-btn"
+                            >
+                              Update
+                            </Link>
+                            &nbsp;&nbsp;
+                            <button
+                              className="get-started-btn border-0"
+                              onClick={() => {
+                                swal
+                                  .fire({
+                                    title: `Are you sure you wish to delete ${name}?`,
+                                    text: "You won't be able to revert this!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3ec1d5",
+                                    cancelButtonColor: "#3f000f",
+                                    confirmButtonText:
+                                      "Yes, delete school class!",
+                                  })
+                                  .then(async (result) => {
+                                    if (result.isConfirmed) {
+                                      const response = await Api.delete(
+                                        `/schools/${schoolID}/catalogues/${id}`
+                                      );
+                                      if (response.status === 204) {
+                                        swal
+                                          .fire(
+                                            "Deleted!",
+                                            "Your school class has been deleted.",
+                                            "success"
+                                          )
+                                          .then(function () {
+                                            window.location = `/schools/${schoolID}`;
+                                          });
+                                      }
                                     }
-                                  }
-                                });
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </div>
+                                  });
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </div>
                   );
@@ -141,11 +149,16 @@ const Catalogues = (school) => {
       </section>
 
       <div className="why-us">
-        <div className="content text-center">
-          <Link to={linkToCatalogue} className="more-btn">
-            Add Class <i className="bx bx-chevron-right"></i>
-          </Link>
-        </div>
+        {user.auth &&
+        (user.roles.includes("admin") || user.roles.includes("principal")) ? (
+          <div className="content text-center">
+            <Link to={linkToCatalogue} className="more-btn">
+              Add Class <i className="bx bx-chevron-right"></i>
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
