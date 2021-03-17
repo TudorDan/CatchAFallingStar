@@ -94,7 +94,7 @@ const LoginPage = () => {
                   </label>
 
                   <Field
-                    type="text"
+                    type="password"
                     name="Password"
                     className="w-100 form-control"
                     placeholder="New Password"
