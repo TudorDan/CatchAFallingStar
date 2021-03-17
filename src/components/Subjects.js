@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import Api from "./utils/Api";
 import Loading from "./utils/Loading";
 import swal2 from "sweetalert2";
+import { useGlobalUser } from "./utils/AuthContext";
 
 const Subjects = (school) => {
   const [subjects, setSubjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const schoolID = window.location.href.split("/")[4].split("#")[0];
   const linkToAddSubject = `/schools/${schoolID}/subjects`;
+  const { user } = useGlobalUser();
 
   useEffect(() => {
     const getSubjects = async () => {
@@ -70,55 +72,61 @@ const Subjects = (school) => {
                           <h3 id="course-title">{name}</h3>
                         </div>
 
-                        <div className="d-flex align-items-center">
-                          <Link
-                            to={{
-                              pathname: `/schools/${schoolID}/subjects/${id}/`,
-                              schoolData: {
-                                schoolTitle: school.name,
-                              },
-                            }}
-                            className="get-started-btn"
-                          >
-                            Update
-                          </Link>
-                          &nbsp;&nbsp;
-                          <button
-                            className="get-started-btn border-0"
-                            onClick={() => {
-                              swal2
-                                .fire({
-                                  title: `Are you sure you wish to delete ${name}?`,
-                                  text: "You won't be able to revert this!",
-                                  icon: "warning",
-                                  showCancelButton: true,
-                                  confirmButtonColor: "#3ec1d5",
-                                  cancelButtonColor: "#3f000f",
-                                  confirmButtonText: "Yes, delete subject!",
-                                })
-                                .then(async (result) => {
-                                  if (result.isConfirmed) {
-                                    const response = await Api.delete(
-                                      `/schools/${schoolID}/subjects/${id}`
-                                    );
-                                    if (response.status === 204) {
-                                      swal2
-                                        .fire(
-                                          "Deleted!",
-                                          "Your subject has been deleted.",
-                                          "success"
-                                        )
-                                        .then(function () {
-                                          window.location = `/schools/${schoolID}`;
-                                        });
+                        {user.auth &&
+                        (user.roles.includes("admin") ||
+                          user.roles.includes("principal")) ? (
+                          <div className="d-flex align-items-center">
+                            <Link
+                              to={{
+                                pathname: `/schools/${schoolID}/subjects/${id}/`,
+                                schoolData: {
+                                  schoolTitle: school.name,
+                                },
+                              }}
+                              className="get-started-btn"
+                            >
+                              Update
+                            </Link>
+                            &nbsp;&nbsp;
+                            <button
+                              className="get-started-btn border-0"
+                              onClick={() => {
+                                swal2
+                                  .fire({
+                                    title: `Are you sure you wish to delete ${name}?`,
+                                    text: "You won't be able to revert this!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3ec1d5",
+                                    cancelButtonColor: "#3f000f",
+                                    confirmButtonText: "Yes, delete subject!",
+                                  })
+                                  .then(async (result) => {
+                                    if (result.isConfirmed) {
+                                      const response = await Api.delete(
+                                        `/schools/${schoolID}/subjects/${id}`
+                                      );
+                                      if (response.status === 204) {
+                                        swal2
+                                          .fire(
+                                            "Deleted!",
+                                            "Your subject has been deleted.",
+                                            "success"
+                                          )
+                                          .then(function () {
+                                            window.location = `/schools/${schoolID}`;
+                                          });
+                                      }
                                     }
-                                  }
-                                });
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </div>
+                                  });
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </div>
                   );
@@ -130,19 +138,24 @@ const Subjects = (school) => {
       </section>
 
       <div className="why-us">
-        <div className="content text-center">
-          <Link
-            to={{
-              pathname: linkToAddSubject,
-              schoolData: {
-                schoolTitle: school.name,
-              },
-            }}
-            className="more-btn"
-          >
-            Add Subject <i className="bx bx-chevron-right"></i>
-          </Link>
-        </div>
+        {user.auth &&
+        (user.roles.includes("admin") || user.roles.includes("principal")) ? (
+          <div className="content text-center">
+            <Link
+              to={{
+                pathname: linkToAddSubject,
+                schoolData: {
+                  schoolTitle: school.name,
+                },
+              }}
+              className="more-btn"
+            >
+              Add Subject <i className="bx bx-chevron-right"></i>
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
