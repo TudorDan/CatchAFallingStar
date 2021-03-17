@@ -134,7 +134,7 @@ const SchoolsPage = () => {
         id="submenu"
         className="d-flex justify-content-center align-items-center"
       >
-        {user.auth ? (
+        {user.auth && user.roles.includes("admin") ? (
           <div
             className="container position-relative"
             data-aos="zoom-in"
