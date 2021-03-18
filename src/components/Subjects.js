@@ -138,9 +138,13 @@ const Subjects = (school) => {
       </section>
 
       <div className="why-us">
-        {user.auth &&
-        (user.roles.includes("admin") || user.roles.includes("principal")) ? (
-          <div className="content text-center">
+        <div className="content text-center">
+          <Link to="/" className="more-btn">
+            <i className="bx bx-chevron-left"></i> Back
+          </Link>
+          &nbsp;&nbsp;
+          {user.auth &&
+          (user.roles.includes("admin") || user.roles.includes("principal")) ? (
             <Link
               to={{
                 pathname: linkToAddSubject,
@@ -152,10 +156,10 @@ const Subjects = (school) => {
             >
               Add Subject <i className="bx bx-chevron-right"></i>
             </Link>
-          </div>
-        ) : (
-          ""
-        )}
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </>
   );
