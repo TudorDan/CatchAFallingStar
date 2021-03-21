@@ -18,7 +18,7 @@ The web design was implemented from a [BootstrapMade](https://bootstrapmade.com/
 
 ## Installation
 
-After downloadin the repo, in order to install project dependecies, you can run:
+After downloading the repo, in order to install project dependecies, you can run:
 
 ```javascript
 npm update
